@@ -1,4 +1,4 @@
-h1, pre, a, div#footer {
+h1, pre, a, div#footer, p {
     font-family: 'Lora', serif;
 }
 
@@ -7,7 +7,7 @@ h1 {
     font-size: 1.4em;
 }
 
-pre, ul#indexfill, a, div#footer {
+pre, ul#indexfill, a, div#footer, p {
     font-size: 0.9em;
 }
 

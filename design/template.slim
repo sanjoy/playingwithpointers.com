@@ -27,7 +27,8 @@ html
     div id="wrapper"
       div id="main"
         h1 #{title}
-        pre #{body}
+        - body.split("\n\n").each do |paragraph|
+          p #{paragraph}
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|
