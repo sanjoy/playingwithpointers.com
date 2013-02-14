@@ -3,6 +3,8 @@ Sanjoy Das
 I am a software engineer who likes compilers, virtual machines, type
 systems, logic, chai, Pink Floyd and Haskell.
 
-This static site is generated using clayoven [1].
+This static site is generated using clayoven [1].  The entire contents
+of the blog is available on github [2].
 
 [1]: https://github.com/artagnon/clayoven
+[2]: https://github.com/sanjoy/playingwithpointers.com
