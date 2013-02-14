@@ -1,0 +1,26 @@
+Where did everything go?
+
+I used to maintain a Wordpress [1] powered blog at this domain to
+which I would post, on an average, one blog entry a month.  As is very
+well apparent, that has now been replaced by an ultra-minimalist
+statically generated website.
+
+My earlier blog was around for four years (2009 to 2013) when I shut
+it down.  Over the years I noticed my posts getting more fragmented
+and haphazard.  This wasn't unexpected, of course; I am (was?)  at an
+age where things change rather rapidly.
+
+Since my thoughts now feel more mature and consistent, I think this is
+a good time to reboot my website with fresh aims and perspective.
+Specifically, I wish to move away from the fickle-minded one-off blog
+posts I used to publish to better thought-out "article" type writing.
+I don't intend to install any form of commenting system -- I'm always
+available for discussion on email.
+
+To be clear, I don't have anything against Wordpress, it is a
+fantastic piece of software if you're looking to host a proper blog.
+For websites like this, though, I think clayoven [2] or something
+similar is the best solution.
+
+[1]: http://wordpress.com/
+[2]: https://github.com/artagnon/clayoven
