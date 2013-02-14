@@ -1,62 +1,66 @@
 h1, pre, a {
-	font-family: 'Open Sans', sans-serif;
+    font-family: 'Lora', serif;
 }
 
 h1 {
-	font-weight: 500;
-	font-size: 1.4em;
+    font-weight: 500;
+    font-size: 1.4em;
 }
 
 pre, ul#indexfill a {
-	font-size: 0.9em;
+    font-size: 0.9em;
+}
+
+pre {
+    color: #221144;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 a:link {
-	color: #003366;
+    color: #003366;
 }
 
 a:visited {
-	color: #003366;
+    color: #003366;
 }
 
 div#wrapper {
-	width: 100%;
+    width: 100%;
 }
 
 div#sidebar {
-	float: left;
+    float: left;
 }
 
 div#sidebar li {
-	list-style: none;
-	padding-top: 1px;
-	padding-bottom: 1px;
+    list-style: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 ul#indexfill li {
-	list-style: none;
+    list-style: none;
 }
 
 ul#indexfill {
-	padding-left: 30px;
+    padding-left: 30px;
 }
 
 ul#indexfill li:before {
-	content: "\00BB \0020";
-	color: #888888;
-	position: absolute;
-	margin-left: -20px;
+    content: "\00BB \0020";
+    color: #888888;
+    position: absolute;
+    margin-left: -20px;
 }
 
 div#sidebar a {
-	font-size: 1.0em;
+    font-size: 1.0em;
 }
 
 div#main {
-	float: left;
-	width: 32em;
+    float: left;
+    width: 32em;
 }
