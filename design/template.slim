@@ -36,3 +36,6 @@ html
         ul
           - topics.each do |topic|
             | <li><a href="#{topic}.html">#{topic}/</a></li>
+      div id="footer"
+        - if self.instance_of?(ContentPage)
+          p Originally published on #{timestamp.strftime('%e %B, %Y')}.

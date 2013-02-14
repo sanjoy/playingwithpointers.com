@@ -1,4 +1,4 @@
-h1, pre, a {
+h1, pre, a, div#footer {
     font-family: 'Lora', serif;
 }
 
@@ -7,7 +7,7 @@ h1 {
     font-size: 1.4em;
 }
 
-pre, ul#indexfill a {
+pre, ul#indexfill, a, div#footer {
     font-size: 0.9em;
 }
 
@@ -33,6 +33,12 @@ div#wrapper {
 
 div#sidebar {
     float: left;
+}
+
+div#footer {
+    font-style:italic;
+    position:absolute;
+    bottom:0;
 }
 
 div#sidebar li {
