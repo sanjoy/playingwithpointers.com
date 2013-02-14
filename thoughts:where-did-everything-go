@@ -18,10 +18,10 @@ from fickle-minded one-off blog posts to better thought-out, deeper
 articles.  I don't intend to install any form of commenting system --
 I'm always available for discussion on email.
 
-To be clear, I don't have anything against Wordpress, it is a
-fantastic piece of software if you're looking to host a proper blog.
-For websites like this, though, which aren't really "blogs", I think
-clayoven [2] or something similar is really the best solution.
+To be clear, I have nothing against Wordpress, it is a fantastic piece
+of software if you're looking to host a proper blog.  That said, for
+websites like this, which aren't really "blogs", I think clayoven [2]
+or something similar is really the best solution.
 
 [1]: http://wordpress.com/
 [2]: https://github.com/artagnon/clayoven
