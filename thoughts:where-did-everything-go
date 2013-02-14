@@ -1,8 +1,8 @@
 Where did everything go?
 
 I used to maintain a Wordpress [1] powered blog at this domain to
-which I would post, on an average, one blog entry a month.  As is very
-well apparent, that has now been replaced by an ultra-minimalist
+which I would post, on an average, two blog entries a month.  As is
+very well apparent, that has now been replaced by an ultra-minimalist
 statically generated website.
 
 My earlier blog was around for almost my whole college life (2009 to
@@ -18,10 +18,19 @@ from fickle-minded one-off blog posts to better thought-out, deeper
 articles.  I don't intend to install any form of commenting system --
 I'm always available for discussion on email.
 
-To be clear, I have nothing against Wordpress, it is a fantastic piece
-of software if you're looking to host a proper blog.  That said, for
-websites like this, which aren't really "blogs", I think clayoven [2]
-or something similar is really the best solution.
+Wordpress is a fantastic piece of software if you're looking to host a
+proper blog with the usual bells and whistles, but for websites like
+this, I think clayoven [2] or something similar is really the best
+solution.
+
+I have started versioning [3] my website.  In a way, this puts it in
+the same category as my software projects and I will treat it as such,
+meaning I will go back and edit articles written in the past when I
+see room for improvement.  I used to hesitate doing this earlier since
+I had convinced myself that going back and editing a post was like
+taking back what I said.  With a publicly visible history this is no
+longer an issue.
 
 [1]: http://wordpress.com/
 [2]: https://github.com/artagnon/clayoven
+[3]: https://github.com/sanjoy/playingwithpointers.com
