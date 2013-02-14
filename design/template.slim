@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title playingwithpointers.com: #{title}
+    meta charset="UTF-8"
+    meta name="description" content="Sanjoy's presence on the internet"
+    meta name="author" content="Sanjoy Das"
+    meta name="keywords" content="compilers, virtual machines, programming"
+    link rel="stylesheet" type="text/css" href="design/style.css"
+    link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans"
+  body
+    | <script type="text/javascript">
+    |  var _gaq = _gaq || [];
+    |  _gaq.push(['_setAccount', '#{`cat GA.token`.chomp}']);
+    |  _gaq.push(['_trackPageview']);
+    |
+    |  (function() {
+    |    var ga = document.createElement('script');
+    |    ga.type = 'text/javascript';
+    |    ga.async = true;
+    |    ga.src =
+    |       ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+    |        '.google-analytics.com/ga.js';
+    |    var s = 
+    |      document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    |   })();
+    | </script>
+
+    div id="wrapper"
+      div id="main"
+        h1 #{title}
+        pre #{body}
+        - if indexfill
+          ul id="indexfill"
+            - indexfill.each do |page|
+              <li><a href="#{page.permalink}.html">#{page.title}</a></li>
+      div id="sidebar"
+        ul
+          - topics.each do |topic|
+            | <li><a href="#{topic}.html">#{topic}/</a></li>
