@@ -4,11 +4,11 @@ h1, pre, a, div#footer, p {
 
 h1 {
     font-weight: 500;
-    font-size: 1.4em;
+    font-size: 1.6em;
 }
 
 pre, ul#indexfill, a, div#footer, p {
-    font-size: 0.9em;
+    font-size: 1.0em;
 }
 
 pre {
@@ -63,7 +63,7 @@ ul#indexfill li:before {
 }
 
 div#sidebar a {
-    font-size: 1.0em;
+    font-size: 1.2em;
 }
 
 div#main {
