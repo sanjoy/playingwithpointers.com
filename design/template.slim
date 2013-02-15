@@ -27,8 +27,15 @@ html
     div id="wrapper"
       div id="main"
         h1 #{title}
-        - body.split("\n\n").each do |paragraph|
-          p #{paragraph}
+        - paragraphs.each do |paragraph|
+          - if paragraph.is_plain?
+            p == paragraph.content
+          - if paragraph.is_emailquote?
+            pre == paragraph.content
+          - if paragraph.is_codeblock?
+            code == paragraph.content
+          - if paragraph.is_footer?
+            pre == paragraph.content
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|
