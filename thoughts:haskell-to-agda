@@ -1,0 +1,64 @@
+Haskell → Agda
+
+[TBD: Introduction]
+
+As an amateur in both, I think trying out Agda is a good next step
+after getting comfortable with Haskell, especially if the objective of
+learning Haskell was to develop oneself as a programmer.  I hope this
+article will pique the interest of people who get Haskell, and nudge
+them a little bit towards Agda.
+
+The Curry-Howard correspondence specifies a way to map types (in
+simply typed lambda calculus) to propositions in constructive logic,
+and values to proof.  That is a fancy way of saying that given a
+predicate ("x is less than five", say) it is possible to construct a
+type (in simply typed lambda calculus) that has a value if and only if
+the predicate is true.  Moreover, if we squint hard enough, we should
+be able to see that the value somehow "proves" the predicate.  Haskell
+is a strict superset of the simply typed lambda calculus and so the
+Curry-Howard correspondence applies, but somewhat crudely.  
+
+  The
+Curry Howard correspondence applies, somewhat crudely, to Haskell.
+
+
+
+
+  For example, to construct a value of type "(A,
+B)" (a regular Haskell tuple), we need a value of type A and a value
+of type B.  This is a lot like proving the proposition "P AND Q" -- to
+prove it, we need to prove both P and Q.
+
+Similarly,
+"Either P Q" is like "P OR Q" and the function "P
+-> Q" corresponds to "P IMPLIES Q".  This correspondence is what makes
+Agda's type-system interesting.
+
+>> Haskell's type system basically tell us that a value has a type, and
+an type has a kind.
+
+Haskell's type system is based around assigning a type to every value
+and a kind to every type.  Most Haskell programmers will have noticed
+that kinds are like meta-types, types of types.
+
+>> But why stop there?
+
+>> Why not give a kind a meta-kind and so forth?
+
+>> Agda does that.
+
+>> Every value belongs to a specific universe, and the typing relation
+is a relation from level k to level k -1 .
+
+>> The dichotomy is gone, and function of a sufficiently high level
+can return types.
+
+>> Why bother with different universes?  Russels' paradox.
+
+>> Since functions can return "types"; modify CH corr., and a
+correctly generated "type" can express a contract.  For instance,
+function that takes first argument to be non-zero.
+
+>> Dependent types -- indexing types on values from other universes.
+
+>> Termination, CH Correspondence.
