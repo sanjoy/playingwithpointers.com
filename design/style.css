@@ -11,6 +11,10 @@ pre, ul#indexfill, a, div#footer, p {
     font-size: 1.0em;
 }
 
+p {
+    text-indent:20px;
+}
+
 pre {
     color: #221144;
 }
