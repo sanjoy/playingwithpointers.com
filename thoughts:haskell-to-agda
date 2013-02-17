@@ -1,64 +1,63 @@
 Haskell → Agda
 
-[TBD: Introduction]
-
-As an amateur in both, I think trying out Agda is a good next step
-after getting comfortable with Haskell, especially if the objective of
+As an amateur in both, I think Agda [1] is a good next step after
+getting comfortable with Haskell [2], especially if the objective of
 learning Haskell was to develop oneself as a programmer.  I hope this
 article will pique the interest of people who get Haskell, and nudge
 them a little bit towards Agda.
 
 The Curry-Howard correspondence specifies a way to map types (in
 simply typed lambda calculus) to propositions in constructive logic,
-and values to proof.  That is a fancy way of saying that given a
+and values to proofs.  This is a fancy way of saying that given a
 predicate ("x is less than five", say) it is possible to construct a
 type (in simply typed lambda calculus) that has a value if and only if
 the predicate is true.  Moreover, if we squint hard enough, we should
-be able to see that the value somehow "proves" the predicate.  Haskell
-is a strict superset of the simply typed lambda calculus and so the
-Curry-Howard correspondence applies, but somewhat crudely.  
+be able to show that this value somehow "proves" the predicate.  Since
+Haskell is a superset of the simply typed lambda calculus, the
+Curry-Howard correspondence applies to it, though somewhat crudely
+[3].  Agda draws much of its power from the Curry-Howard
+correspondence, as we'll see in a short while.
 
-  The
-Curry Howard correspondence applies, somewhat crudely, to Haskell.
+Haskell's type system splits the set of all things into values, types
+and kinds (which are meta-types, or types of types).  Agda generalizes
+this notion by having values, types of values, types of types of
+values, types of types of types of values and so on.  More concretely,
+Agda splits entities into objects, types at level 0, types at level 1
+(meta-types), types at level 2 ... ad infinitum.  The typing relation
+(that decides which type a value has) is a function from types at
+level k to types at (k + 1), and from objects ("types" with no level)
+to types at level 0.  This slightly complex arrangement is needed to
+work around an important logical contradiction [4].  So, in Agda, 5 is
+a value of type ℕ, and ℕ is a value of type Set₀ (also referred to as
+Set), Set₀ is a value of type Set₁ and so on.  Agda has what I think
+is best described as first-class types.  Functions can return types
+just as easily as regular values; you can very well have a function
+from "Maybe Char" to "arbitraryFunction x" where x is the first
+argument passed to the function (a value of type "Maybe Char").  This
+makes it possible to write a type-safe printf in Agda, one which
+decides its type depending on the format string.  In other words, with
+first-class types, it is possible to express arbitrary contracts or
+invariants in the type system and have the compiler check them for us.
 
+I mentioned that Haskell respects the CH correspondence only crudely.
+The crudeness comes from the fact that Haskell admits ⊥ (denoted as
+undefined inside Haskell programs) as a value, denote non-termination
+and error conditions.  ⊥ (called bottom) pokes a hole in the type
+system since every type (in Haskell) in inhabited by ⊥.  Given a type
+T, it is always possible to produce a Haskell value of the type:
+"undefined :: T" is one way, "let x = x in x :: T" is another.  This
+is problematic -- the logical statement corresponding to "all types
+are inhabited" is "all predicates are provable"!
 
+Agda doesn't have ⊥ and hence avoids the above issue.  Unfortunately,
+this also implies that Agda isn't Turing complete, not every algorithm
+can be implemented in Agda.
 
+[[ Introduce Dependent Types ]]
 
-  For example, to construct a value of type "(A,
-B)" (a regular Haskell tuple), we need a value of type A and a value
-of type B.  This is a lot like proving the proposition "P AND Q" -- to
-prove it, we need to prove both P and Q.
+[[ Coinductive data structures, co-recursion ]]
 
-Similarly,
-"Either P Q" is like "P OR Q" and the function "P
--> Q" corresponds to "P IMPLIES Q".  This correspondence is what makes
-Agda's type-system interesting.
-
->> Haskell's type system basically tell us that a value has a type, and
-an type has a kind.
-
-Haskell's type system is based around assigning a type to every value
-and a kind to every type.  Most Haskell programmers will have noticed
-that kinds are like meta-types, types of types.
-
->> But why stop there?
-
->> Why not give a kind a meta-kind and so forth?
-
->> Agda does that.
-
->> Every value belongs to a specific universe, and the typing relation
-is a relation from level k to level k -1 .
-
->> The dichotomy is gone, and function of a sufficiently high level
-can return types.
-
->> Why bother with different universes?  Russels' paradox.
-
->> Since functions can return "types"; modify CH corr., and a
-correctly generated "type" can express a contract.  For instance,
-function that takes first argument to be non-zero.
-
->> Dependent types -- indexing types on values from other universes.
-
->> Termination, CH Correspondence.
+[1]: http://en.wikipedia.org/wiki/Agda_(programming_language)
+[2]: http://en.wikipedia.org/wiki/Haskell_(programming_language)
+[3]: http://en.wikibooks.org/wiki/Haskell/The_Curry-Howard_isomorphism
+[4]: http://en.wikipedia.org/wiki/Russell's_paradox
