@@ -1,9 +1,9 @@
 h1, pre, a, div#footer, p {
-    font-family: 'Lora', serif;
+    font-family: 'PT Sans', sans-serif;
 }
 
 h1 {
-    font-weight: 500;
+    font-weight: bold;
     font-size: 1.6em;
 }
 
@@ -37,12 +37,6 @@ div#wrapper {
 
 div#sidebar {
     float: left;
-}
-
-div#footer {
-    font-style:italic;
-    position:absolute;
-    bottom:0;
 }
 
 div#sidebar li {
