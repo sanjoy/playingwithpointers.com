@@ -17,7 +17,7 @@ Since Haskell is a superset of the simply typed lambda calculus, the
 Curry-Howard correspondence applies to it, though somewhat crudely
 [2].  Agda draws much of its power from the Curry-Howard
 correspondence, as we'll see; and this puts an interesting restriction
-on it as a programming language..
+on it as a programming language.
 
 Haskell's type system splits the set of all things into values, types
 and kinds (which are meta-types, or types of types).  Agda generalizes
@@ -32,8 +32,8 @@ work around an important logical contradiction [3].  So 5 is a value
 of type ℕ, and ℕ is a value of type Set₀ (also referred to as Set),
 Set₀ is a value of type Set₁ and so on.
 
-I think it is fair to say that types are first-class in Agda..
-Functions can return types just as easily as regular values; and you
+I think it is fair to say that types are first-class in Agda --
+functions can return types just as easily as regular values; and you
 can very well have a function from "Maybe Char" to "arbitraryFunction
 x" where x is the first argument passed to the function (a value of
 type "Maybe Char").  With first-class types, it is possible to express
