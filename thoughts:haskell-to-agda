@@ -1,7 +1,7 @@
 Haskell → Agda
 
 As an amateur in both, I think Agda [1] is a good next step after
-getting comfortable with Haskell [2], especially if the objective of
+getting comfortable with Haskell, especially if the objective of
 learning Haskell was to develop oneself as a programmer.  I hope this
 article will pique the interest of people who get Haskell, and nudge
 them a little bit towards Agda.
@@ -11,11 +11,11 @@ simply typed lambda calculus) to propositions in constructive logic,
 and values to proofs.  This is a fancy way of saying that given a
 predicate ("x is less than five", say) it is possible to construct a
 type (in simply typed lambda calculus) that has a value if and only if
-the predicate is true.  Moreover, if we squint hard enough, we should
-be able to show that this value somehow "proves" the predicate.  Since
-Haskell is a superset of the simply typed lambda calculus, the
+the predicate is true.  Furthermore, if we squint hard enough, we
+should be able to show that this value somehow "proves" the predicate.
+Since Haskell is a superset of the simply typed lambda calculus, the
 Curry-Howard correspondence applies to it, though somewhat crudely
-[3].  Agda draws much of its power from the Curry-Howard
+[2].  Agda draws much of its power from the Curry-Howard
 correspondence, as we'll see in a short while.
 
 Haskell's type system splits the set of all things into values, types
@@ -27,37 +27,39 @@ Agda splits entities into objects, types at level 0, types at level 1
 (that decides which type a value has) is a function from types at
 level k to types at (k + 1), and from objects ("types" with no level)
 to types at level 0.  This slightly complex arrangement is needed to
-work around an important logical contradiction [4].  So, in Agda, 5 is
-a value of type ℕ, and ℕ is a value of type Set₀ (also referred to as
-Set), Set₀ is a value of type Set₁ and so on.  Agda has what I think
-is best described as first-class types.  Functions can return types
-just as easily as regular values; you can very well have a function
-from "Maybe Char" to "arbitraryFunction x" where x is the first
-argument passed to the function (a value of type "Maybe Char").  This
-makes it possible to write a type-safe printf in Agda, one which
-decides its type depending on the format string.  In other words, with
-first-class types, it is possible to express arbitrary contracts or
-invariants in the type system and have the compiler check them for us.
+work around an important logical contradiction [3].  So 5 is a value
+of type ℕ, and ℕ is a value of type Set₀ (also referred to as Set),
+Set₀ is a value of type Set₁ and so on.
+
+Agda has what I think is best described as first-class types.
+Functions can return types just as easily as regular values; you can
+very well have a function from "Maybe Char" to "arbitraryFunction x"
+where x is the first argument passed to the function (a value of type
+"Maybe Char").  This makes it possible to write a type-safe printf in
+Agda, one which decides its type depending on the format string.  In
+other words, with first-class types, it is possible to express
+arbitrary contracts or invariants in the type system and have the
+compiler check them for us.
 
 I mentioned that Haskell respects the CH correspondence only crudely.
-The crudeness comes from the fact that Haskell admits ⊥ (denoted as
-undefined inside Haskell programs) as a value, denote non-termination
-and error conditions.  ⊥ (called bottom) pokes a hole in the type
-system since every type (in Haskell) in inhabited by ⊥.  Given a type
-T, it is always possible to produce a Haskell value of the type:
-"undefined :: T" is one way, "let x = x in x :: T" is another.  This
-is problematic -- the logical statement corresponding to "all types
-are inhabited" is "all predicates are provable"!
-
-Agda doesn't have ⊥ and hence avoids the above issue.  Unfortunately,
-this also implies that Agda isn't Turing complete, not every algorithm
-can be implemented in Agda.
-
-[[ Introduce Dependent Types ]]
-
-[[ Coinductive data structures, co-recursion ]]
+The crudeness comes from the fact that Haskell admits ⊥ (written as
+"undefined") as a value, denoting non-termination and error
+conditions.  ⊥ (called bottom) pokes a hole in the type system since
+every type (in Haskell) in inhabited by ⊥.  It is always possible to
+produce a value of any type T in Haskell -- "undefined :: T" is one,
+"let x = x in x :: T" is another.  This is problematic, the logical
+statement corresponding to "all types are inhabited by at least one
+value" is "all predicates are provable"!  Agda the above issue by not
+allowing expressions which may evaluate to ⊥.  Unfortunately, this
+implies that Agda isn't Turing complete -- a Turing complete
+programming language has to allow non-termination.  Moreover, the
+halting problem [4] prevents Agda from excluding just the expressions
+that do not terminate.  The compiler has to err on the more
+conservative side and disallow some perfectly good, terminating
+programs.  Agda does allow (co-inductive) infinite data structures, as
+a dual of finite inductive data structures.
 
 [1]: http://en.wikipedia.org/wiki/Agda_(programming_language)
-[2]: http://en.wikipedia.org/wiki/Haskell_(programming_language)
-[3]: http://en.wikibooks.org/wiki/Haskell/The_Curry-Howard_isomorphism
-[4]: http://en.wikipedia.org/wiki/Russell's_paradox
+[2]: http://en.wikibooks.org/wiki/Haskell/The_Curry-Howard_isomorphism
+[3]: http://en.wikipedia.org/wiki/Russell's_paradox
+[4]: http://en.wikipedia.org/wiki/Halting_problem
