@@ -41,7 +41,7 @@ html
           ul id="indexfill"
             - indexfill.each do |page|
               <li><a href="#{page.permalink}.html">#{page.title}</a></li>
-        - if self.instance_of?(ContentPage)
+        - if self.instance_of?(Clayoven::ContentPage)
           p <em>Originally published on #{timestamp.strftime('%e %B, %Y')}.</em>
       div id="sidebar"
         ul
