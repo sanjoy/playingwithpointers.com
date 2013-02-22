@@ -41,23 +41,24 @@ div#sidebar {
 
 div#sidebar li {
     list-style: none;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    margin: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    border-bottom-color: #000000;
+    padding: 15px;
 }
 
 ul#indexfill li {
     list-style: none;
+    margin: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    border-bottom-color: #999999;
+    padding: 10px;
 }
 
 ul#indexfill {
-    padding-left: 30px;
-}
-
-ul#indexfill li:before {
-    content: "\00BB \0020";
-    color: #888888;
-    position: absolute;
-    margin-left: -20px;
+    padding-left: 25px;
 }
 
 div#sidebar a {
