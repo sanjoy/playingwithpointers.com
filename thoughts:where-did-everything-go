@@ -10,7 +10,8 @@ My earlier blog was around for almost my whole college life (2009 to
 getting more fragmented, haphazard and generally out-of-sync with each
 other.  While slightly distressing, this wasn't unexpected; I was
 (am?)  at an age where personal views change rapidly and perspectives
-are in flux.
+are in flux.  Having said that, my old website is still archived
+online [2]; I apologize for breaking your links.
 
 Since my thoughts now feel more mature and consistent, I think this is
 a good time to reboot my website.  Specifically, I wish to move away
@@ -20,10 +21,10 @@ I'm always available for discussion on email.
 
 Wordpress is a fantastic piece of software if you're looking to host a
 proper blog with the usual bells and whistles, but for websites like
-this, I think clayoven [2] or something similar is really the best
+this, I think clayoven [3] or something similar is really the best
 solution.
 
-I have started versioning [3] my website.  In a way, this puts it in
+I have started versioning [4] my website.  In a way, this puts it in
 the same category as my software projects and I will treat it as such,
 meaning I will go back and edit articles written in the past when I
 see room for improvement.  I used to hesitate doing this earlier since
@@ -32,5 +33,6 @@ taking back what I said.  With a publicly visible history this is no
 longer an issue.
 
 [1]: http://wordpress.com/
-[2]: https://github.com/artagnon/clayoven
-[3]: https://github.com/sanjoy/playingwithpointers.com
+[2]: http://pwparchive.wordpress.com/
+[3]: https://github.com/artagnon/clayoven
+[4]: https://github.com/sanjoy/playingwithpointers.com
