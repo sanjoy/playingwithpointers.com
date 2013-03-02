@@ -76,8 +76,11 @@ critical parts of their software system in the near future.  A good
 introduction to programming in Agda is "Dependently Typed Programming
 in Agda" by Ulf Norell and James Chapman [5].
 
+Thanks to Ram [6] for proof-reading this article.
+
 [1]: http://en.wikipedia.org/wiki/Agda_(programming_language)
 [2]: http://en.wikibooks.org/wiki/Haskell/The_Curry-Howard_isomorphism
 [3]: http://en.wikipedia.org/wiki/Russell's_paradox
 [4]: http://en.wikipedia.org/wiki/Halting_problem
 [5]: http://www.cse.chalmers.se/~ulfn/darcs/AFP08/LectureNotes/AgdaIntro.pdf
+[6]: http://artagnon.com
