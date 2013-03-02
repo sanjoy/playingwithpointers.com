@@ -76,7 +76,7 @@ Statement (C) expands this condition to hold for groups of
 In (D), notice how multiplying by 0x01010101 set the most significant
 byte of the result to the sum of the all the bytes (assuming there are
 no inter-byte carries).  This is exactly what we were trying to
-compute -- the total number of high bits in the input!  We left shift
+compute -- the total number of high bits in the input!  We right shift
 by 24 to get to the MSB and return it.
 
 The optimized version combines (C) to ((i + (i >> 4)) & 0x0F0F0F0F) =
