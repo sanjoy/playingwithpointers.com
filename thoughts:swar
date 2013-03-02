@@ -115,4 +115,4 @@ they can be used (they're too large to be embedded as immediates).
 Note that the "patterns" for the integer literals remained the same.
 How will they change for a (hypothetical) pop_cnt_512?
 
-[1] https://github.com/sanjoy/Snippets/blob/master/swar-perf.cc
+[1]: https://github.com/sanjoy/Snippets/blob/master/swar-perf.cc
