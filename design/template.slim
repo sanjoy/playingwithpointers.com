@@ -6,7 +6,7 @@ html
     meta name="description" content="Sanjoy's presence on the internet"
     meta name="author" content="Sanjoy Das"
     meta name="keywords" content="compilers, virtual machines, programming"
-    link rel="stylesheet" type="text/css" href="/design/style.css"
+    link rel="stylesheet" type="text/css" href="design/style.css"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans"
     link rel="icon" type="image/png" href="/favicon.ico"
   body
@@ -34,7 +34,7 @@ html
           - if paragraph.is_emailquote?
             pre == paragraph.content
           - if paragraph.is_codeblock?
-            code == paragraph.content
+            pre id="codeblock" == paragraph.content
           - if paragraph.is_footer?
             pre == paragraph.content
         - if indexfill

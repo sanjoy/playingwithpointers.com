@@ -69,3 +69,8 @@ div#main {
     float: left;
     width: 32em;
 }
+
+pre#codeblock {
+    font-family: Fixed, monospace;
+    font-size: 75%;
+}
