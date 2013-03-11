@@ -11,7 +11,11 @@ pre, ul#indexfill, a, div#footer, p {
     font-size: 1.0em;
 }
 
-p {
+p.first {
+    text-align: justify;
+}
+
+p.regular {
     text-indent: 20px;
     text-align: justify;
 }

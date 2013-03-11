@@ -30,7 +30,10 @@ html
         h1 #{title}
         - paragraphs.each do |paragraph|
           - if paragraph.is_plain?
-            p == paragraph.content
+            - if paragraph.is_first?
+              p class="first" == paragraph.content
+            - else
+              p class="regular" == paragraph.content
           - if paragraph.is_emailquote?
             pre == paragraph.content
           - if paragraph.is_codeblock?
