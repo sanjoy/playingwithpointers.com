@@ -12,7 +12,8 @@ pre, ul#indexfill, a, div#footer, p {
 }
 
 p {
-    text-indent:20px;
+    text-indent: 20px;
+    text-align: justify;
 }
 
 pre {
