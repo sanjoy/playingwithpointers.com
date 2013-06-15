@@ -1,0 +1,159 @@
+Biased Locking and Pthreads
+
+Biased locking [1] is an optimization over "vanilla" locks (mutexes)
+to improve the performance in the uncontended case.  This improvement
+is achieved by programming the lock to not use any high-latency
+read-modify-write instructions (`CAS` et. al. [2] [3]) in restricted
+situation of the same thread repeatedly invoking `lock` and
+`unlock`. The lock falls back to using a traditional lock (which I'll
+refer to as the _backing lock_; and is a straight `pthread\_mutex\_t`
+in this case) once this assumption is broken.
+
+*The Implementation*
+
+The implementation [4] is inspired from [1].  The lock has four states
+-- `Unbiased`, `BiasedAndLocked`, `BiasedAndUnlocked` and `Default`.
+A lock in the `Unbiased` state hasn't ever been locked.  A lock in the
+`BiasedAndLocked` state is biased towards a specific thread; and can
+be moved to the `BiasedAndUnlocked` state and back by that specific
+thread cheaply.  Once the biasing assumption (that of the lock being
+uncontended) is broken, the lock moves to the `Default` state where it
+is sematically equivalent to a `pthread\_mutex\_t`; modulo a tiny bit
+of indirection.  The possible state transitions are therefore
+
+    |  Unbiased --> BiasedAndLocked <--> BiasedAndUnlocked --> Default  |
+
+The trickiest part of the implementation is race between the biasing
+thread trying to move the lock from `BiasedAndUnlocked` to
+`BiasedAndLocked` and the some other non-biasing thread trying to move
+the lock from the `BiasedAndUnlocked` state to the `Default` state (so
+that this non-biasing thread can then lock on the backing lock).  The
+complication arises from the very premise of the lock itself -- to be
+able to gain absolutely anything in performance, we need to the
+transition from `BiasedAndUnlocked` to `BiasedAndLocked` free of
+atomic read-modify-write instructions.  Here is the actual code,
+slightly paraphrased:
+
+    if (biasing_thread_id_ == pthread_self()) {
+      state_ = kStateBiasedAndLocked;
+      bool is_revoke_requested =
+        SequentiallyConsistentLoad(&revoke_requested_);
+      if (is_revoke_requested) {
+        state_ = kStateDefault;
+        goto retry;
+      }
+    } else {
+      revoke_requested_ = true;
+      MemoryBarrier();
+      bool result = CompareAndSwapBool(&state_, kStateBiasedAndUnlocked,
+                                       kStateDefault); // (X)
+      if (!result) sleep(appropriate_amount);
+      goto retry;
+    }
+
+To see why this works (informally), we _condition_ on `result` from
+the `CAS` on line marked as `(X)`, which will be executed whenever
+some non-biasing thread tries to lock.  And since all we attempt to do
+in that case is change the state to `Default` and retry (and hence
+subsequently hit the backing lock) races between multiple non-biasing
+threads trying to lock is naturally resolved by the backing lock.
+
+Firstly, note that we essentially _do_ the same thing, retry,
+irrespective of what `result` is (the `sleep` is a performance hack,
+nothing more).  Secondly, note that setting `revoke\_requested\_` to
+`true` is always a safe, conservative thing to do.
+
+A `false` `result` means that `state\_` was changed by some thread
+between the read due to the `switch` statement and the `CAS`.  We
+`sleep` for an appropriate amount (the actual code implements an
+exponential back-off [5]) and retry.  We leave `revoke\_requested\_`
+set to `true`, just in case the biasing thread sees it and helps out
+the non-biasing thread.
+
+A `true` `result` means that we did, at some point of time,
+successfully change `state\_` from `BiasedAndLocked` to `Default`.
+However, this doesn't say _anything_ about the current value of
+`state\_` since the biasing thread could have changed it to
+`BiasedAndLocked` _after_ the `CAS`.  However, in that case, the
+`MemoryBarrier()` and the `SequentiallyConsistentLoad` [6] [7] ensure
+a `is\_revoke\_requested\_` is read as `true` in the biasing thread;
+which then helps out by setting `state\_` to `Default` and retrying.
+
+Can this solution be simplified further?  We definitely need the `CAS`
+in non-biasing threads -- if we just set `revoke\_requested\_` to
+`true` and retry, the biasing thread might not see the `true`
+`revoke\_requested\_` when locking. In the situation where it doesn't
+attempt another lock after the corresponding unlock we'll be in the
+absurd state where the non-biasing thread (assuming a total of two
+threads) fails to acquire an uncontended lock forever.  Can we replace
+the `SequentiallyConsistentLoad` with a normal atomic load?  Well, no.
+A normal atomic load from `revoke\_requested\_` can be reordered to
+before the store to `state\_`; and this makes it possible for both the
+biasing thread and one non-biasing thread to lock simultaneously.
+This can happen as follows: the biasing thread reads a `false`
+`revoke\_requested\_`, after which a non-biasing thread sets
+`revoke\_requested\_` to `true`, does a successful `CAS`, retries,
+sees `state\_` as `Default` and successfully locks on the base lock.
+After _all of this_, the biasing thread sets `state\_` to
+`BiasedAndLocked` and returns.  The `SequentiallyConsistentLoad`
+prevents this re-ordering and ensures that whenever the biasing thread
+steps on a successful `CAS`, it sees a `true` `revoke\_requested\_`
+and sets `state\_` to `Default`.
+
+*Tests & Performance Improvement*
+
+Here are some numbers reported after running [4] as is:
+
+    simple_bench; pthread_lock: 25.061 milliseconds
+    simple_bench; biased_lock: 14.854 milliseconds
+    simple_bench; pthread_lock: 31.020 milliseconds
+    simple_bench; biased_lock: 14.835 milliseconds
+    simple_bench; pthread_lock: 25.260 milliseconds
+    simple_bench; biased_lock: 14.838 milliseconds
+    simple_bench; pthread_lock: 30.788 milliseconds
+    simple_bench; biased_lock: 14.850 milliseconds
+    simple_bench; pthread_lock: 25.180 milliseconds
+    simple_bench; biased_lock: 14.815 milliseconds
+    simple_bench; pthread_lock: 30.801 milliseconds
+    simple_bench; biased_lock: 14.853 milliseconds
+
+This simulates the uncontended lock case, in which we see an average
+decrease of 47.03 % in lock overhead (the test-case doesn't do much
+apart from locking and unlocking the mutex).  Some of this is
+undoubtedly due to the fact that the compiler inlines the code for
+biased locking, eliding the method call overhead.
+
+In the contended case, the figures look like
+
+    bench_threads; pthread_lock: 97.591 milliseconds
+    bench_threads; biased_lock: 109.900 milliseconds
+    bench_threads; pthread_lock: 87.917 milliseconds
+    bench_threads; biased_lock: 126.108 milliseconds
+    bench_threads; pthread_lock: 91.825 milliseconds
+    bench_threads; biased_lock: 115.129 milliseconds
+    bench_threads; pthread_lock: 94.539 milliseconds
+    bench_threads; biased_lock: 115.733 milliseconds
+    bench_threads; pthread_lock: 88.205 milliseconds
+    bench_threads; biased_lock: 108.765 milliseconds
+
+Biased locking incurs a increase 25.1 % in the lock overhead.
+
+*Conclusion*
+
+As can be seen, biased locking may lead to decreased locking overhead
+in certain workloads.  Hotspot implements a better version of this
+same concept; in their case revocation involves stopping all threads
+at a safepoint and walking their stacks [8].
+
+Please let me know if you notice any bugs or mistakes.  The code
+itself assumes x86's memory model and will have to be changed if
+targeted for other architectures.
+
+[1]: http://home.comcast.net/~pjbishop/Dave/QRL-OpLocks-BiasedLocking.pdf
+[2]: http://en.wikipedia.org/wiki/Compare-and-swap
+[3]: http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Atomic-Builtins.html
+[4]: https://github.com/sanjoy/Snippets/blob/master/BiasedLocking.cc
+[5]: http://ics.forth.gr/carv/transform/_docs/its_slides/TransForm-ITS-talk2-web.pdf
+[6]: http://preshing.com/20120913/acquire-and-release-semantics
+[7]: http://bartoszmilewski.com/2008/11/05/who-ordered-memory-fences-on-an-x86/
+[8]: https://github.com/openjdk-mirror/jdk7u-hotspot/blob/master/src/share/vm/runtime/biasedLocking.hpp
