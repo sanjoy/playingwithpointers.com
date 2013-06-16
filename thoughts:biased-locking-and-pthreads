@@ -1,13 +1,14 @@
 Biased Locking and Pthreads
 
-Biased locking [1] is an optimization over "vanilla" locks (mutexes)
-to improve the performance in the uncontended case.  This improvement
-is achieved by programming the lock to not use any high-latency
-read-modify-write instructions (`CAS` et. al. [2] [3]) in restricted
-situation of the same thread repeatedly invoking `lock` and
-`unlock`. The lock falls back to using a traditional lock (which I'll
-refer to as the _backing lock_; and is a straight `pthread\_mutex\_t`
-in this case) once this assumption is broken.
+Biased locking [1] is an performance optimization over "vanilla" locks
+(mutexes) that are mostly uncontended.  This improvement is achieved
+by programming the lock to not use any high-latency read-modify-write
+instructions (`CAS` et. al. [2] [3]) in the special case of the same
+thread (referred to as the _biasing thread_) repeatedly invoking
+`lock` (acquire) and `unlock` (release) on the mutex.  The lock falls
+back to using a traditional lock (which I'll refer to as the _backing
+lock_; and is a straight `pthread\_mutex\_t` in this case) once this
+assumption is broken.
 
 *The Implementation*
 
