@@ -36,7 +36,7 @@ html
         h1 #{title}
         - paragraphs.each do |paragraph|
           - if paragraph.is_plain?
-            - if paragraph.is_first?
+            - if paragraph == paragraphs[0]
               p class="first" == paragraph.content
             - else
               p class="regular" == paragraph.content
