@@ -2,6 +2,12 @@ h1, pre, a, div#footer, p {
     font-family: 'Fjord One', serif;
 }
 
+body {
+    margin-top: 25px;
+    margin-bottom: 40px;
+    margin-left: 40px;
+}
+
 h1 {
     font-weight: bold;
     font-size: 1.6em;
