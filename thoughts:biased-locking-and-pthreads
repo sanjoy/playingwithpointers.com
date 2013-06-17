@@ -12,6 +12,11 @@ assumption is broken.
 
 *The Implementation*
 
+Before going ahead, please allow me to make it clear what follows is
+far from production quality and is a learning exercise at best.  On a
+related note, I'd like to thank _AceyJuan_ for pointing out some red
+flags in my code [9].
+
 The implementation [4] is inspired from [1].  The lock has four states
 -- `Unbiased`, `BiasedAndLocked`, `BiasedAndUnlocked` and `Default`.
 A lock in the `Unbiased` state hasn't ever been locked.  A lock in the
@@ -36,19 +41,18 @@ read-modify-write instructions.  Here is the actual code, slightly
 paraphrased:
 
     if (biasing_thread_id_ == pthread_self()) {
-      state_ = kStateBiasedAndLocked;
-      bool is_revoke_requested =
-        SequentiallyConsistentLoad(&revoke_requested_);
-      if (is_revoke_requested) {
-        state_ = kStateDefault;
+      ReleaseStore(&state_, kStateBiasedAndLocked);
+      if (UNLIKELY(SequentiallyConsistentLoad(&revoke_requested_))) {
+        ReleaseStore(&state_, kStateDefault);
         goto retry;
       }
     } else {
-      revoke_requested_ = true;
-      MemoryBarrier();
-      bool result = CompareAndSwapBool(&state_, kStateBiasedAndUnlocked,
-                                       kStateDefault); // (X)
-      if (!result) sleep(appropriate_amount);
+      SequentiallyConsistentStore(&revoke_requested_, true);
+      bool result =
+          CompareAndSwapBool(&state_, kStateBiasedAndUnlocked,
+                             kStateDefault); // (X)
+      if (!result)
+        sleep(appropriate_amount);
       goto retry;
     }
 
@@ -159,3 +163,4 @@ targeted for other architectures.
 [6]: http://preshing.com/20120913/acquire-and-release-semantics
 [7]: http://bartoszmilewski.com/2008/11/05/who-ordered-memory-fences-on-an-x86/
 [8]: https://github.com/openjdk-mirror/jdk7u-hotspot/blob/master/src/share/vm/runtime/biasedLocking.hpp
+[9]: http://www.reddit.com/r/programming/comments/1gha1j/playingwithpointerscom_biased_locking_and_pthreads/cakemcr
