@@ -24,16 +24,16 @@ of indirection.  The possible state transitions are therefore
 
     |  Unbiased --> BiasedAndLocked <--> BiasedAndUnlocked --> Default  |
 
-The trickiest part of the implementation is race between the biasing
-thread trying to move the lock from `BiasedAndUnlocked` to
-`BiasedAndLocked` and the some other non-biasing thread trying to move
-the lock from the `BiasedAndUnlocked` state to the `Default` state (so
+The trickiest part of the implementation is resolving the race between
+the biasing thread trying to move the lock from `BiasedAndUnlocked` to
+`BiasedAndLocked` and some other non-biasing thread trying to move the
+lock from the `BiasedAndUnlocked` state to the `Default` state (so
 that this non-biasing thread can then lock on the backing lock).  The
 complication arises from the very premise of the lock itself -- to be
-able to gain absolutely anything in performance, we need to the
-transition from `BiasedAndUnlocked` to `BiasedAndLocked` free of
-atomic read-modify-write instructions.  Here is the actual code,
-slightly paraphrased:
+able to gain absolutely anything in performance, we need to transition
+from `BiasedAndUnlocked` to `BiasedAndLocked` without invoking atomic
+read-modify-write instructions.  Here is the actual code, slightly
+paraphrased:
 
     if (biasing_thread_id_ == pthread_self()) {
       state_ = kStateBiasedAndLocked;
@@ -55,26 +55,27 @@ slightly paraphrased:
 To see why this works (informally), we _condition_ on `result` from
 the `CAS` on line marked as `(X)`, which will be executed whenever
 some non-biasing thread tries to lock.  And since all we attempt to do
-in that case is change the state to `Default` and retry (and hence
-subsequently hit the backing lock) races between multiple non-biasing
-threads trying to lock is naturally resolved by the backing lock.
+in that case is change the state to `Default` and retry races between
+multiple non-biasing threads trying to lock is naturally resolved by
+the backing lock.
 
 Firstly, note that we essentially _do_ the same thing, retry,
-irrespective of what `result` is (the `sleep` is a performance hack,
-nothing more).  Secondly, note that setting `revoke\_requested\_` to
-`true` is always a safe, conservative thing to do.
+irrespective of what `result` is (the call to `sleep` is a performance
+hack, nothing more).  Secondly, note that setting
+`revoke\_requested\_` to `true` is always a safe, conservative thing
+to do.
 
 A `false` `result` means that `state\_` was changed by some thread
-between the read due to the `switch` statement and the `CAS`.  We
-`sleep` for an appropriate amount (the actual code implements an
-exponential back-off [5]) and retry.  We leave `revoke\_requested\_`
-set to `true`, just in case the biasing thread sees it and helps out
-the non-biasing thread.
+between the read by the `switch` statement and the `CAS`.  We `sleep`
+for an appropriate amount (the actual code implements an exponential
+back-off [5]) and retry.  We leave `revoke\_requested\_` set to
+`true`, just in case the biasing thread sees it and helps out the
+non-biasing thread.
 
 A `true` `result` means that we did, at some point of time,
 successfully change `state\_` from `BiasedAndLocked` to `Default`.
-However, this doesn't say _anything_ about the current value of
-`state\_` since the biasing thread could have changed it to
+However, this does _not_ say anything about the current value of
+`state\_`, since the biasing thread could have changed it to
 `BiasedAndLocked` _after_ the `CAS`.  However, in that case, the
 `MemoryBarrier()` and the `SequentiallyConsistentLoad` [6] [7] ensure
 a `is\_revoke\_requested\_` is read as `true` in the biasing thread;
