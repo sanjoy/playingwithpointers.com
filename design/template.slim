@@ -43,7 +43,7 @@ html
           - if paragraph.is_emailquote?
             pre == paragraph.content
           - if paragraph.is_codeblock?
-            pre id="codeblock" == paragraph.content
+            pre class="out-of-line-code" == paragraph.content
           - if paragraph.is_footer?
             pre == paragraph.content
         - if indexfill
