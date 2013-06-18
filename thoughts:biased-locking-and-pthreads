@@ -108,7 +108,8 @@ and sets `state\_` to `Default`.
 
 *Tests & Performance Improvement*
 
-Here are some numbers reported after running [4] as is:
+I ran some basic performance tests on an Intel Core i7.  Here are some
+numbers reported after running [4] as is:
 
     simple_bench; pthread_lock: 25.061 milliseconds
     simple_bench; biased_lock: 14.854 milliseconds
@@ -147,13 +148,19 @@ Biased locking incurs a increase 25.1 % in the lock overhead.
 *Conclusion*
 
 As can be seen, biased locking may lead to decreased locking overhead
-in certain workloads.  Hotspot implements a better version of this
-same concept; in their case revocation involves stopping all threads
-at a safepoint and walking their stacks [8].
+in certain workloads.  One possible use case is in a thread-safe
+library: your data structure incurs a much smaller locking overhead
+when accessed from just one thread; but has the ability to degrade
+gracefully to a locking on a normal mutex when needed.
+
+Hotspot implements a better version of this same concept in
+production; in their case revocation involves stopping all threads at
+a safepoint and walking their stacks [8].
 
 Please let me know if you notice any bugs or mistakes.  The code
 itself assumes x86's memory model and will have to be changed if
-targeted for other architectures.
+targeted for other architectures.  And, as mentioned earlier, this is
+_not_ production code.
 
 [1]: http://home.comcast.net/~pjbishop/Dave/QRL-OpLocks-BiasedLocking.pdf
 [2]: http://en.wikipedia.org/wiki/Compare-and-swap
