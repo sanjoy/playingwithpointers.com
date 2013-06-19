@@ -37,22 +37,24 @@ that this non-biasing thread can then lock on the backing lock).  The
 complication arises from the very premise of the lock itself -- to be
 able to gain absolutely anything in performance, we need to transition
 from `BiasedAndUnlocked` to `BiasedAndLocked` without invoking atomic
-read-modify-write instructions.  Here is the actual code, slightly
-paraphrased:
+read-modify-write instructions.  Here is the pseudocode:
 
-    if (biasing_thread_id_ == pthread_self()) {
-      ReleaseStore(&state_, kStateBiasedAndLocked);
-      if (UNLIKELY(SequentiallyConsistentLoad(&revoke_requested_))) {
-        ReleaseStore(&state_, kStateDefault);
+    if (biasing_thread_id_.load(memory_order_acquire) ==
+        this_thread::get_id()) {
+      state_.store(kStateBiasedAndLocked, memory_order_release);
+      if (revoke_requested_.load()) {
+        state_.store(kStateDefault, memory_order_release);
         goto retry;
       }
     } else {
-      SequentiallyConsistentStore(&revoke_requested_, true);
+      revoke_requested_.store(true);
+      unsigned expected = kStateBiasedAndUnlocked;
       bool result =
-          CompareAndSwapBool(&state_, kStateBiasedAndUnlocked,
-                             kStateDefault); // (X)
+        state_.compare_exchange_strong(expected, kStateDefault);  // (X)
+
       if (!result)
         sleep(appropriate_amount);
+    
       goto retry;
     }
 
