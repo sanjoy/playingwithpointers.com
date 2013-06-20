@@ -51,7 +51,7 @@ read-modify-write instructions.  Here is the pseudocode:
       unsigned expected = kStateBiasedAndUnlocked;
       bool result =
         state_.compare_exchange_strong(expected, kStateDefault);  // (X)
-
+    
       if (!result)
         sleep(appropriate_amount);
     
