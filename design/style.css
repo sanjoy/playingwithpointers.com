@@ -1,4 +1,4 @@
-h1, pre, a, div#footer, p {
+h1, pre, a, div#footer, p, li {
     font-family: 'Fjord One', serif;
 }
 
@@ -24,6 +24,12 @@ p.first {
 p.regular {
     text-indent: 20px;
     text-align: justify;
+}
+
+li.regular {
+    text-align: justify;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 code {

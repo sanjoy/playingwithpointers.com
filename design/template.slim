@@ -34,7 +34,17 @@ html
     div id="wrapper"
       div id="main"
         h1 #{title}
+        - ol_inserted = false
         - paragraphs.each do |paragraph|
+          - if paragraph.is_listitem?
+            - if not ol_inserted
+              - ol_inserted = true
+              <ol>
+            li class="regular" == paragraph.content
+          - else
+            - if ol_inserted
+              - ol_inserted = false
+              </ol>
           - if paragraph.is_plain?
             - if paragraph == paragraphs[0]
               p class="first" == paragraph.content
