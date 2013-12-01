@@ -61,7 +61,7 @@ html
             - indexfill.each do |page|
               <li><a href="#{page.permalink}.html">#{page.title}</a></li>
         - if self.instance_of?(Clayoven::ContentPage)
-          p <em>Originally <a href="./#{URI.escape(filename, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}">published</a> on #{timestamp.strftime('%e %B, %Y')}.</em>
+          p class="published" Originally <a href="./#{URI.escape(filename, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}">published</a> on #{timestamp.strftime('%e %B, %Y')}.
           p <a href="https://twitter.com/SCombinator" class="twitter-follow-button" data-show-count="true" data-size="large" data-dnt="true">Follow @SCombinator</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> <a href="https://twitter.com/share" class="twitter-share-button" data-via="SCombinator" data-size="large" data-dnt="true">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         - if not indexfill
           javascript:

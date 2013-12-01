@@ -26,6 +26,11 @@ p.regular {
     text-align: left;
 }
 
+p.published {
+    color: #797979;
+    text-align: left;
+}
+
 li.regular {
     text-align: left;
     padding-top: 5px;
