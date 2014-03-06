@@ -1,12 +1,20 @@
 Sanjoy Das
 
 I am a software engineer who likes compilers, virtual machines, type
-systems, logic, tea, Pink Floyd and Haskell.  I'm currently employed
-by a small company based in silicon valley as a compiler engineer.
-Thoughts, ideas and opinions expressed on this website are my own.
+systems, logic, Pink Floyd, reading and Haskell.
 
-This static site is generated using clayoven [1].  The entire contents
-of this website is available on github [2].
+This (static) site is generated using clayoven [1].  The entire
+contents of this website is versioned on github [2].
+
+     _________________________________________
+    / What is there to fear in such a regular \
+    \ world? I think I'm cured.               /
+     -----------------------------------------
+            \   ^__^
+             \  (oo)\_______
+                (__)\       )\/\
+                    ||----w |
+                    ||     ||
 
 [1]: https://github.com/sanjoy/clayoven
 [2]: https://github.com/sanjoy/playingwithpointers.com
