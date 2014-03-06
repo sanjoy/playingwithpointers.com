@@ -46,7 +46,9 @@ html
               - ol_inserted = false
               </ol>
           - if paragraph.is_plain?
-            - if paragraph == paragraphs[0]
+            - if paragraph == paragraphs[0] or \
+              (paragraph.content.start_with? "<strong>" and \
+               paragraph.content.end_with? "</strong>")
               p class="first" == paragraph.content
             - else
               p class="regular" == paragraph.content
