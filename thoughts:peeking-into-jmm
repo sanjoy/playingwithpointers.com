@@ -2,9 +2,9 @@ Peeking into the Java Memory Model
 
 This is brief brain-dump of my understanding of the JMM.  Content-wise
 this is a rather loose post, focusing more on intuition and less on
-preciseness, but hopefully it doesn't have mistakes of a fundamental
-nature.  One day, when I have a lot of free time, I will try to
-formalize the JMM in Agda or Coq, but for now English will have to do.
+preciseness, but hopefully it doesn't have any fundamental mistakes.
+One day, when I have a lot of free time, I will try to formalize the
+JMM in Agda or Coq, but for now English will have to do.
 
 *Memory Models*
 
@@ -23,9 +23,9 @@ okay for the compiler to legally make a reordering, then it doesn't
 matter what the CPU thinks -- the compiler may do the transform before
 code emission.
 
-The Java memory model can be roughly split into two distinct blobs: an
-axiomatic _contract_ between the VM and the programs running on top of
-the VM, and the abstract, operational notion of a _well formed_
+The Java memory model can be roughly split into two distinct sections:
+an axiomatic _contract_ between the VM and the programs running on top
+of the VM, and an abstract, operational notion of a _well formed_
 execution.
 
 *The Contract*
@@ -56,11 +56,11 @@ observable events
 Sequential consistency is nice because it allows us to stick with the
 comfortable illusion that threads "execute" by interleaving their
 instructions into one shared instruction stream.  This is far from the
-truth in systems with true parallelism; and the illusion is difficult
-to maintain without significant performance penalty.  The Java Memory
-Model tries to give us conditional sequential consistency -- it
-guarantees that a _correctly synchronized_ Java program will behave
-_as if_ it were running on a sequentially consistent runtime.
+truth in systems with true parallelism, though; and the illusion is
+difficult to maintain without significant performance penalty.  The
+Java Memory Model tries to give us conditional sequential consistency
+-- it guarantees that a _correctly synchronized_ Java program will
+behave _as if_ it were running on a sequentially consistent runtime.
 
 Before proceeding further, we need to digress a little into the
 mathematical concepts of partially ordered sets (posets [2]) and
