@@ -1,4 +1,4 @@
-h1, pre, a, div#footer, p, li {
+pre, a, div#footer, p, li {
     font-family: 'PT Serif', serif;
 }
 
@@ -9,6 +9,7 @@ body {
 }
 
 h1 {
+    font-family: 'Droid Sans', sans-serif;
     font-weight: bold;
     font-size: 1.6em;
 }
@@ -60,6 +61,11 @@ a:link {
 
 a:visited {
     color: #003366;
+}
+
+strong {
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
 }
 
 div#wrapper {
