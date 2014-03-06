@@ -132,11 +132,11 @@ single exit could very well look like this:
     { Graph Entry }
     If condition Then Goto LblX
                  Else Goto LblY
-
+    
     LblX: Goto LblZ
-
+    
     LblY: Goto LblZ
-
+    
     LblZ:
     { Graph Exit }
 
