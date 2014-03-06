@@ -11,9 +11,6 @@ specific register (`ICR` -- the interrupt command register).  This way
 a task can be preempted by sending in an IPI to that CPU it is running
 on.
 
-Writing super-short, bite-sized blog posts is better than not blogging
-at all, I hope. :)
-
 [1]: https://en.wikipedia.org/wiki/Inter-processor_interrupt
 [2]: http://download.intel.com/design/chipsets/datashts/29056601.pdf
 [3]: http://www.intel.com/content/www/us/en/architecture-and-technology/64-architecture-x2apic-specification.html
