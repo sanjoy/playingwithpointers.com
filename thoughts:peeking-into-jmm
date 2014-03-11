@@ -40,18 +40,18 @@ following execution traces: `{` `A` `B` `C` `D` `}`, `{` `A` `C` `B`
 `D` `B` `}` or `{` `C` `D` `A` `B` `}`.  More generally, in a
 sequentially consistent system, the total set of observable events
 
- 0. [PropertySC 0] have a total order to them -- it is always possible
+ 1. [PropertySC 1] have a total order to them -- it is always possible
     to give a meaningful answer to the question "did X happen before
     Y"?
 
- 1. [PropertySC 1] respects the program order -- if `A` happens before
+ 2. [PropertySC 2] respects the program order -- if `A` happens before
     `B` in the source, `A` will appear to execute before `B` in the
     final execution trace.
 
- 2. [PropertySC 2] are all atomic, and immediately visible to every
+ 3. [PropertySC 3] are all atomic, and immediately visible to every
     thread.  Specifically, a read from `var` will always get the value
     written in the write to `var` immediately preceding `var` in the
-    total order from [PropertySC 0].
+    total order from [PropertySC 1].
 
 Sequential consistency is nice because it allows us to stick with the
 comfortable illusion that threads "execute" by interleaving their
@@ -63,15 +63,15 @@ Java Memory Model tries to give us conditional sequential consistency
 behave _as if_ it were running on a sequentially consistent runtime.
 
 Before proceeding further, we need to digress a little into the
-mathematical concepts of partially ordered sets (posets [2]) and
-totally ordered sets [3].  Informally, a totally ordered is a set with
-a relation (denoted by `⟜` below) that satisfies certain axioms.  You
-have `a ⟜ a` (reflexivity), `(a ⟜ b) ∧ (b ⟜ c) ⇒ a ⟜ c` (transitivity)
-and the fact that two arbitrary elements are always ordered with
-respect to each other (totality).  It also has "antisymmetry", but we
-won't use that today.  A partially ordered set is a totally ordered
-set without the totality axiom.  In other words, in a poset you may
-have "neither `a` `⟜` `b` nor `b` `⟜` `a`" for some `a`s and `b`s.
+mathematical concepts of partially ordered sets (posets) and totally
+ordered sets.  Informally, a totally ordered is a set with a relation
+(denoted by `⟜` below) that satisfies certain axioms.  You have `a ⟜
+a` (reflexivity), `(a ⟜ b) ∧ (b ⟜ c) ⇒ a ⟜ c` (transitivity) and the
+fact that two arbitrary elements are always ordered with respect to
+each other (totality).  It also has "antisymmetry", but we won't use
+that today.  A partially ordered set is a totally ordered set without
+the totality axiom.  In other words, in a poset you may have "neither
+`a` `⟜` `b` nor `b` `⟜` `a`" for some `a`s and `b`s.
 
 All the actions (an action being an execution of a statement by a
 thread) in a program form a poset with a relation called the
@@ -185,7 +185,7 @@ proof reduces to conditioning on "is `vL` before or after `vS` in the
 total sequentially consistent order?".  To show that the program is
 race free, we start with some sequentially consistent execution trace
 `τ`.  Since `τ` is sequentially consistent, `vL` is either ordered
-before (first case) or after (second case) `vS`.  By [PropertySC 2] we
+before (first case) or after (second case) `vS`.  By [PropertySC 3] we
 know that this means that the `vL` will be `null` in the first case
 and `t` in the second.
 
@@ -233,19 +233,19 @@ should give the programmer sequential consistency if and only if the
 program is correctly synchronized.
 
 The JMM spec tells us what a "well ordered" execution means, and this
-can be proved [4] to be (strictly more than) enough to provide the
+can be proved [2] to be (strictly more than) enough to provide the
 conditional sequential consistency contract.
 
 While the formal abstract operational specification is somewhat
 convoluted (as usual, see [1]), informally they assert two important
 things:
 
- 0. executions are _happens-before consistent_: reads don't see writes
+ 1. executions are _happens-before consistent_: reads don't see writes
     that happen after (the inverse of `↣`) them, and they don't see
     writes that were blocked by another write -- `r` won't see `w` if
     `w` `↣` `w'` `∧` `w'` `↣` `r`.
 
-The JMM spec includes an example to show that (0) isn't enough to
+The JMM spec includes an example to show that (1) isn't enough to
 provide the sequential consistency guarantee:
 
     nonvolatile global int a = 0, b = 0;
@@ -264,7 +264,7 @@ No sequentially consistent execution trace of this program has a data
 race, meaning that this program _is_ correctly synchronized, and
 should have "as if" sequentially consistent semantics.  However, the
 stores to `a`, `b` and the corresponding loads aren't ordered by `↣`,
-and (0) doesn't place any guarantee on reads _not_ seeing writes that
+and (1) doesn't place any guarantee on reads _not_ seeing writes that
 it doesn't have the `↣` relation with.  In other words, like in a bad
 time travel movie, in theory there is nothing stopping `aL` from
 "seeing" the future write `a = 1`, setting `b = 1` which is then seen
@@ -277,21 +277,21 @@ opportunities for interesting optimizations), and to not have to
 analyze such situations on a case by case basis.  This brings us to
 the second operational axiom:
 
- 1. execution proceeds in chunks, "comitting" actions in a way that
+ 2. execution proceeds in chunks, "comitting" actions in a way that
     the final commit results in the execution trace we're trying to
     validate.  Very loosely speaking, when we are at commit `i`, reads
     that are uncommitted or are in the `i`th commit always see the
     write that preceded them in the happens before relation (this is
-    subtly different from (0)).
+    subtly different from (1)).
 
-In the above example, (1) prevents the causal loop that (0) allowed.
+In the above example, (2) prevents the causal loop that (1) allowed.
 Specifically, as the load from `a` gets committed, it _has_ to see the
 write dictated `↣`, which points (by an axiom I skipped for brevity)
 to the initializer for `a`, which writes `0` to `a`.  `ThreadA` thus
 takes the correct control flow and Java doesn't end up breaking
 physics.
 
-I have a hunch that (1) is really an indirect way of talking about
+I have a hunch that (2) is really an indirect way of talking about
 greatest and least fixed points, but that is a point for a future blog
 post. :)
 
@@ -302,6 +302,4 @@ what it meant.  I'd have loved it a lot more if the notations were
 mathematically precise.
 
 [1]: http://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4
-[2]: https://en.wikipedia.org/wiki/Partially_ordered_set
-[3]: https://en.wikipedia.org/wiki/Total_order
-[4]: http://homepages.inf.ed.ac.uk/da/papers/drfformalization/
+[2]: http://homepages.inf.ed.ac.uk/da/papers/drfformalization/
