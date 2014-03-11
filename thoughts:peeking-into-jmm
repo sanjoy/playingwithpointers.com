@@ -31,14 +31,14 @@ execution.
 *The Contract*
 
 With a thread X trying to execute `A` followed by `B` and thread Y
-trying to execute `C` followed by `D` (all atomic operations) what are
-the possible states of the system once both the threads are done?  If
-the system is sequentially consistent, then the system may be in a
-state reached by any of the following execution traces: `{` `A` `B`
-`C` `D` `}`, `{` `A` `C` `B` `D` `}`, `{` `A` `C` `D` `B` `}`, `{` `C`
-`A` `B` `D` `}`, `{` `C` `A` `D` `B` `}` or `{` `C` `D` `A` `B` `}`.
-More generally, in a sequentially consistent system, the total set of
-observable events
+trying to execute `C` followed by `D` (all these being reads and
+writes, for simplicity's sake) what are the possible states of the
+system once both the threads are done?  If the system is sequentially
+consistent, then the system may be in a state reached by any of the
+following execution traces: `{` `A` `B` `C` `D` `}`, `{` `A` `C` `B`
+`D` `}`, `{` `A` `C` `D` `B` `}`, `{` `C` `A` `B` `D` `}`, `{` `C` `A`
+`D` `B` `}` or `{` `C` `D` `A` `B` `}`.  More generally, in a
+sequentially consistent system, the total set of observable events
 
  0. [PropertySC 0] have a total order to them -- it is always possible
     to give a meaningful answer to the question "did X happen before
@@ -129,15 +129,16 @@ The second one is the _synchronization order_ (we'll denote this by
 `so⇝`) -- this is a global (cross thread) total order on
 "synchronization actions".  For our purposes at this time, these
 "synchronization actions" are `volatile` reads and writes (there are
-others, mentioned in [1]).  This means given two synchronization
-actions, `A` and `B`, either `A` `so⇝` `B` or `B` `so⇝` `A`.  As an
-aside, this isn't true with `↣` (which orders arbitrary actions) --
-`↣` is partially ordered and we may have (non synchronized) actions
-`C` and `D` where neither `C` `↣` `D` nor `D` `↣` `C`.  `so⇝` respects
-`p⇝`, meaning if `X` and `Y` are synchronization actions, then (`X`
-`p⇝` `Y` ) `⇒` (`X` `so⇝` `Y`).  `so⇝` is a runtime artifact, even
-with fixed inputs, two executions of a program may have different
-relations as `so⇝`.
+others mentioned in [1], `monitorenter`s and `monitorexit`s are
+equivalent to `volatile` reads and writes in this context, for
+instance).  This means given two synchronization actions, `A` and `B`,
+either `A` `so⇝` `B` or `B` `so⇝` `A`.  As an aside, this isn't true
+with `↣` (which orders arbitrary actions) -- `↣` is partially ordered
+and we may have (non synchronized) actions `C` and `D` where neither
+`C` `↣` `D` nor `D` `↣` `C`.  `so⇝` respects `p⇝`, meaning if `X` and
+`Y` are synchronization actions, then (`X` `p⇝` `Y` ) `⇒` (`X` `so⇝`
+`Y`).  `so⇝` is a runtime artifact, even with fixed inputs, two
+executions of a program may have different relations as `so⇝`.
 
 `so⇝` is used to derive the "synchronized with" relation (denoted as
 `sw⇝`).  `A` `sw⇝` `B` is a shorthand for "`B` is a `volatile` read of
