@@ -3,18 +3,15 @@ Sanjoy Das
 I am a software engineer who likes compilers, virtual machines, type
 systems, logic, Pink Floyd, reading and Haskell.
 
-This (static) site is generated using clayoven [1].  The entire
-contents of this website is versioned on github [2].
+I'm reachable via email at `sanjoy@$this_domain`.  I can also be found
+on Twitter [1], Github [2] and LinkedIn [3].  I lurk on FreeNode as
+`sanjoyd`.
 
-     _________________________________________
-    / What is there to fear in such a regular \
-    \ world? I think I'm cured.               /
-     -----------------------------------------
-            \   ^__^
-             \  (oo)\_______
-                (__)\       )\/\
-                    ||----w |
-                    ||     ||
+This (static) site is generated using clayoven [3].  The entire
+contents of this website is versioned on github [4].
 
-[1]: https://github.com/sanjoy/clayoven
-[2]: https://github.com/sanjoy/playingwithpointers.com
+[1]: http://twitter.com/SCombinator
+[2]: https://github.com/sanjoy
+[3]: http://in.linkedin.com/in/sanjoydas
+[3]: https://github.com/sanjoy/clayoven
+[4]: https://github.com/sanjoy/playingwithpointers.com
