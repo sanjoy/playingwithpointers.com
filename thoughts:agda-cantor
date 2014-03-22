@@ -8,8 +8,7 @@ this has implications on the relative cardinality of \(\mathbb{N}\)
 and \(\mathbb{R}\) ("is \(\mathbb{R}\) bigger, in some sense of the
 word, than \(\mathbb{N}\)?").  The proof itself is constructive, and
 can be modeled within a theorem prover like Agda (or Coq) without
-artificially introduction LEM.  This post is about modeling it in
-Agda.
+artificially introducing LEM.  This post is about modeling it in Agda.
 
 First, some bookkeeping
 
