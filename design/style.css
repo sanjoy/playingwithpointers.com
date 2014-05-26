@@ -68,6 +68,15 @@ strong {
     font-weight: bold;
 }
 
+div#subheading {
+    background-color: #effeff;
+    padding: 10px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+    width: 100%;
+    font-size: 1.1em;
+}
+
 div#wrapper {
     width: 100%;
 }
