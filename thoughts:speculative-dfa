@@ -77,10 +77,10 @@ to talking about speculative optimizations in a JITed runtime, as that
 is the scenario I'm most familiar with.)
 
 A more direct and limited way of framing the question is, given a CFG
-and a DFA analysis (framed in terms of a lattice and transfer
-functions), which branches, when elided, help optimization?  When is
-it _profitable_ to insert an `uncommon\_trap` call?  Perhaps too
-naively, a branch can be profitably elided if the performance of the
+and a DFA analysis framed in terms of a lattice and transfer
+functions, which branches, when elided, help optimization?  When is it
+_profitable_ to insert an `uncommon\_trap` call?  Perhaps too naively,
+a branch can be profitably elided if the performance of the
 interpreter when the branch is taken and the performance of the
 optimized program when the branch is not taken, weighed by the branch
 probabilities is better overall.  In other words, if we had a
@@ -88,6 +88,17 @@ meaningful way of computing the impact of a branch elision on
 optimization, we could estimate if eliding the branch more than
 compensates for the times we will have to take the slow
 `uncommon\_trap` and jump back to the interpreter.
+
+An assumption worth restating more clearly is that we _already_ have a
+set of edges that profiling tells us is "rarely taken", and wish to
+know if eliding any of those edges improves optimization -- checking
+all (or a non-trivially large subset of) the \(2^{edges}\)
+possibilities will be prohibitively expensive. Normally JIT compilers
+end up installing traps in most of these edges, hoping that the cost
+of the occasional side exit to the interpreter is worth the added
+performance in the fast case. We want a way to push the decision on
+whether to install a trap for a specific edge to later in the
+optimization process.
 
 *A lattice for speculative DFA: Construction*
 
