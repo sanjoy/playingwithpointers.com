@@ -103,7 +103,7 @@ return `Constant` if only of them is in `E`.
 
 The second observation is that we can take an existing lattice based
 DFA, and transform it to a DFA of the above kind, whose solution maps
-SSA variables to functions in a fairly straightforward way.
+SSA variables to functions, in a fairly straightforward way.
 
  1. transfer functions remain essentially the same -- instead of
     adding fact \(F\), you add the fact \(\lambda S \to F\).  What
