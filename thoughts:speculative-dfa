@@ -108,9 +108,9 @@ first observation is that instead of mapping SSA variables to "static"
 lattice values that represent a conservative answer, we can map them
 to _functions_ which map sets of viable edges (the edges that may
 possibly be traversed) to lattice values.  For instance, in Figure A,
-`z` can be mapped to a function that takes a set of edges `E` return
-`NotConstant` if both `normal entry` and `side entry` are in `E`, but
-return `Constant` if only of them is in `E`.
+`z` can be mapped to a function that takes a set of edges `E` to
+return `NotConstant` if both `normal entry` and `side entry` are in
+`E`, but return `Constant` if only of them is in `E`.
 
 The second observation is that we can take an existing lattice based
 DFA, and transform it to a DFA of the above kind, whose solution maps
@@ -142,6 +142,13 @@ to any lattice based DFA.
 
 *Conclusion*
 
-The question of the viability of this idea can only be answered by
-someone who's implemented this for a production compiler; and, as of
-right now, that person is not me. :)
+I haven't spent any time thinking about the soundness of this
+construction.  The first next step is be to prove that the new DFA
+actually does reach a fixed point; and to somehow solve the problem of
+comparing functions as values (how do we know the lattice element for
+a specific SSA variable has changed?).
+
+Frankly, I don't think this construction is suitable for
+implementation in its current form.  Taking this to production (_if_
+it can be proven to be sound) will probably involve taking some sort
+of a hybrid approach.
