@@ -74,6 +74,7 @@ strong {
 
 div#subheading {
     background-color: #eeeeff;
+    margin-top: 40px;
     padding: 10px;
     font-family: 'PT Serif', serif;
     font-weight: bold;
@@ -115,16 +116,16 @@ div#sidebar li {
 
 ul#indexfill li {
     list-style: none;
-    margin: 10px;
-    margin: 20px;
     width: 95%;
-    padding: 10px;
+    padding: 5px;
     padding-left: 30px;
-    background-color: #eeeeff;
+}
 
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-left-color: #999999;
+ul#indexfill li:before {
+    content: "\00BB \0020";
+    color: #888888;
+    position: absolute;
+    margin-left: -20px;
 }
 
 ul#indexfill {
@@ -146,7 +147,7 @@ div#leftfooter {
     width: 100%;
 
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 50px;
 
     border-left-style: solid;
