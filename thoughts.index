@@ -1,5 +1,11 @@
 Thoughts
 
-Here are some things I find interesting enough to commit writing
-about.  Nothing here is permanent, everything is subject to change.  I
-don't have a fancy commenting system, but I welcome emails.
+Here I write things people interested in compilers, functional
+programming or computer science in general are likely to find
+interesting.  Most of these writeups assume some prior knowledge --
+I'll get nothing written if I have to start from near-scratch for each
+one.
+
+I haven't bothered integrating a commenting system (apart from being a
+hassle, they make my posts look ugly), but I will always welcome and
+try my best to respond to emails.
