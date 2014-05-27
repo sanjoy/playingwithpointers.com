@@ -84,6 +84,10 @@ div#subheading {
     border-left-style: solid;
     border-left-width: 1px;
     border-left-color: #999999;
+
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #999999;
 }
 
 div#wrapper {
@@ -94,12 +98,6 @@ div#right {
     float: left;
 }
 
-div#sidebar li:first-child {
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-top-color: #999999;
-}
-
 div#sidebar li {
     text-align: right;
     list-style: none;
@@ -108,6 +106,10 @@ div#sidebar li {
     background-color: #eeffee;
     margin: 20px;
     margin-top: 30px;
+
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #999999;
 
     border-right-style: solid;
     border-right-width: 1px;
