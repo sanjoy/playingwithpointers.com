@@ -1,4 +1,4 @@
-pre, a, div#footer, p, li {
+pre, a, div#leftfooter, div#rightfooter, p, li {
     font-family: 'PT Serif', serif;
 }
 
@@ -6,6 +6,7 @@ body {
     margin-top: 25px;
     margin-bottom: 40px;
     margin-left: 40px;
+    background-color: #fffff9;
 }
 
 h1 {
@@ -15,6 +16,13 @@ h1 {
     background-color: #ffeeee;
     width: 100%;
     padding: 10px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #999999;
+
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #999999;
 }
 
 pre, ul#indexfill, a, div#footer, p {
@@ -27,11 +35,6 @@ p.first {
 
 p.regular {
     text-indent: 20px;
-    text-align: left;
-}
-
-p.published {
-    color: #797979;
     text-align: left;
 }
 
@@ -76,34 +79,56 @@ div#subheading {
     font-weight: bold;
     width: 100%;
     font-size: 1.1em;
+
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #999999;
 }
 
 div#wrapper {
     width: 100%;
 }
 
-div#sidebar {
+div#right {
     float: left;
 }
 
+div#sidebar li:first-child {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #999999;
+}
+
 div#sidebar li {
+    text-align: right;
     list-style: none;
     padding: 15px;
     width: 100%;
     background-color: #eeffee;
     margin: 20px;
+    margin-top: 30px;
+
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #999999;
 }
 
 ul#indexfill li {
     list-style: none;
     margin: 10px;
+    margin-left: 0px;
     width: 95%;
     padding: 10px;
+    padding-left: 30px;
     background-color: #eeeeff;
+
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #999999;
 }
 
 ul#indexfill {
-    padding-left: 25px;
+    padding-left: 0px;
 }
 
 div#sidebar a {
@@ -113,4 +138,38 @@ div#sidebar a {
 div#main {
     float: left;
     width: 32em;
+}
+
+div#leftfooter {
+    background-color: #ffe0e0;
+
+    width: 100%;
+
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-left-color: #999999;
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #999999;
+}
+
+div#rightfooter {
+    text-align: right;
+    padding: 15px;
+    width: 100%;
+    background-color: #eeffee;
+    margin: 20px;
+
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #999999;
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #999999;
 }
