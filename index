@@ -6,9 +6,13 @@ employed by Azul Systems [1], where I work on their JVM.  My work is
 primarily focused on JIT compilers, but touches other parts of the
 runtime too.  This is a personal blog.
 
+*Contacting Me*
+
 I'm reachable via email at `sanjoy@$this_domain`.  I can also be found
 on Twitter [2], Github [3] and LinkedIn [4].  I lurk on FreeNode as
-`sanjoyd`.
+`sanjoyd` (and usually hang around on #klug-devel).
+
+*Colophon*
 
 This (static) site is generated using clayoven [5].  The entire
 contents of this website is versioned on github [6].
