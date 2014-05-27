@@ -1,4 +1,4 @@
-Certified compilation in Agda
+Certified Compilation in Agda
 
 Using dependent types, it is possible to specify _contracts_ for Agda
 programs at a very fundamental level.  Today we'll see how to
