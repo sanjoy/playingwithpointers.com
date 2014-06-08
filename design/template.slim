@@ -59,7 +59,9 @@ html
           - if paragraph.is_codeblock?
             pre class="out-of-line-code" == paragraph.content
           - if paragraph.is_footer?
-            pre == paragraph.content
+            pre class="links" == paragraph.content
+          - if paragraph.is_raw?
+            p class="regular" == paragraph.content
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|

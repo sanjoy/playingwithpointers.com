@@ -6,14 +6,13 @@ body {
     margin-top: 25px;
     margin-bottom: 40px;
     margin-left: 40px;
-    background-color: #fffff9;
 }
 
 h1 {
     font-family: 'PT Serif', serif;
     font-weight: bold;
     font-size: 1.6em;
-    background-color: #ffeeee;
+    background-color: #fff6f6;
     width: 100%;
     padding: 10px;
     border-top-style: solid;
@@ -31,11 +30,17 @@ pre, ul#indexfill, a, div#footer, p {
 
 p.first {
     text-align: left;
+    margin-left: 10px;
 }
 
 p.regular {
     text-indent: 20px;
     text-align: left;
+    margin-left: 10px;
+}
+
+pre {
+    margin-left: 10px;
 }
 
 li.regular {
@@ -45,13 +50,28 @@ li.regular {
 }
 
 code {
-    color: #222222;
+    background-color: #fffdfd;
 }
+
+pre.links:before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 40%;
+    margin-bottom: 10px;
+    background-color: #000000;
+}
+
+pre.links {
+    margin-top: 50px;
+}
+
 
 pre.out-of-line-code {
     font-family: Fixed, monospace;
     color: #222222;
     padding-left: 15px;
+    background-color: #fffdfd;
     border-left: thin solid #555599;
     font-size: 75%;
 }
@@ -73,7 +93,7 @@ strong {
 }
 
 div#subheading {
-    background-color: #eeeeff;
+    background-color: #f6f6ff;
     margin-top: 40px;
     padding: 10px;
     font-family: 'PT Serif', serif;
@@ -103,7 +123,7 @@ div#sidebar li {
     list-style: none;
     padding: 15px;
     width: 100%;
-    background-color: #eeffee;
+    background-color: #f6fff6;
     margin: 20px;
     margin-top: 30px;
 
@@ -144,7 +164,7 @@ div#main {
 }
 
 div#leftfooter {
-    background-color: #ffe0e0;
+    background-color: #ffe4e4;
 
     width: 100%;
 
