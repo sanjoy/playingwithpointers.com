@@ -3,7 +3,7 @@ A Lattice for Speculative Data Flow Analysis
 This post assumes that the reader understands the SSA style of
 compiler IR, and is familiar with lattice based data flow analyses.
 
-*Using speculation to help optimization*
+# Using speculation to help optimization
 
 Normal SSA based data flow analyses compute facts based on a
 conservative but sound worst case -- it assumes that every path in the
@@ -56,7 +56,7 @@ compiled version of a method to running it in the interpreter when the
 gets us out of the preamble and to the real topic I wanted to write
 about ...
 
-*A lattice for speculative DFA: Motivation*
+# A lattice for speculative DFA: Motivation
 
 Consider this (contrived) case:
 
@@ -100,7 +100,7 @@ performance in the fast case. We want a way to push the decision on
 whether to install a trap for a specific edge to later in the
 optimization process.
 
-*A lattice for speculative DFA: Construction*
+# A lattice for speculative DFA: Construction
 
 A regular DFA produces a solution that maps SSA variables to lattice
 elements conservatively estimating some property of the variable.  The
@@ -125,12 +125,13 @@ SSA variables to functions, in a fairly straightforward way.
 
  2. meet handles the edge-set sensitive aspect of the scheme.  Given a
     meet \(\wedge\) over the regular, edge-insensitive lattice; we
-    construct our meet \(\wedge\_{f}(In = \{V\_0, V\_1 \cdots V\_n\})
-    = \lambda S \to \bigwedge\limits\_{v \, \in \, In \: \&\& \: E(v)
-    \, \in \, S} v(S)\) where \(E(v)\) is the edge corresponding to
-    the incoming value \(v\).  Intuitively, the function that a phi
-    node maps to returns the meet of the incoming lattice values whose
-    incoming edge is in the edge set that was passed in.
+    construct our meet \(\wedge\_{f}(In = \{V\_0, V\_1 \cdots
+    V\_n\})\) \(=\) \(\lambda S\) \(\to\) \(\bigwedge\limits\_{v \,
+    \in \, In \: \&\& \: E(v) \, \in \, S} v(S)\) where \(E(v)\) is
+    the edge corresponding to the incoming value \(v\).  Intuitively,
+    the function that a phi node maps to returns the meet of the
+    incoming lattice values whose incoming edge is in the edge set
+    that was passed in.
 
 Once we have these lattice values (which are functions, really) for
 each SSA variable, we are now able to answer the question "which
@@ -140,7 +141,7 @@ So far we've only considered constant propagation, but only because it
 is simple to analyze.  I think this technique should be generalizable
 to any lattice based DFA.
 
-*Conclusion*
+# Conclusion
 
 I haven't spent any time thinking about the soundness of this
 construction.  The first next step is be to prove that the new DFA

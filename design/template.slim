@@ -5,11 +5,11 @@ html
     meta charset="UTF-8"
     meta name="description" content="Sanjoy's presence on the internet"
     meta name="author" content="Sanjoy Das"
-    meta name="keywords" content="compilers, virtual machines, programming"
+    meta name="keywords" content="compilers, virtual machines, programming, functional programming, computer science, haskell, agda"
     link rel="stylesheet" type="text/css" href="/design/style.css"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Serif"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans"
-    link rel="icon" type="image/png" href="/favicon.ico"
+    link rel="shortcut icon" type="image/png" href="/favicon.ico"
     script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
   body
     javascript:
@@ -34,7 +34,7 @@ html
        })();
 
     div id="wrapper"
-      div id="main"
+      div id="content"
         h1 #{title}
         - ol_inserted = false
         - paragraphs.each do |paragraph|
@@ -47,32 +47,28 @@ html
             - if ol_inserted
               - ol_inserted = false
               </ol>
-          - if paragraph.is_plain?
-            - if paragraph == paragraphs[0] or \
-              (paragraph.content.start_with? "<strong>" and \
-               paragraph.content.end_with? "</strong>")
+          - if paragraph.is_plain? || paragraph.is_raw?
+            - if paragraph == paragraphs[0]
               p class="first" == paragraph.content
             - else
               p class="regular" == paragraph.content
-          - if paragraph.is_emailquote?
-            pre == paragraph.content
           - if paragraph.is_codeblock?
-            pre class="out-of-line-code" == paragraph.content
+            pre class="codeblock" == paragraph.content
+          - if paragraph.is_subheading?
+            h2 == paragraph.content[2..-1]
           - if paragraph.is_footer?
-            pre class="links" == paragraph.content
-          - if paragraph.is_raw?
-            p class="regular" == paragraph.content
+            pre id="links" == paragraph.content
         - if indexfill
           ul id="indexfill"
             - indexfill.each do |page|
               <li><a href="#{page.permalink}.html">#{page.title}</a></li>
         - if self.instance_of?(Clayoven::ContentPage)
-          div id="leftfooter" Originally <a href="./#{URI.escape(filename, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}">published</a> on #{timestamp.strftime('%e %B, %Y')}.
+          div id="footer" Originally published on #{timestamp.strftime('%e %B, %Y')}. Copyright © 2013-14 Sanjoy Das.  All rights reserved.
         - else
-          div id="leftfooter" Copyright © 2013-14 Sanjoy Das.  All rights reserved.
+          div id="footer" Copyright © 2013-14 Sanjoy Das.  All rights reserved.
         - if self.instance_of?(Clayoven::ContentPage)
-          p <a href="https://twitter.com/SCombinator" class="twitter-follow-button" data-show-count="true" data-size="large" data-dnt="true">Follow @SCombinator</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> <a href="https://twitter.com/share" class="twitter-share-button" data-via="SCombinator" data-size="large" data-dnt="true">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-      div id="right"
+          div id="twitter-widget" == `cat ./.twitter-widget`.chomp
+      div id="navigation"
         div id="sidebar"
           ul
             - topics.each do |topic|

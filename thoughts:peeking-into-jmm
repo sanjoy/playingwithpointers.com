@@ -6,7 +6,7 @@ preciseness, but hopefully it doesn't have any fundamental mistakes.
 One day, when I have a lot of free time, I will try to formalize the
 JMM in Agda or Coq, but for now English will have to do.
 
-*Memory Models*
+# Memory Models
 
 A memory model, in the most abstract sense, is a predicate on
 execution traces of programs.  It differentiates between _valid_ and
@@ -28,7 +28,7 @@ an axiomatic _contract_ between the VM and the programs running on top
 of the VM, and an abstract, operational notion of a _well formed_
 execution.
 
-*The Contract*
+# The Contract
 
 With a thread X trying to execute `A` followed by `B` and thread Y
 trying to execute `C` followed by `D` (all these being reads and
@@ -295,7 +295,7 @@ I have a hunch that (2) is really an indirect way of talking about
 greatest and least fixed points, but that is a point for a future blog
 post. :)
 
-*Conclusions*
+# Conclusions
 
 The JMM is certainly impressive, I had a lot of fun trying to decipher
 what it meant.  I'd have loved it a lot more if the notations were
