@@ -5,7 +5,7 @@ code, pre.codeblock { font-family: Fixed, monospace; }
 
 h1 { font-weight: bold; font-size: 1.6em; }
 h2 { font-weight: bold; font-size: 1.2em; }
-#sidebar a { font-size: 1.3em; }
+#sidebar a { font-size: 1.1em; color: #ffffff; }
 
 /* Hyperlinks */
 a { text-decoration: none; }
@@ -15,34 +15,24 @@ a:visited { color: #003366; }
 p { text-align: justify; }
 
 
-/* General layout: content to the left, navigation sidebar to the
-   right. */
-
 #wrapper { width: 100%; }
 
-#content { float: left; width: 65%; }
-#navigation { float: left; width: 20%; }
-#mobile-menu { position: absolute; top: 0px; display: none; }
-
-body { margin: 25px 0px 40px 40px; }
-
-#footer { margin-bottom: 40px; }
+#content { position: absolute; top: 50px; width: 90%; }
+#navigation { position: absolute; top: 60px; width: 90%; display: none; background-color: #2C3539;  }
+#mobile-menu { position: absolute; top: 0px; width: 100%; left: -5px; height: 55px; background-color: #2C3539; color: #ffeeee; }
+#mobile-menu-text { font-size: 1.3em; }
 
 /* The nagivation bar.  */
 
-#sidebar li { margin: 30px 20px 20px 20px; }
 #sidebar li {
-    text-align: right;
     list-style: none;
-    padding: 15px;
+    padding: 5px;
 }
 
 /* The page content.  */
 
-h2 { margin-top: 40px; }
-
-p.first, p.regular { margin-left: 10px; }
-#links { margin-top: 50px; }
+p.first, p.regular { margin-left: 5px; }
+#links { margin-top: 10px; }
 
 .codeblock {
     overflow-x: scroll;
@@ -86,12 +76,6 @@ li.regular {
 }
 
 /* Borders */
-
-#sidebar li {
-    width: 100%;
-    border-top:   solid 1px;
-    border-right: solid 1px;
-}
 
 h1, h2, #footer { padding: 10px; }
 

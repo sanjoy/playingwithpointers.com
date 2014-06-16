@@ -6,12 +6,14 @@ html
     meta name="description" content="Sanjoy's presence on the internet"
     meta name="author" content="Sanjoy Das"
     meta name="keywords" content="compilers, virtual machines, programming, functional programming, computer science, haskell, agda"
-    link rel="stylesheet" type="text/css" href="/design/style.css"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    link rel="stylesheet" type="text/css" href="/design/style.css" media="only screen and (min-device-width: 600px)"
     link rel="stylesheet" type="text/css" href="/design/mobile.css" media="only screen and (min-device-width: 320px) and (max-device-width: 600px)"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=PT+Serif"
     link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans"
     link rel="shortcut icon" type="image/png" href="/favicon.ico"
     script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    script type="text/javascript" src="./mobile-nav.js"
   body
     javascript:
       var _gaq = _gaq || [];
@@ -35,6 +37,7 @@ html
        })();
 
     div id="wrapper"
+      div id="mobile-menu" onclick="toggleNav(); return false;"
       div id="content"
         h1 #{title}
         - ol_inserted = false
