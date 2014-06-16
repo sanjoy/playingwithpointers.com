@@ -40,18 +40,17 @@ following execution traces: `{` `A` `B` `C` `D` `}`, `{` `A` `C` `B`
 `D` `B` `}` or `{` `C` `D` `A` `B` `}`.  More generally, in a
 sequentially consistent system, the total set of observable events
 
- 1. [PropertySC 1] have a total order to them -- it is always possible
-    to give a meaningful answer to the question "did X happen before
-    Y"?
+  [PropertySC 1] have a total order to them -- it is always possible
+  to give a meaningful answer to the question "did X happen before Y"?
 
- 2. [PropertySC 2] respects the program order -- if `A` happens before
-    `B` in the source, `A` will appear to execute before `B` in the
-    final execution trace.
+  [PropertySC 2] respects the program order -- if `A` happens
+  before `B` in the source, `A` will appear to execute before `B`
+  in the final execution trace.
 
- 3. [PropertySC 3] are all atomic, and immediately visible to every
-    thread.  Specifically, a read from `var` will always get the value
-    written in the write to `var` immediately preceding `var` in the
-    total order from [PropertySC 1].
+  [PropertySC 3] are all atomic, and immediately visible to every
+  thread.  Specifically, a read from `var` will always get the value
+  written in the write to `var` immediately preceding `var` in the
+  total order from [PropertySC 1].
 
 Sequential consistency is nice because it allows us to stick with the
 comfortable illusion that threads "execute" by interleaving their
@@ -148,11 +147,11 @@ a variable `var`" ∧ "`A` is a `volatile` write of the same variable
 `↣` is the transitive closure of the union of `sw⇝` and `p⇝`.  That is
 just a fancy way of saying that
 
- 1. If `A` `p⇝` `B` then `A` `↣` `B`
+  If `A` `p⇝` `B` then `A` `↣` `B`
 
- 2. If `A` `sw⇝` `B` then `A` `↣` `B`
+  If `A` `sw⇝` `B` then `A` `↣` `B`
 
- 3. If `A` `↣` `B`, `B` `↣` `C` then `A` `↣` `C`.
+  If `A` `↣` `B`, `B` `↣` `C` then `A` `↣` `C`.
 
 Now that we can compute `↣`, let us run through and "prove" an
 example:
@@ -218,7 +217,7 @@ to reason about the output we can expect.
 As an exercise, try to (formally) analyze the consequences of
 uncommenting the lines touching the `otherName` field.
 
-*Well formed executions*
+# Well formed executions
 
 Now that the contract between the VM and the programmers has been
 fixed, we need some way to discover the constraints the contract

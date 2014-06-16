@@ -1,0 +1,106 @@
+/* Fonts */
+
+body, #links { font-family: 'PT Serif', serif; }
+code, pre.codeblock { font-family: Fixed, monospace; }
+
+h1 { font-weight: bold; font-size: 1.6em; }
+h2 { font-weight: bold; font-size: 1.2em; }
+#sidebar a { font-size: 1.3em; }
+
+/* Hyperlinks */
+a { text-decoration: none; }
+a:link { color: #003366; }
+a:visited { color: #003366; }
+
+p { text-align: justify; }
+
+
+/* General layout: content to the left, navigation sidebar to the
+   right. */
+
+#wrapper { width: 100%; }
+
+#content { float: left; width: 65%; }
+#navigation { float: left; width: 20%; }
+
+body { margin: 25px 0px 40px 40px; }
+
+#footer { margin-bottom: 40px; }
+
+/* The nagivation bar.  */
+
+#sidebar li { margin: 30px 20px 20px 20px; }
+#sidebar li {
+    text-align: right;
+    list-style: none;
+    padding: 15px;
+}
+
+/* The page content.  */
+
+h2 { margin-top: 40px; }
+
+p.first, p.regular { margin-left: 10px; }
+#links { margin-top: 50px; }
+
+.codeblock {
+    padding-left: 15px;
+    border-left: thin solid #555599;
+}
+
+
+/* A small horizontal line before the links section */
+#links:before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 40%;
+    margin-bottom: 10px;
+    background-color: #000000;
+}
+
+#indexfill li {
+    list-style: none;
+    width: 95%;
+    padding: 5px;
+    padding-left: 30px;
+}
+
+#indexfill li:before {
+    content: "\00BB \0020";
+    color: #888888;
+    position: absolute;
+    margin-left: -20px;
+}
+
+#indexfill { padding-left: 0px; }
+
+#twitter-widget { margin-top: 20px; margin-bottom: 40px; }
+
+li.regular {
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Borders */
+
+#sidebar li {
+    width: 100%;
+    border-top:   solid 1px;
+    border-right: solid 1px;
+}
+
+h1, h2, #footer { padding: 10px; }
+
+h1, h2 {
+    width: 100%;
+    border-top:  solid 1px;
+    border-left: solid 1px;
+}
+
+#footer {
+    width: 100%;
+    border-bottom: solid 1px;
+    border-left:   solid 1px;
+}

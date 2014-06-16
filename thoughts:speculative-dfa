@@ -116,22 +116,21 @@ The second observation is that we can take an existing lattice based
 DFA, and transform it to a DFA of the above kind, whose solution maps
 SSA variables to functions, in a fairly straightforward way.
 
- 1. transfer functions remain essentially the same -- instead of
-    adding fact \(F\), you add the fact \(\lambda S \to F\).  What
-    we're basically saying is that transfer functions produce facts
-    that are not sensitive to edge elision.  e.g. in Figure A, we'd
-    add \(\lambda S \to y = Constant(20)\) to our fact set as we
-    encounter `y = 20`.
+  transfer functions remain essentially the same -- instead of adding
+  fact \(F\), you add the fact \(\lambda S \to F\).  What we're
+  basically saying is that transfer functions produce facts that are
+  not sensitive to edge elision.  e.g. in Figure A, we'd add \(\lambda
+  S \to y = Constant(20)\) to our fact set as we encounter `y = 20`.
 
- 2. meet handles the edge-set sensitive aspect of the scheme.  Given a
-    meet \(\wedge\) over the regular, edge-insensitive lattice; we
-    construct our meet \(\wedge\_{f}(In = \{V\_0, V\_1 \cdots
-    V\_n\})\) \(=\) \(\lambda S\) \(\to\) \(\bigwedge\limits\_{v \,
-    \in \, In \: \&\& \: E(v) \, \in \, S} v(S)\) where \(E(v)\) is
-    the edge corresponding to the incoming value \(v\).  Intuitively,
-    the function that a phi node maps to returns the meet of the
-    incoming lattice values whose incoming edge is in the edge set
-    that was passed in.
+  meet handles the edge-set sensitive aspect of the scheme.  Given a
+  meet \(\wedge\) over the regular, edge-insensitive lattice; we
+  construct our meet \(\wedge\_{f}(In = \{V\_0, V\_1 \cdots V\_n\})\)
+  \(=\) \(\lambda S\) \(\to\) \(\bigwedge\limits\_{v \, \in \, In \:
+  \&\& \: E(v) \, \in \, S} v(S)\) where \(E(v)\) is the edge
+  corresponding to the incoming value \(v\).  Intuitively, the
+  function that a phi node maps to returns the meet of the incoming
+  lattice values whose incoming edge is in the edge set that was
+  passed in.
 
 Once we have these lattice values (which are functions, really) for
 each SSA variable, we are now able to answer the question "which
