@@ -192,27 +192,31 @@ The first case is the easier one -- since `vL` sees `null`, the load
 from `q.name` doesn't happen, and we don't print anything.  In the
 second case:
 
-        vS so⇝ vL  [ from assumed sequentially consistent
-                      program trace ]
-    ⇒  vS sw⇝ vL [ direct from the definition of sw⇝ ]
-    ⇒  vS ↣ vL   [ direct from the definition of ↣ ] -- (P.0)
-    
-         [ t.name = "foo" ] p⇝ vS
-    ⇒   [ t.name = "foo" ] ↣ vS [ definition of ↣ ]
-    ⇒   [ t.name = "foo" ] ↣ vL   -- (P.1)
-    
-    Similarly
-        vL p⇝ [ String name = q.name ]
-    ⇒  vL ↣ [ String name = q.name ] -- (P.2)
-    
-    By transitivity of ↣, P.1 and P.2,
-    
-    [ t.name = "foo" ] ↣ [ String name = q.name ] -- (P.3)
+!\(\begin{aligned}
+!            &amp; \; \texttt{vS} \; \texttt{so⇝} \; \texttt{vL} &amp; \text{from assumed sequentially consistent program trace} \\
+!\Rightarrow &amp; \; \texttt{vS} \; \texttt{sw⇝} \; \texttt{vL} &amp; \text{direct from the definition of sw⇝} \\
+!\Rightarrow &amp; \; \texttt{vS} \; \texttt{↣}   \; \texttt{vL} &amp; \text{direct from the definition of ↣ (P.0)}\\
+!\\
+!            &amp; \; \left[ \texttt{t.name = "foo"} \right] \; \texttt{p⇝} \; \texttt{vS} \\
+!\Rightarrow &amp; \; \left[ \texttt{t.name = "foo"} \right] \; \texttt{↣}  \; \texttt{vS} &amp; \text{definition of ↣} \\
+!\Rightarrow &amp; \; \left[ \texttt{t.name = "foo"} \right] \; \texttt{↣}  \; \texttt{vL} &amp; \text{(P.1)} \\
+!\\
+!\text{Similarly}\\
+!\\
+!            &amp; \; \texttt{vL} \; \texttt{p⇝} \; \left[ \texttt{String name = q.name} \right] &amp; \text{} \\
+!\Rightarrow &amp; \; \texttt{vL} \; \texttt{↣}  \; \left[ \texttt{String name = q.name} \right] &amp; \text{(P.2)} \\
+!\end{aligned}\)
 
-From `P.0`, `P.1`, `P.2` and `P.3`, we see that all possible
-conflicting data accesses are ordered by `↣`.  This gives us as-if
-sequential consistency via [Property`↣` 0], and a straightforward way
-to reason about the output we can expect.
+By transitivity of `↣`, P.1 and P.2,
+
+!\(\begin{aligned}
+!\left[ \texttt{t.name = "foo"} \right] \; \texttt{↣} \; \left[ \texttt{String name = q.name} \right] \; \text{(P.3)} &amp; \\
+!\end{aligned}\)
+
+From P.0, P.1, P.2 and P.3, we see that all possible conflicting data
+accesses are ordered by `↣`.  This gives us as-if sequential
+consistency via [Property`↣` 0], and a straightforward way to reason
+about the output we can expect.
 
 As an exercise, try to (formally) analyze the consequences of
 uncommenting the lines touching the `otherName` field.
