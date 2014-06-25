@@ -1,10 +1,8 @@
-var originalNavClasses;
-
 function toggleNav() {
     var navigationBar = document.getElementById('navigation');
-    var content = document.getElementById('content');
+    var currentDisplay = window.getComputedStyle(navigationBar).getPropertyValue("display");
 
-    if (navigationBar.style.display === 'none') {
+    if (currentDisplay === 'none') {
         navigationBar.style.display = 'block';
     } else {
         navigationBar.style.display = 'none';

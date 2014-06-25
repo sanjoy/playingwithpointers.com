@@ -1,5 +1,7 @@
 /* Fonts */
 
+* { box-sizing: border-box; }
+
 body, #links { font-family: 'PT Serif', serif; }
 code, pre.codeblock { font-family: Fixed, monospace; }
 
@@ -12,17 +14,16 @@ a { text-decoration: none; }
 a:link { color: #003366; }
 a:visited { color: #003366; }
 
-p { text-align: justify; }
-
+p { text-align: justify; width: 100%; padding: 10px; }
 
 #wrapper { width: 100%; }
 
-#content { position: absolute; top: 50px; width: 90%; }
-#navigation { position: absolute; top: 60px; width: 90%; display: none; background-color: #2C3539;  }
-#mobile-menu { position: absolute; top: 0px; width: 100%; left: -5px; height: 55px; background-color: #2C3539; color: #ffeeee; }
-#mobile-menu-text { font-size: 1.3em; }
+#content { position: absolute; top: 50px; width: 100%; left: 0px; padding: 10px; }
+#navigation { position: absolute; top: 60px; width: 90%; background-color: #2C3539; display: none; left: 5px; }
+#mobile-menu { position: absolute; top: 0px; width: 100%; left: 0px; height: 55px; background-color: #2C3539; color: #ffeeee; }
+#mobile-menu-text { font-size: 1.0em; margin-left: 30px; padding: 0px; }
 
-/* The nagivation bar.  */
+/* The navigation bar.  */
 
 #sidebar li {
     list-style: none;
@@ -31,7 +32,6 @@ p { text-align: justify; }
 
 /* The page content.  */
 
-p.first, p.regular { margin-left: 5px; }
 #links { margin-top: 10px; }
 
 .codeblock {
@@ -77,16 +77,14 @@ li.regular {
 
 /* Borders */
 
-h1, h2, #footer { padding: 10px; }
+h1, h2, #footer { padding: 10px; width: 100%; }
 
 h1, h2 {
-    width: 100%;
     border-top:  solid 1px;
     border-left: solid 1px;
 }
 
 #footer {
-    width: 100%;
     border-bottom: solid 1px;
     border-left:   solid 1px;
 }
