@@ -1,0 +1,13 @@
+# Site settings
+title: playing with pointers
+email: sanjoy@playingwithpointers.com
+description: > # this means to ignore newlines until "baseurl:"
+  compilers, computer science, math and programming.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://playingwithpointers.com" # the base hostname & protocol for your site
+twitter_username: SCombinator
+github_username:  sanjoy
+highlighter: pygments
+
+# Build settings
+markdown: kramdown

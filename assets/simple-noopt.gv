@@ -1,0 +1,12 @@
+digraph {
+	node[shape=box, fontname=Courier,fontsize=10];
+	edge[fontname=Courier,fontsize=10];
+	graph[ratio=0.5]
+	def[label="x = 10"];
+	redef[label="y = 20"];
+	use[label="mergeBlock:\nz = phi(x, y)\nresult = z + 5"];
+
+	def -> redef;
+	redef -> use[label="side entry"];
+	def -> use[label="normal entry"];
+}
