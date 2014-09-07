@@ -200,9 +200,9 @@ second case:
 
 <div>
 \(\begin{aligned}
-            &amp; \; \texttt{vS} \; \texttt{so⇝} \; \texttt{vL} &amp; \text{assumed sequentially consistent trace} \\
-\Rightarrow &amp; \; \texttt{vS} \; \texttt{sw⇝} \; \texttt{vL} &amp; \text{direct from the definition of sw⇝} \\
-\Rightarrow &amp; \; \texttt{vS} \; \texttt{↣}   \; \texttt{vL} &amp; \text{direct from the definition of ↣ (P.0)}\\
+            &amp; \; \texttt{vS} \; \texttt{so⇝} \; \texttt{vL} &amp; \text{sequentially consistent trace} \\
+\Rightarrow &amp; \; \texttt{vS} \; \texttt{sw⇝} \; \texttt{vL} &amp; \text{definition of sw⇝} \\
+\Rightarrow &amp; \; \texttt{vS} \; \texttt{↣}   \; \texttt{vL} &amp; \text{definition of ↣ (P.0)}\\
 \\
             &amp; \; \left[ \texttt{t.name = "foo"} \right] \; \texttt{p⇝} \; \texttt{vS} \\
 \Rightarrow &amp; \; \left[ \texttt{t.name = "foo"} \right] \; \texttt{↣}  \; \texttt{vS} &amp; \text{definition of ↣} \\
