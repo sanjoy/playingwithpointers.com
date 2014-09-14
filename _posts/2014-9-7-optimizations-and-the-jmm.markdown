@@ -29,13 +29,15 @@ standard Java concurrency primitives[^cookbook], but it is a nice
 exercise to try to prove legality (or illegality, in case of this
 post) of certain transforms from scratch.  This blog post tries to
 show how some re-orderings (that may be done in as part of optimizing
-a Java program for performance) that intuitively seem illegal are,
-in fact, illegal, by deriving that illegality from directly the JMM
-spec.  I've assumed passing familiarity with the Java Memory Model,
-but I've also tried to give references to the actual memory model
-specification wherever appropriate.
+a Java program for performance) that intuitively seem illegal are, in
+fact, illegal, by deriving that illegality from directly the JMM spec.
+I've assumed passing familiarity with the Java Memory Model, but I've
+also tried to give references to the actual memory model specification
+wherever appropriate.
 
 [^cookbook]: see the "The JSR-133 Cookbook for Compiler Writers" by Doug Lea et. al. <http://gee.cs.oswego.edu/dl/jmm/cookbook.html>
+
+[^jvmls]: See "The Java Language Specification"
 
 [^nomem]: unfortunately, unlike Java the programming language, Java
     bytecodes don't have a defined memory model.  In practice this
@@ -138,12 +140,12 @@ that was allocated at program startup.
 It is easy to show that all _sequentially consistent_ execution traces
 of this program are _race free_, and hence the program as such is
 _correctly synchronized_ (all these terms have very specific meanings,
-see 17.4.5).  Correctly synchronized programs behave as if they were
-executing on a sequentially consistent runtime[^seqcst], so every
-execution of this program will look like an interleaving of actions
-performed by each of the individual threads (including non-volatile
-reads and writes).  Given that, we can show that `regV == 1` implies
-`regNV == 5`.
+see 17.4.5 [^jvmls]).  Correctly synchronized programs behave as if
+they were executing on a sequentially consistent runtime[^seqcst], so
+every execution of this program will look like an interleaving of
+actions performed by each of the individual threads (including
+non-volatile reads and writes).  Given that, we can show that `regV ==
+1` implies `regNV == 5`.
 
 [^seqcst]: interestingly, this isn't an axiom (even though we state as
     such).  Any Java runtime providing _happens before consistency_
@@ -174,19 +176,20 @@ above reasoning doesn't follow directly.  To show that the assertion
 demonstrate a legal execution that results in `regV == 1` and `regNV
 == 0`:
 
-Let $$E$$ be an execution (see 17.4.6) with obvious $$P$$, $$A$$,
-$$po$$, $$V$$; $$so$$ = $$so'$$ $$\cup$$ $$($$ `tuple.volatileF = 1`,
-`int regV = tuple.volatileF` $$)$$ for some $$so'$$ [^1]; $$W$$ such
-that `regV` is `1` and `cache` is `0`; and computed $$sw$$ and $$hb$$
-(their values are functions of the other parameters of the execution).
-Something to note about $$sw$$: "(17.4.4) The write of the default
-value (zero, false, or null) to each variable synchronizes-with the
-first action in every thread."
+Let $$E$$ be an execution (see 17.4.6[^jvmls]) with obvious $$P$$,
+$$A$$, $$po$$, $$V$$; $$so$$ = $$so'$$ $$\cup$$ $$($$ `tuple.volatileF
+= 1`, `int regV = tuple.volatileF` $$)$$ for some $$so'$$ [^1]; $$W$$
+such that `regV` is `1` and `cache` is `0`; and computed $$sw$$ and
+$$hb$$ (their values are functions of the other parameters of the
+execution).  Something to note about $$sw$$: "(17.4.4[^jvmls]) The
+write of the default value (zero, false, or null) to each variable
+synchronizes-with the first action in every thread."
 
 <a name="commit-sequence"></a>
 
-We now need a set of _committing actions_ (17.4.8) culminating in the
-execution $$E$$.  Fortunately this is simpler than it sounds, let:
+We now need a set of _committing actions_ (17.4.8[^jvmls]) culminating
+in the execution $$E$$.  Fortunately this is simpler than it sounds,
+let:
 
 [^1]: this notation is just a fancy way of saying `tuple.volatileF =
     1` is before `int regV = tuple.volatileF` in $$so$$ and I don't
@@ -227,22 +230,23 @@ to exploit that allowance here[^seepopl].
     6 in ["The Java Memory Model", POPL
     '05](http://rsim.cs.illinois.edu/Pubs/popl05.pdf "PDF")
 
-From JMM section 17.4.8: "All reads in $$E_i$$ that are not in
+From JMM section 17.4.8[^jvmls]: "All reads in $$E_i$$ that are not in
 $$C_{i-1}$$ must see writes that happen-before them. Each read $$r$$
 in $$C_{i} - C_{i-1}$$ must see writes in $$C_{i-1}$$ in both $$E_i$$
 and $$E$$, but may see a different write in $$E_i$$ from the one it
-sees in $$E$$." and section 17.4.5: "The default initialization of any
-object _happens-before_ any other actions (other than default-writes)
-of a program." give us that it is legal for `int cache =
-tuple.nonVolatileF` to see the initial write to `nonVolatileF` of its
-default value (`0`) that _happens-before_ it (and everything else),
-and `int regV = tuple.volatileF` to see the write `tuple.volatileF =
-1` that also _happens-before_ it (since `tuple.volatileF = 1` is
-before `int regV = tuple.volatileF` in the _synchronization order_,
-and hence they have a _happens-before_ relationship via the
-_synchronizes with_ relationship).  Since none of these judgments
-break _happens-before consistency_, we've thus justified $$E$$, and
-hence proved that `regV == 1` and `regNV == 0` is a legal result.
+sees in $$E$$." and section 17.4.5[^jvmls]: "The default
+initialization of any object _happens-before_ any other actions (other
+than default-writes) of a program." give us that it is legal for `int
+cache = tuple.nonVolatileF` to see the initial write to `nonVolatileF`
+of its default value (`0`) that _happens-before_ it (and everything
+else), and `int regV = tuple.volatileF` to see the write
+`tuple.volatileF = 1` that also _happens-before_ it (since
+`tuple.volatileF = 1` is before `int regV = tuple.volatileF` in the
+_synchronization order_, and hence they have a _happens-before_
+relationship via the _synchronizes with_ relationship).  Since none of
+these judgments break _happens-before consistency_, we've thus
+justified $$E$$, and hence proved that `regV == 1` and `regNV == 0` is
+a legal result.
 
 ### Exercise
 
@@ -304,14 +308,14 @@ we need.
 [^2]: if you pick a sequentially consistent execution where `int regV
     = tuple.volatileF` is before `tuple.volatileF = 1` in the
     _synchronization order_, then the pair of conflicting access
-    (17.4.5) `tuple.nonVolatileF = 5` and `int regNV =
+    (17.4.5[^jvmls]) `tuple.nonVolatileF = 5` and `int regNV =
     tuple.nonVolatileF` are not ordered in _happens-before_.
 
-"(17.4.5) A set of actions $$A$$ is _happens-before consistent_ if for
-all reads $$r$$ in $$A$$, where $$W(r)$$ is the write action seen by
-$$r$$, it is not the case that either $$hb(r, W(r))$$ or that there
-exists a write $$w$$ in $$A$$ such that $$w.v = r.v$$ and $$hb(W(r),
-w)$$ and $$hb(w, r)$$."
+"(17.4.5[^jvmls]) A set of actions $$A$$ is _happens-before
+consistent_ if for all reads $$r$$ in $$A$$, where $$W(r)$$ is the
+write action seen by $$r$$, it is not the case that either $$hb(r,
+W(r))$$ or that there exists a write $$w$$ in $$A$$ such that $$w.v =
+r.v$$ and $$hb(W(r), w)$$ and $$hb(w, r)$$."
 
 In plain English, this says the following two things:
 
@@ -333,10 +337,10 @@ value[^defvalue] (`0` in this case), happens before
 tuple.nonVolatileF` cannot see it.  In the language of the JMM, we
 have `int regNV = tuple.nonVolatileF` as $$r$$, the initial write of
 `0` to `tuple.nonVolatileF` as $$W(r)$$ and `tuple.nonVolatileF = 5`
-as $$w$$.  By 17.4.5, $$r$$ cannot observe $$W(r)$$.
+as $$w$$.  By 17.4.5[^jvmls], $$r$$ cannot observe $$W(r)$$.
 
-[^defvalue]: also mentioned earlier, "(17.4.4) The write of the
-     default value (zero, false, or null) to each variable
+[^defvalue]: also mentioned earlier, "(17.4.4[^jvmls]) The write of
+     the default value (zero, false, or null) to each variable
      synchronizes-with the first action in every thread."
 
 The _post-transform_ snippet in the same context looks like
