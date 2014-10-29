@@ -12,3 +12,6 @@ tagline: "what is there to fear in such a regular world?"
 
 # Build settings
 markdown: kramdown
+
+# exclude the deploy script
+exclude: [ deploy.sh ]
