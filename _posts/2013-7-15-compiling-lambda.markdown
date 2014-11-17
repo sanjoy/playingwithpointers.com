@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Echoes: Compiling λ"
+title:  "echoes: compiling λ"
 permalink: compiling-lambda.html
 ---
 
@@ -58,8 +58,7 @@ booleans) goes through the following phases:
 The project [^2] consists of around 1500 lines of Haskell (for the
 compiler) and around 200 lines of C / assembly (for the runtime).
 
-Currying and Forcing
---------------------
+# currying and forcing
 
 Each value encountered by a running program is either an integer, a
 boolean, or a partially or fully applied function. The lower two bits
@@ -113,8 +112,7 @@ fully saturated node, the arguments are collected into a buffer (to
 provide O(1) and simple access to individual arguments) and passed as
 a parameter to the out-of-line function.
 
-Role of Haskell's Type System
------------------------------
+# role of haskell's type system
 
 I haven't written a single Haskell program without noticing the
 benefits conferred by a well-designed type system. Hoopl, especially,
@@ -159,8 +157,7 @@ importantly, I could not have implemented such a function with weaker
 constraints and guarantees -- the "well-formedness" of CFGs are
 ingrained into the very types used to represent them.
 
-Future Work
------------
+# future work
 
 A minimum working prototype has made a lot of fun sub-projects
 possible, some of which I will definitely work on. Two of the most

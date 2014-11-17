@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Variable-precision SWAR Algorithm"
+title:  "the variable-precision SWAR algorithm"
 permalink: swar.html
 ---
 

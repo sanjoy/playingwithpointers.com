@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Java Optimizations and the JMM"
+title:  "java optimizations and the JMM"
 permalink: optimizations-and-the-jmm.html
 ---
 
@@ -45,7 +45,7 @@ wherever appropriate.
     present in the Java programming language, and hence have a default
     "inherited" memory model.
 
-## A correctly synchronized example
+# a correctly synchronized example
 
 Assume we've declared a class `Tuple`
 
@@ -248,12 +248,12 @@ these judgments break _happens-before consistency_, we've thus
 justified $$E$$, and hence proved that `regV == 1` and `regNV == 0` is
 a legal result.
 
-### Exercise
+## exercise
 
 Find a series of committing actions that end with `regV` as `1` and
 `cache` as `5` in this second example.
 
-## A racy example
+# a racy example
 
 The first example had an interesting property -- the _pre-transform_
 program was _correctly synchronized_ while the _post-transform_
@@ -364,7 +364,7 @@ sequence](#commit-sequence) (modulo changing $$C_4$$ in obvious ways,
 since we don't have a local variable involved here) to show legality
 of an execution that ends with `regNV == 0` and `regV == 1`.
 
-### Exercise
+## exercise
 
 Using similar techniques, show that you cannot optimize (the proof
 will have the same structure as the second example):
@@ -390,7 +390,7 @@ void reader(Tuple tuple) {
 {% endhighlight %}
 .
 
-## Conclusion and future posts
+# conclusion and future posts
 
 There are several aspects of the Java Memory Model specification that
 I'm confused about:
@@ -409,5 +409,3 @@ I'm confused about:
 It will be interesting to see how my understanding of the JMM evolves
 over time.  I think I've _sort of_ started to see the big picture, but
 there is still a long way to go.
-
-## Footnotes

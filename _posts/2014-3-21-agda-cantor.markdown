@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cantor's Diagonal Argument in Agda"
+title:  "cantor's diagonal argument in agda"
 permalink: agda-cantor.html
 ---
 

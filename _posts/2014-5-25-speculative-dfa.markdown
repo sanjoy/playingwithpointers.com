@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  "A Lattice for Speculative Data Flow Analysis"
+title:  "a lattice for speculative data flow analysis"
 permalink: speculative-dfa.html
 ---
 
 This post assumes that the reader understands the SSA style of
 compiler IR, and is familiar with lattice based data flow analyses.
 
-Using speculation to help optimization
---------------------------------------
+# using speculation to help optimization
+
 
 Normal SSA based data flow analyses compute facts based on a
 conservative but sound worst case -- it assumes that every path in the
@@ -61,8 +61,7 @@ compiled version of a method to running it in the interpreter when the
 gets us out of the preamble and to the real topic I wanted to write
 about ...
 
-A lattice for speculative DFA: Motivation
------------------------------------------
+# a lattice for speculative DFA: motivation
 
 Consider this (contrived) case:
 
@@ -106,8 +105,7 @@ performance in the fast case. We want a way to push the decision on
 whether to install a trap for a specific edge to later in the
 optimization process.
 
-A lattice for speculative DFA: Construction
--------------------------------------------
+# a lattice for speculative DFA: construction
 
 A regular DFA produces a solution that maps SSA variables to lattice
 elements conservatively estimating some property of the variable.  The
@@ -148,8 +146,7 @@ So far we've only considered constant propagation, but only because it
 is simple to analyze.  I think this technique should be generalizable
 to any lattice based DFA.
 
-Conclusion
-----------
+# conclusion
 
 I haven't spent any time thinking about the soundness of this
 construction.  The first next step is be to prove that the new DFA

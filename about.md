@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: about
 permalink: about.html
 ---
 
@@ -10,8 +10,7 @@ employed by [Azul Systems][azul], where I work on their JVM. My work
 is primarily focused on JIT compilers, but touches other parts of the
 runtime too. This is a personal blog.
 
-Contacting Me
--------------
+# contacting me
 
 I'm reachable via email at `sanjoy@$this_domain`. I can also be found
 on [Twitter][twitter], [Github][github] and [LinkedIn][linkedin]. I

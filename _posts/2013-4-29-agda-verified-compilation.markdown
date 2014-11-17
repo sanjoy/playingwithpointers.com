@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Certified Compilation in Agda"
+title:  "certified compilation in agda"
 permalink: agda-verified-compilation.html
 ---
 

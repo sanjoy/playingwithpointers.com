@@ -82,8 +82,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 
-
-
 /**
  * Links
  */
@@ -127,9 +125,12 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
-    border-radius: 3px;
+}
+
+pre {
     background-color: #eef;
+    border-radius: 3px;
+    border: 1px solid $grey-color-light;
 }
 
 code {

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Peeking into the Java Memory Model"
+title:  "peeking into the java memory model"
 permalink: peeking-into-jmm.html
 ---
 
@@ -10,8 +10,7 @@ preciseness, but hopefully it doesn't have any fundamental
 mistakes. One day, when I have a lot of free time, I will try to
 formalize the JMM in Agda or Coq, but for now English will have to do.
 
-Memory Models
--------------
+# memory models
 
 A memory model, in the most abstract sense, is a predicate on
 execution traces of programs.  It differentiates between _valid_ and
@@ -33,8 +32,7 @@ an axiomatic _contract_ between the VM and the programs running on top
 of the VM, and an abstract, operational notion of a _well formed_
 execution.
 
-The Contract
-------------
+# the contract
 
 With a thread X trying to execute `A` followed by `B` and thread Y
 trying to execute `C` followed by `D` (all these being reads and
@@ -235,8 +233,7 @@ about the output we can expect.
 As an exercise, try to (formally) analyze the consequences of
 uncommenting the lines touching the `otherName` field.
 
-Well formed executions
-----------------------
+# well formed executions
 
 Now that the contract between the VM and the programmers has been
 fixed, we need some way to discover the constraints the contract
@@ -341,8 +338,7 @@ to the initializer for `a`, which writes `0` to `a`.  `ThreadA` thus
 takes the correct control flow and Java doesn't end up breaking
 physics.
 
-Conclusions
------------
+# conclusions
 
 I find the first part of the JMM vastly easier to grok than the second
 part (that aims to avoid causality loops).  I have a hunch that
