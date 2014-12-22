@@ -73,10 +73,10 @@ is $$t$$ interpreted as an integer in base 2. $$\Delta$$ is injective,
 but not surjective.  $$\Delta^{-1}$$ is defined on all natural numbers
 less than $$2^{N}$$.
 
-$$\Gamma$$ is a mapping from $$T$$ to $$\mathbb{N}$$.  $$\Gamma(t)$$
+$$\Gamma$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Gamma(t)$$
 is $$t$$ interpreted as an integer in 2's complement. $$\Gamma$$ is
 injective, but not surjective.  $$\Gamma^{-1}$$ is defined on all
-natural numbers less than $$2^{N-1}$$ and greater than $$-1-2^{N-1}$$.
+integers less than $$2^{N-1}$$ and greater than $$-1-2^{N-1}$$.
 
 The following are relations between $$T$$ and $$T$$ (i.e. a subset of
 $$T \times T$$)
