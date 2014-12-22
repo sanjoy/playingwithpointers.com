@@ -68,10 +68,10 @@ the set $$\{0, 1\}^{N} = T$$.
 $$(k)^{N}$$ is an element of $$T$$ (and hence an $$N$$-tuple) all of
 whose elements are $$k$$.
 
-$$\Delta$$ is a mapping from $$T$$ to $$\mathbb{N}$$.  $$\Delta(t)$$
+$$\Delta$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Delta(t)$$
 is $$t$$ interpreted as an integer in base 2. $$\Delta$$ is injective,
-but not surjective.  $$\Delta^{-1}$$ is defined on all natural numbers
-less than $$2^{N}$$.
+but not surjective.  $$\Delta^{-1}$$ is defined on all integers less
+than $$2^{N}$$.
 
 $$\Gamma$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Gamma(t)$$
 is $$t$$ interpreted as an integer in 2's complement. $$\Gamma$$ is
@@ -90,8 +90,8 @@ $$T \times T$$)
    \Delta(p) \leq \Delta(q)$$
 
 We will use $$\textrm{mod}$$ as the remainder function: $$a \mod b$$
-is $$r \in \mathbb{N}$$ such that $$0 \leq r < b$$ and $$a = k \times
-b + r$$ for some $$k \in \mathbb{N}$$.
+is $$r \in \mathbb{Z}$$ such that $$0 \leq r < b$$ and $$a = k \times
+b + r$$ for some $$k \in \mathbb{Z}$$.
 
 The next two are functions from $$T \times T$$ to $$T$$
 
@@ -149,20 +149,20 @@ The interesting thing to note is that $$(4)$$ is really a *family* of
 equations:
 
 $$k \times 2^{N} \leq A + (B \times I) < k \times 2^{N} + L, \; k \in
-\mathbb{N} \qquad ... \; (5)$$
+\mathbb{Z} \qquad ... \; (5)$$
 
-Since we are now in $$\mathbb{N}$$land, we solve $$(5)$$ using
+Since we are now in $$\mathbb{Z}$$land, we solve $$(5)$$ using
 standard arithmetic:
 
 If $$B > 0$$ then
 
-$$\left\lceil\frac{k \times 2^{N} - A}{B}\right\rceil \leq I < \left\lceil \frac{k \times  2^{N} + L - A}{B} \right\rceil, \; k \in \mathbb{N}$$
+$$\left\lceil\frac{k \times 2^{N} - A}{B}\right\rceil \leq I < \left\lceil \frac{k \times  2^{N} + L - A}{B} \right\rceil, \; k \in \mathbb{Z}$$
 
 If $$B < 0$$ then
 
-$$\left\lfloor \frac{k \times  2^{N} + L - A}{B} \right\rfloor < I \leq \left\lfloor\frac{k \times 2^{N} - A}{B}\right\rfloor, \; k \in \mathbb{N}$$
+$$\left\lfloor \frac{k \times  2^{N} + L - A}{B} \right\rfloor < I \leq \left\lfloor\frac{k \times 2^{N} - A}{B}\right\rfloor, \; k \in \mathbb{Z}$$
 
-In any case, for every $$k \in \mathbb{N}$$ we have a range of values
+In any case, for every $$k \in \mathbb{Z}$$ we have a range of values
 for $$I$$ that satisfy $$(3)$$.  If we denote the solution set for a
 given $$k$$ as a function $$f$$ of $$k$$, then $$f$$ is periodic with
 an interval of $$B$$. Thus we can compute the full solution set for
@@ -185,11 +185,11 @@ So far we've solved $$(2)$$ in terms of individual values.  In some
 cases this set of values can be "easily" split into a union of ranges.
 
 For example say for a given $$k$$ we have $$m \leq I < n$$ as a
-solution to $$(5)$$.  If $$\exists \, r_0, r_1, k \in \mathbb{N}$$
+solution to $$(5)$$.  If $$\exists \, r_0, r_1, k \in \mathbb{Z}$$
 such that $$0 \leq r_0 < r_1 < 2^{N}$$ and $$m = k \times 2^{N} +
 r_0$$ and $$n = k \times 2^{N} + r_1$$ then every $$s \in T$$ such
 that $$\Delta^{-1}(r_0) \sqsubseteq s \sqsubset \Delta^{-1}(r_1)$$ is
-a solution to $$(2)$$.  If $$\exists \, r_0, r_1, k \in \mathbb{N}$$
+a solution to $$(2)$$.  If $$\exists \, r_0, r_1, k \in \mathbb{Z}$$
 such that $$0 \leq r_0 , r_1 < 2^{N}$$ and $$m = k \times 2^{N} +
 r_0$$ and $$n = (k + 1) \times 2^{N} + r_1$$ then every $$s \in T$$
 such that $$\Delta^{-1}(r_0) \sqsubseteq s$$ is a solution to $$(2)$$.
