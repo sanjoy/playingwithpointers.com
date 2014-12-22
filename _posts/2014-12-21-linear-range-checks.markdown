@@ -190,14 +190,14 @@ such that $$0 \leq r_0 < r_1 < 2^{N}$$ and $$m = k \times 2^{N} +
 r_0$$ and $$n = k \times 2^{N} + r_1$$ then every $$s \in T$$ such
 that $$\Delta^{-1}(r_0) \sqsubseteq s \sqsubset \Delta^{-1}(r_1)$$ is
 a solution to $$(2)$$.  If $$\exists \, r_0, r_1, k \in \mathbb{N}$$
-such that $$0 \leq r_0 < r_1 < 2^{N}$$ and $$m = k \times 2^{N} +
+such that $$0 \leq r_0 , r_1 < 2^{N}$$ and $$m = k \times 2^{N} +
 r_0$$ and $$n = (k + 1) \times 2^{N} + r_1$$ then every $$s \in T$$
 such that $$\Delta^{-1}(r_0) \sqsubseteq s$$ is a solution to $$(2)$$.
 More such cases can easily be derived.
 
-Being able to split the solution set into contiguous ranges is
-important because that is what allows us to break up a loop's
-iteration space cheaply (i.e. with almost zero additional overhead).
+Being able to split the solution set into ranges is important because
+that is what allows us to break up a loop's iteration space cheaply
+(i.e. with almost zero additional overhead).
 
 # conclusion
 
