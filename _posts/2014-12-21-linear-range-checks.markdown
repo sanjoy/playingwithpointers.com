@@ -115,7 +115,8 @@ $$\begin{equation}
 
 where $$l$$ is `length(array)` and $$l \succeq (0)^{n}$$.  The
 alternative, $$l \prec (0)^{n}$$, is not interesting since in that
-case there are no solutions and also nonsensical.
+case there are no solutions (a negative "length" is also nonsensical
+in the real world).
 
 The solution set interpreted as integers represented in 2's complement
 may not be a contiguous set -- e.g. if $$(N, a, b, l)$$ is $$(8, 0,
