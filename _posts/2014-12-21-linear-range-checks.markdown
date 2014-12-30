@@ -71,7 +71,7 @@ whose elements are $$k$$.
 $$\Delta$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Delta(t)$$
 is $$t$$ interpreted as an integer in base 2. $$\Delta$$ is injective,
 but not surjective.  $$\Delta^{-1}$$ is defined on all integers less
-than $$2^{N}$$.
+than $$2^{N}$$ and greater than $$-1$$.
 
 $$\Gamma$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Gamma(t)$$
 is $$t$$ interpreted as an integer in 2's complement. $$\Gamma$$ is
