@@ -22,9 +22,11 @@ $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
-$grey-royal-color:  #346402;
-$white-royal-color: #efffef;
-$white-very-light-royal-color: #f8fff8;
+$grey-primary-color:  #346402;
+$white-primary-color: #efefff;
+$very-light-primary-color: #f8fff8;
+
+$very-light-secondary-color: #ffffff;
 
 $on-palm:          600px;
 $on-laptop:        800px;

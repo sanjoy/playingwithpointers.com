@@ -4,7 +4,7 @@
 .site-header {
     border-top: 5px solid $grey-color-dark;
     border-bottom: 1px solid $grey-color-light;
-    background-color: $grey-royal-color;
+    background-color: $grey-primary-color;
     min-height: 56px;
 
     // Positioning context for the mobile navigation icon
@@ -16,12 +16,12 @@
     line-height: 56px;
     letter-spacing: -1px;
     margin-bottom: 0;
-    color: $white-royal-color;
+    color: $white-primary-color;
     float: left;
 
     &,
     &:visited {
-        color: $white-royal-color;
+        color: $white-primary-color;
     }
 }
 
@@ -34,7 +34,7 @@
     }
 
     .page-link {
-        color: $white-royal-color;
+        color: $white-primary-color;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
@@ -97,13 +97,13 @@
 .site-footer {
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
-    background-color: $white-very-light-royal-color;
+    background-color: $very-light-primary-color;
 }
 
 .footer-heading {
     font-size: 18px;
     margin-bottom: $spacing-unit / 2;
-    color: $grey-royal-color;
+    color: $grey-primary-color;
 }
 
 .contact-list,
@@ -200,6 +200,7 @@
  */
 .post-header {
     margin-bottom: $spacing-unit;
+    background-color: $very-light-secondary-color;
 }
 
 .post-title {
