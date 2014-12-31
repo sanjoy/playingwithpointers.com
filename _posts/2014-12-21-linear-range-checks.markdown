@@ -63,10 +63,8 @@ to be one with some effort.
 ## notation
 
 We operate on $$N$$ bit machine integers, which really are elements of
-the set $$\{0, 1\}^{N} = T$$.
-
-$$(k)^{N}$$ is an element of $$T$$ (and hence an $$N$$-tuple) all of
-whose elements are $$k$$.
+the set $$\{0, 1\}^{N} = T$$. $$(k)^{N}$$ is an element of $$T$$ (and
+hence an $$N$$-tuple) all of whose elements are $$k$$.
 
 $$\Delta$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Delta(t)$$
 is $$t$$ interpreted as an integer in base 2. $$\Delta$$ is injective,
