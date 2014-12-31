@@ -140,6 +140,7 @@ code {
 pre {
     padding: 8px 12px;
     overflow-x: scroll;
+    line-height: $code-line-height;
 
     > code {
         border: 0;
