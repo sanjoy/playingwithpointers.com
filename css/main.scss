@@ -22,9 +22,9 @@ $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
-$grey-primary-color:  #346402;
+$grey-primary-color:  #8B2323;
 $white-primary-color: #efefff;
-$very-light-primary-color: #f8fff8;
+$very-light-primary-color: #fdfdff;
 
 $very-light-secondary-color: #ffffff;
 
@@ -45,8 +45,6 @@ $on-laptop:        800px;
         @content;
     }
 }
-
-
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import

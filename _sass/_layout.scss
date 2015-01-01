@@ -4,8 +4,8 @@
 .site-header {
     border-top: 5px solid $grey-color-dark;
     border-bottom: 1px solid $grey-color-light;
-    background-color: $grey-primary-color;
     min-height: 56px;
+    background-color: $very-light-primary-color;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -16,12 +16,12 @@
     line-height: 56px;
     letter-spacing: -1px;
     margin-bottom: 0;
-    color: $white-primary-color;
+    color: $text-color;
     float: left;
 
     &,
     &:visited {
-        color: $white-primary-color;
+        color: $text-color;
     }
 }
 
@@ -34,7 +34,7 @@
     }
 
     .page-link {
-        color: $white-primary-color;
+        color: $text-color;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
@@ -103,7 +103,7 @@
 .footer-heading {
     font-size: 18px;
     margin-bottom: $spacing-unit / 2;
-    color: $grey-primary-color;
+    color: $text-color;
 }
 
 .contact-list,
@@ -174,12 +174,29 @@
     font-size: 20px;
 }
 
-.post-list {
-    margin-left: 0;
-    list-style: none;
+@media (min-device-width: $on-laptop) {
+    .post-list {
+        margin-left: 0;
+        list-style: none;
+        overflow: hidden;
 
-    > li {
-        margin-bottom: $spacing-unit;
+        > li {
+            float: left;
+            display: inline;
+            width: 50%;
+            margin-bottom: $spacing-unit;
+        }
+    }
+}
+
+@media (max-device-width: $on-laptop) {
+    .post-list {
+        margin-left: 0;
+        list-style: none;
+        
+        > li {
+            margin-bottom: $spacing-unit;
+        }
     }
 }
 
