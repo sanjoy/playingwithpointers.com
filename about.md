@@ -15,9 +15,11 @@ runtime too. This is a personal blog.
 I'm reachable via email at `sanjoy@$this_domain`. I can also be found
 on [Twitter][twitter], [Github][github] and [LinkedIn][linkedin]. I
 lurk on FreeNode as `sanjoyd` (and usually hang around on
-`#klug-devel`).
+`#klug-devel`).  I'm not currently looking for employment but my
+[resume][resume] is up on github if you're interested.
 
 [azul]: <http://www.azulsystems.com/>
 [linkedin]: <http://in.linkedin.com/in/sanjoydas>
 [twitter]: <http://twitter.com/SCombinator>
 [github]: <http://github.com/sanjoy>
+[resume]: <https://github.com/sanjoy/resume/blob/master/Resume-SanjoyDas.pdf?raw=true>
