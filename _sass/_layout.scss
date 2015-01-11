@@ -200,6 +200,11 @@
 }
 }
 
+.post-meta-in-post {
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
 @media (min-device-width: $on-laptop) {
 .post-link {
     font-size: 22px;
