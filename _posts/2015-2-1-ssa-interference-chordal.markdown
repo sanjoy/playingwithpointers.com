@@ -8,14 +8,14 @@ permalink: ssa-interference-chordal.html
 
 I ran into a very interesting idea a couple of weeks back: if you're
 working with pure SSA (phi nodes and all) then you get to do optimal
-register allocation[^optimal] in polynomial time.  You don't get a
-free lunch though, because you will eventually have to translate out
-of SSA by mapping the phi nodes into copies; and doing that optimally
-is NP complete[^outofssa].
+register allocation in polynomial time.  You don't get a free lunch
+though, because you will eventually have to translate out of SSA by
+mapping the phi nodes into copies; and doing that optimally is NP
+complete[^outofssa].
 
-[^optimal]: "Optimal Register Sharing for High-Level Synthesis of SSA
-    Form Programs"
-    <http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.61.6569>
+Please note that **none of this is original work** and optimal
+register allocation using SSA is a well-researched topic.  A set of
+references can be found in the [bibliography section](#bib).
 
 [^outofssa]: supposedly established in "Optimizing Translation Out of
     SSA Using Renaming Constraints"
@@ -174,16 +174,23 @@ live range.
 
 # conclusion
 
-A naive implementation of the above technique will probably not be
-very practical, but it will be interesting to see if it can be made
-practical in combination with other standard register-allocation
-tricks.  For instance, we could probably have a scheme that combines
-an optimal graph coloring register allocator with a smart live range
-splitting phase (the splitting phase will have to preserve SSA).
-Another thing I have not thought about at all is how to deal with
-register assignment constraints (e.g. a 128 bit vector of floats needs
-to go to one of the `xmm` registers) -- it is possible existing
-literature already deals with this issue.
+There is an existing compiler IR that uses chordality of SSA's
+interference graphs to do optimal register allocation: libFirm
+<http://pp.ipd.kit.edu/firm/>.  I'd like to spend some time looking
+at that next.
+
+# bibliography<a name="bib"></a>
+
+ * "Optimal Register Sharing for High-Level Synthesis of SSA Form
+Programs"
+<http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.61.6569>
+
+ * Sebastian Hack's PhD thesis:
+   <http://digbib.ubka.uni-karlsruhe.de/volltexte/documents/6532>
+
+ * "SSA-based Register Allocation" <http://www.cdl.uni-saarland.de/projects/ssara/>
+
+ * libFirm has an SSA-based register allocator <http://pp.ipd.kit.edu/firm/>
 
 [^domtree]: <http://www.wikiwand.com/en/Dominator_(graph_theory)>
 
