@@ -1,0 +1,15 @@
+graph {
+	graph[ratio=0.5];
+	layout="circo";
+	node[shape = circle];
+
+	v0[label="v0"]
+	v1[label="v1"]
+	v2[label="v2"]
+	v3[label="v3"]
+
+	v0 -- v1[label="p0"]
+	v1 -- v2[label="p1"]
+	v2 -- v3[label="p2"]
+	v3 -- v0[label="p3"]
+}
