@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "the variable-precision SWAR algorithm"
+title:  "A SWAR algorithm for popcount"
 permalink: swar.html
 ---
 
-The variable-precision SWAR algorithm is an interesting way to count
-the number of bits set in an integer. While its performance is very
-good (16 instructions when compiled with `gcc -O3`), why the algorithm
-works is somewhat opaque:
+An interesting way to get the _popcount_, or the number of bits set in
+an integer is via a SWAR (SIMD Within A Register) algorithm.  While
+its performance is very good (16 instructions when compiled with `gcc
+-O3`), why the algorithm works is somewhat opaque:
 
 {% highlight c %}
 int swar(uint32_t i) {
