@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A SWAR algorithm for popcount"
+title:  "a SWAR algorithm for popcount"
 permalink: swar.html
 ---
 
