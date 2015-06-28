@@ -17,6 +17,13 @@ found on [Twitter][twitter], [Github][github] and
 [LinkedIn][linkedin]. I lurk on FreeNode as `sanjoyd` (and usually
 hang around in `#klug-devel`).
 
+# professional information
+
+I am a software engineer by profession, and I especially like working
+on compilers and virtual machines.  I'm currently employed by [Azul
+Systems][azul].
+
+[azul]: <http://azulsystems.com>
 [blog]: </blog.html>
 [linkedin]: <http://in.linkedin.com/in/sanjoydas>
 [twitter]: <http://twitter.com/SCombinator>
