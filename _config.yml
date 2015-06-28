@@ -8,7 +8,7 @@ url: "http://playingwithpointers.com" # the base hostname & protocol for your si
 twitter_username: SCombinator
 github_username:  sanjoy
 highlighter: pygments
-tagline: "what is there to fear in such a regular world?"
+#tagline: "what is there to fear in such a regular world?"
 
 # Build settings
 markdown: kramdown
