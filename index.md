@@ -1,5 +1,6 @@
 ---
 layout: default
+title: index
 ---
 
 # about this website
@@ -16,10 +17,11 @@ machines.  I'm currently employed by [Azul Systems][azul].
 
 # contact
 
-I'm reachable via email at sanjoy@this-domain.com. I can also be found
-on [Twitter][twitter], [Github][github] and [LinkedIn][linkedin]. I
-lurk on FreeNode as `sanjoyd` (and usually hang around in
-`#klug-devel`).
+I'm reachable via email at <span
+class="contact">sanjoy@this-domain.com</span>. I can also be found on
+[Twitter][twitter], [Github][github] and [LinkedIn][linkedin]. I lurk
+on FreeNode as <span class="contact">sanjoyd</span> (and usually hang
+around in <span class="contact">#klug-devel</span>).
 
 [azul]: <http://azulsystems.com>
 [blog]: </blog.html>
