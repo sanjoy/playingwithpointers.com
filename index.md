@@ -1,6 +1,6 @@
 ---
 layout: default
-title: index
+title: playing with pointers
 ---
 
 # about this website
