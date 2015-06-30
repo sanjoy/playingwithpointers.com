@@ -2,10 +2,7 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
-    background-color: $very-light-primary-color;
 
     // Positioning context for the mobile navigation icon
     position: relative;
@@ -236,10 +233,10 @@
 .post-content {
     margin-bottom: $spacing-unit;
 
-    h1 { font-size: 2em; font-weight: 500; }
+    h1 { font-size: 1.75em; font-weight: 500; }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 1.3em;
 
         @include media-query($on-laptop) {
             font-size: 28px;
