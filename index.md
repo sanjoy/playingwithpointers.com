@@ -1,6 +1,6 @@
 ---
 layout: default
-title: playing with pointers
+title: about playing with pointers
 ---
 
 # about this website
