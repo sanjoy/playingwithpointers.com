@@ -2,6 +2,7 @@
 layout: post
 title:  "reference counting: harder than it sounds"
 permalink: refcounting-harder-than-it-sounds.html
+keywords: "reference counting, gc, garbage collection, language runtimes, shared_ptr"
 ---
 
 Naive reference counting is "easy" to implement on a system that does

@@ -2,6 +2,7 @@
 layout: post
 title:  "solving linear range checks"
 permalink: solving-linear-range-checks.html
+keywords: "java, range checks, program optimization, compilers"
 ---
 
 # context

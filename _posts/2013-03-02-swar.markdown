@@ -2,6 +2,7 @@
 layout: post
 title:  "a SWAR algorithm for popcount"
 permalink: swar.html
+keywords: "SWAR, bit math, C, C++, low level"
 ---
 
 An interesting way to get the _popcount_, or the number of bits set in

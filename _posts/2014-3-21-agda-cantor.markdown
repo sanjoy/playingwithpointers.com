@@ -2,6 +2,7 @@
 layout: post
 title:  "cantor's diagonal argument in agda"
 permalink: agda-cantor.html
+keywords: "cantor, agda, math, proof, dependent types"
 ---
 
 Cantor's diagonal argument, in principle, proves that there can be no

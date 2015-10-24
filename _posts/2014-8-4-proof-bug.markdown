@@ -2,6 +2,7 @@
 layout: post
 title:  "a proof bug"
 permalink: subtle-proof-bug.html
+keywords: "proof, bug, turing machine"
 ---
 
 Can you spot why the following proof sketch is incorrect?

@@ -2,6 +2,7 @@
 layout: post
 title:  "peeking into the java memory model"
 permalink: peeking-into-jmm.html
+keywords: "java memory model, java, proof, jvm, memory model, multi threaded"
 ---
 
 This is brief brain-dump of my understanding of the JMM. Content-wise

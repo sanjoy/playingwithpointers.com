@@ -2,6 +2,7 @@
 layout: post
 title:  "hazard pointers are a CRDT"
 permalink: hazard-pointers-are-a-crdt.html
+keywords: "hazard pointers, crdt"
 ---
 
 I recently watched an excellent video by Marc Shapiro on conflict-free

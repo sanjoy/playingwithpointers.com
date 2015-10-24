@@ -2,6 +2,7 @@
 layout: post
 title:  "certified compilation in agda"
 permalink: agda-verified-compilation.html
+keywords: "verified programming, agda, verified compilation, proof, dependent types"
 ---
 
 Using dependent types, it is possible to specify contracts for Agda

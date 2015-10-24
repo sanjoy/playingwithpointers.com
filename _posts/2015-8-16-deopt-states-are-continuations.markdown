@@ -2,6 +2,7 @@
 layout: post
 title:  "deoptimization states are delimited continuations"
 permalink: deopt-states-are-delim-continuations.html
+keywords: "deoptimization, speculative optimization, continuation"
 ---
 
 *This post assumes knowledge of some basic vocabulary related to

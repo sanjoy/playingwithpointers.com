@@ -2,6 +2,7 @@
 layout: post
 title:  "echoes: compiling λ"
 permalink: compiling-lambda.html
+keywords: "lambda calculus, compiler, haskell, virtual machine"
 ---
 
 I've been toying with the idea of writing a compiler for the untyped
