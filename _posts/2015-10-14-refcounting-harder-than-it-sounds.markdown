@@ -95,9 +95,9 @@ uncooperative environment (e.g. for a thread-safe
 # other solutions
 
 I'm interested in hearing about other solutions to these problems
-people have come up with.  If you're aware of any, please comment here
-and / or drop me an email -- I'll update this section with appropriate
-credits.
+people have come up with.  If you're aware of any, please comment
+here, drop me an email, or [tweet](https://twitter.com/SCombinator) at
+me -- I'll update this section with appropriate credits.
 
 [^1]: Levanoni, Yossi, and Erez Petrank. "An on-the-fly reference counting garbage collector for Java." ACM SIGPLAN Notices 36.11 (2001): 367-380.
 
