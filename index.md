@@ -8,7 +8,7 @@ title: about playing with pointers
 I'm Sanjoy, and this is my presence on the Internet.  This website
 contains my [blog][blog] and some basic information about myself.
 
-Opinions expressed here are entirely personal.
+Opinions and technical judgement expressed here are entirely personal.
 
 # professional information
 
