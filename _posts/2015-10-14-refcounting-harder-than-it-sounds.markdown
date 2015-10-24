@@ -13,7 +13,7 @@ be atomic operations") come to mind.  So far the contents of this post
 (which are **not** novel) have lived in one-off tweets and emails, but
 I think it is time to write them down in an organized way.
 
-# stores to the heap need to be CASes
+# problem 0: stores to the heap need to be CASes
 
 Executing a store to the heap requires incrementing the refcount of
 the object stored, and decrementing the refcount of the object
@@ -34,18 +34,19 @@ Naively extending this to a multi-threaded system requires doing a CAS
     Atomic_Increment_Refcount(new_val->refcount)
 
 which has a fairly high overhead, especially since the programmer did
-not ask for an atomic operation.
+not ask for an atomic operation, and the extra synchronization is
+purely "dead" overhead.
 
 ## solutions I'm aware of
 
 "An on-the-fly reference counting garbage collector for Java."[^1]
 enumerates a solution that involves synchronizing the collector and
-the mutator, à la checkpoints[^2] or ragged safepoints[^3].  But a
-solution like that would be difficult to implement for an
-uncooperative environment, e.g. for a thread-safe version of
-`std::shared_ptr<T>`.
+the mutator, à la checkpoints[^2] or ragged safepoints[^3].  A
+solution like is feasible in a JVM, but would be difficult to
+implement for an uncooperative environment, e.g. for a thread-safe
+version of `std::shared_ptr<T>`.
 
-# racing increments and decrements
+# problem 1: racing increments and decrements
 
 Consider two threads racing to update a slot in the heap:
 
@@ -53,7 +54,7 @@ Consider two threads racing to update a slot in the heap:
       val = object->field;
       val->refcount++;  // either because you actually track refs
                         // on the stack or because you're about to
-			// publish val to some slot on the heap
+                        // publish val to some slot on the heap
 
 and
 
@@ -63,17 +64,17 @@ and
         old_val = object->field
       } while (CAS(&(object->field), old_val, null) != Success);
       if (--old_val->refcount == 0)
-        delete t;
+        delete old_val;
 
 There is a race between `Thread_A` and `Thread_B` if the refcount of
 the initial value of `object->field` is `1` (i.e. the initial value of
 `object->field` is reachable only from `object`):
 
     Thread_A: val = object->field;
-    Thread_B: old_val = *heap_addr
-    Thread_B: CAS(heap_addr, old_val, null) // == Success
+    Thread_B: old_val = object->field
+    Thread_B: CAS(&(object->field), old_val, null) // == Success
     Thread_B: --old_val->refcount == 0 // == true
-    Thread_B: delete t;
+    Thread_B: delete old_val;
     Thread_A: val->refcount++; // == CRASH!
 
 ## solutions I'm aware of
