@@ -59,8 +59,7 @@ the ABA problem in some cases.  Hazard pointers is described in the
 paper "Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects"
 [^hzrdptrs] (and possibly others).
 
-[^hzrdptrs]: "Hazard Pointers: Safe Memory Reclamation for Lock-Free
-    Objects" <http://web.cecs.pdx.edu/~walpole/class/cs510/papers/11.pdf>
+[^hzrdptrs]: Michael, Maged M. "Hazard pointers: Safe memory reclamation for lock-free objects." Parallel and Distributed Systems, IEEE Transactions on 15.6 (2004): 491-504.
 
 ## how they solve the problem
 

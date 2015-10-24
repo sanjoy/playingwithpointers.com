@@ -140,6 +140,4 @@ spend some time trying to come up with optimizations and
 simplifications that can be done on VM states as first class objects
 based on this interpretation.
 
-[^graal]: Speculation Without Regret: Reducing Deoptimization
-    Meta-data in the Graal compiler
-    <http://ssw.jku.at/General/Staff/GD/PPPJ-2014-duboscq-29.pdf>
+[^graal]: Duboscq, Gilles, Thomas Würthinger, and Hanspeter Mössenböck. "Speculation without regret: reducing deoptimization meta-data in the Graal compiler." Proceedings of the 2014 International Conference on Principles and Practices of Programming on the Java platform: Virtual machines, Languages, and Tools. ACM, 2014.

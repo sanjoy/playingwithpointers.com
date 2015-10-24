@@ -17,10 +17,7 @@ Please note that **none of this is original work** and optimal
 register allocation using SSA is a well-researched topic.  A set of
 references can be found in the [bibliography section](#bib).
 
-[^outofssa]: supposedly established in "Optimizing Translation Out of
-    SSA Using Renaming Constraints"
-    <https://dl.acm.org/citation.cfm?id=977678>, but I have not read
-    that paper.
+[^outofssa]: Rastello, Fabrice, F. de Ferrière, and Christophe Guillon. "Optimizing translation out of SSA using renaming constraints." Proceedings of the international symposium on Code generation and optimization: feedback-directed and runtime optimization. IEEE Computer Society, 2004.
 
 The key observation that allows this is that the interference
 graph[^igraph] you get from an SSA program[^ssa] is a chordal
@@ -29,12 +26,9 @@ $$O\left(|V| + |E|\right)$$ time.  There are many ways to prove this,
 and one such way is presented here.
 
 [^igraph]: <https://lambda.uta.edu/cse5317/fall02/notes/node37.html>
-[^ssa]: <http://www.wikiwand.com/en/Static_single_assignment_form>
-[^chordal]: <http://www.wikiwand.com/en/Chordal_graph>
-[^chordalfrench]: I don't read French, but it is possible that
-    "Register allocation and spill complexity under SSA"
-    <http://www.ens-lyon.fr/LIP/Pub/Rapports/RR/RR2005/RR2005-33.pdf>
-    contains the same proof.
+[^ssa]: <https://en.wikipedia.org/wiki/Static_single_assignment_form>
+[^chordal]: <https://en.wikipedia.org/wiki/Chordal_graph>
+[^chordalfrench]: I don't read French, but it is possible that Bouchez, Florent, et al. "Register allocation and spill complexity under SSA." (2005) contains the same proof.
 
 # proof
 
@@ -47,7 +41,7 @@ chords present in the original chordal graph.  Chordal graphs are
 useful because they are perfectly orderable[^ordereable] -- perfectly
 orderable graphs can be colored in polynomial time.
 
-[^ordereable]: <http://www.wikiwand.com/en/Perfectly_orderable_graph>
+[^ordereable]: <https://en.wikipedia.org/wiki/Perfectly_orderable_graph>
 
 ## the intersection graph of connected subgraphs of a tree
 
@@ -71,7 +65,7 @@ vertices iff their intersection is non-empty is called an
 "intersection graph". Another way of stating our assertion is
 "intersection graphs of connected subtrees of a tree are chordal"
 
-[^topograph]: <http://www.wikiwand.com/en/Topological_graph>
+[^topograph]: <https://en.wikipedia.org/wiki/Topological_graph>
 
 I won't present a full proof here, but a small example (that can be
 extended into a proof) to motivate why the statement above should be
@@ -181,9 +175,7 @@ at that next.
 
 # bibliography<a name="bib"></a>
 
- * "Optimal Register Sharing for High-Level Synthesis of SSA Form
-Programs"
-<http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.61.6569>
+ * Brisk, Philip, et al. "Optimal register sharing for high-level synthesis of SSA form programs." Computer-Aided Design of Integrated Circuits and Systems, IEEE Transactions on 25.5 (2006): 772-779.
 
  * Sebastian Hack's PhD thesis:
    <http://digbib.ubka.uni-karlsruhe.de/volltexte/documents/6532>
@@ -192,8 +184,6 @@ Programs"
 
  * libFirm has an SSA-based register allocator <http://pp.ipd.kit.edu/firm/>
 
-[^domtree]: <http://www.wikiwand.com/en/Dominator_(graph_theory)>
+[^domtree]: <https://en.wikipedia.org/wiki/Dominator_(graph_theory)>
 
-[^subtreeproof]: "The intersection graphs of subtrees in trees are
-    exactly the chordal graphs"
-    <http://www.sciencedirect.com/science/article/pii/009589567490094X>
+[^subtreeproof]: Gavril, F. "The intersection graphs of subtrees in trees are exactly the chordal graphs." Journal of Combinatorial Theory, Series B 16.1 (1974): 47-56.
