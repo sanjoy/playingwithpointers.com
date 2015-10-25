@@ -82,22 +82,57 @@ the initial value of `object->field` is `1` (i.e. the initial value of
 There are two solutions to this that I'm aware of:
 
   1. **Hazard pointers**[^4] -- `val->refcount++` in `Thread_A` counts
-     (no pun intended!)  as a hazardous access, and should be
-     protected by a published hazard pointer.
+     (no pun intended!)  as a hazardous access, and could be protected
+     by a published hazard pointer.  However, I think there are some
+     subtleties here, discussed below.
 
   2. **Pass the buck**[^5] -- I don't understand this solution quite
      yet, but it looks like a generalization of hazard pointers.
+
+  3. **ThreadScan**[^6] -- this was pointed out to me by
+     [@Matt](https://twitter.com/matt_dz/with_replies).  The subtlety
+     with hazard pointers mentioned below also applies to ThreadScan,
+     as far as I can tell.
 
 These should not be fundamentally difficult to implement in an
 uncooperative environment (e.g. for a thread-safe
 `std::shared_ptr<T>`), but they're still very tricky to get right.
 
+## a subtlety with hazard pointers
+
+I think there is an issue with using hazard pointers for reference
+counting -- a "node" in our "data structure" (the heap) can go from
+"unreachable from the heap" to "reachable from the heap".  This means
+if we do something like this for `obj.field = null` (in thread `A`,
+say):
+
+    // Trying to set obj->field to null
+    do {
+      old_val = obj->field
+      publish_hazard_ptr(old_val)
+    } while(CAS(&(object->field), old_val, null) != Success);
+    if ((--old_val->refcount) <= 0)
+      hazard_ptr_free(old_val)
+    clear_hazard_ptr()
+
+then we will have a race between another thread (`B`, say) loading
+`obj->field` and linking it back to the heap: that operation could
+have started before thread `A` unlinked `old_val` from the heap, and
+finished before `A` called `hazard_ptr_free`.  Since `B` no longer has
+a hazard pointer to `old_val`, `A` would now free something that is
+reachable from the heap.
+
+The issue seems solvable though, perhaps we need to be careful that we
+don't increment refcounts of objects that already have a zero
+refcount?  However, that would mean the increment operation needs to
+be something like an `xadd` instead of an `add`.
+
 # other solutions
 
-I'm interested in hearing about other solutions to these problems
-people have come up with.  If you're aware of any, please comment
-here, drop me an email, or [tweet](https://twitter.com/SCombinator) at
-me -- I'll update this section with appropriate credits.
+I'm interested in hearing about other solutions to these problems.  If
+you're aware of any, please comment here, drop me an email, or
+[tweet](https://twitter.com/SCombinator) at me -- I'll update this
+section with appropriate credits.
 
 [^1]: Levanoni, Yossi, and Erez Petrank. "An on-the-fly reference counting garbage collector for Java." ACM SIGPLAN Notices 36.11 (2001): 367-380.
 
@@ -108,3 +143,5 @@ me -- I'll update this section with appropriate credits.
 [^4]: Michael, Maged M. "Hazard pointers: Safe memory reclamation for lock-free objects." Parallel and Distributed Systems, IEEE Transactions on 15.6 (2004): 491-504.
 
 [^5]: Herlihy, Maurice, Victor Luchangco, and Mark Moir. "The repeat offender problem: a mechanism for supporting dynamic-sized lock-free data structures." (2002).
+
+[^6]: Alistarh, Dan, et al. "ThreadScan: Automatic and Scalable Memory Reclamation." (2015).
