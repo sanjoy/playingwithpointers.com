@@ -79,7 +79,7 @@ the initial value of `object->field` is `1` (i.e. the initial value of
 
 ## solutions I'm aware of
 
-There are two solutions to this that I'm aware of:
+There are three solutions to this that I'm aware of:
 
   1. **Hazard pointers**[^4] -- `val->refcount++` in `Thread_A` counts
      (no pun intended!)  as a hazardous access, and could be protected
@@ -115,17 +115,17 @@ say):
       hazard_ptr_free(old_val)
     clear_hazard_ptr()
 
-then we will have a race between another thread (`B`, say) loading
+then we have a race between another thread (`B`, say) loading
 `obj->field` and linking it back to the heap: that operation could
 have started before thread `A` unlinked `old_val` from the heap, and
 finished before `A` called `hazard_ptr_free`.  Since `B` no longer has
-a hazard pointer to `old_val`, `A` would now free something that is
+a hazard pointer to `old_val`, `A` would end up freeing something
 reachable from the heap.
 
-The issue seems solvable though, perhaps we need to be careful that we
-don't increment refcounts of objects that already have a zero
-refcount?  However, that would mean the increment operation needs to
-be something like an `xadd` instead of an `add`.
+The issue seems solvable though, perhaps we need to be careful to not
+increment refcounts of objects with a zero refcount?  That would mean
+the increment operation needs to be something like an `xadd` instead
+of an `add`.
 
 # other solutions
 
