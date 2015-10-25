@@ -13,7 +13,12 @@ be atomic operations") come to mind.  So far the contents of this post
 (which are **not** novel) have lived in one-off tweets and emails, but
 I think it is time to write them down in an organized way.
 
-# problem 0: stores to the heap need to be CASes
+# problem 0: stores to the heap need to be XCHGes
+
+(Edit: I initially had a few mistakes here -- I'd claimed that the
+stores need to be CAS'es when an XCHG would be sufficient.  The order
+between the increment and the decrement was also incorrect.  Thanks
+[@barrkel](https://disqus.com/by/barrkel/) for pointing these out!)
 
 Executing a store to the heap requires incrementing the refcount of
 the object stored, and decrementing the refcount of the object
@@ -22,16 +27,14 @@ in the obvious way as
 
     old_val = *heap_addr
     *heap_addr = new_val
-    Decrement_Refcount(old_val->refcount)
     Increment_Refcount(new_val->refcount)
+    Decrement_Refcount(old_val->refcount)
 
-Naively extending this to a multi-threaded system requires doing a CAS
+Naively extending this to a multi-threaded system requires doing a XCHG
 
-    do {
-      old_val = *heap_addr
-    } while (CAS(heap_addr, old_val, new_val) != Success);
-    Atomic_Decrement_Refcount(old_val->refcount)
-    Atomic_Increment_Refcount(new_val->refcount)
+    Atomic_Increment_Refcount(new_val)
+    old_val = Atomic_XCHG(heap_addr, new_val)
+    Atomic_Decrement_Refcount(old_val)
 
 which has a fairly high overhead, especially since the programmer did
 not ask for an atomic operation, and the extra synchronization is
@@ -60,9 +63,7 @@ and
 
     Thread_B:
       ;; Semantically, this is "object.field = null"
-      do {
-        old_val = object->field
-      } while (CAS(&(object->field), old_val, null) != Success);
+      old_val = Atomic_XCHG(&(object->field), null)
       if (--old_val->refcount == 0)
         delete old_val;
 
@@ -71,8 +72,7 @@ the initial value of `object->field` is `1` (i.e. the initial value of
 `object->field` is reachable only from `object`):
 
     Thread_A: val = object->field;
-    Thread_B: old_val = object->field
-    Thread_B: CAS(&(object->field), old_val, null) // == Success
+    Thread_B: old_val = Atomic_XCHG(&(object->field), null)
     Thread_B: --old_val->refcount == 0 // == true
     Thread_B: delete old_val;
     Thread_A: val->refcount++; // == CRASH!
@@ -121,6 +121,11 @@ have started before thread `A` unlinked `old_val` from the heap, and
 finished before `A` called `hazard_ptr_free`.  Since `B` no longer has
 a hazard pointer to `old_val`, `A` would end up freeing something
 reachable from the heap.
+
+Note: in this example I've had to use CAS instead of XCHG, since I
+need to guarantee that `obj->field` is `old_val` after `old_val` has
+been published as a hazard pointer.  There may be a way around this --
+I haven't spent too much time thinking about it.
 
 The issue seems solvable though, perhaps we need to be careful to not
 increment refcounts of objects with a zero refcount?  That would mean
