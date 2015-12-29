@@ -99,3 +99,13 @@ value we're interested in happens to be `undef`, then it can "pretend"
 to satisfy the predicate the control dependence is on while
 "pretending" to *not* satisfy the predicate on later control dependent
 uses of the same value.
+
+This problem isn't unique to branches -- many kinds of correlated
+value or predicate analysis are problematic.  Consider `%expr =
+smax(%a+1, %a)-smin(%a+1, %a)`, with `smax` implemented using `select`
+and `icmp`.  Is `%expr` always non-zero?  In the absence of `undef`,
+`%expr` is either `-1` or `1`.  But if `%a` is `undef`, then `%expr`
+is `undef` as well (and thus can be `0`).  The key problem here is
+that `a >s b ? a : b` does not actually compute `smax(a,b)` in the
+presence of `undef` (in that, it doesn't always result in a value that
+is `>= a`).
