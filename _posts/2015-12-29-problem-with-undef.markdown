@@ -91,7 +91,8 @@ eq i32 undef, 0` is allowed to be `false` while `%q = udiv i32 1,
 undef` is allowed to have undefined behavior (by choosing `0` for
 `undef`).  If `@predicate` always returns `false` then the original
 program is perfectly well defined for `%d` = `undef` while the
-transformed program isn't, after doing a very reasonable transform.
+transformed program isn't, even though the transform we made looks
+very reasonable.
 
 Generally, with `undef` in the play, control dependence in the control
 flow graph cannot be used to derive facts about SSA values.  If the
@@ -102,10 +103,8 @@ uses of the same value.
 
 This problem isn't unique to branches -- many kinds of correlated
 value or predicate analysis are problematic.  Consider `%expr =
-smax(%a+1, %a)-smin(%a+1, %a)`, with `smax` implemented using `select`
-and `icmp`.  Is `%expr` always non-zero?  In the absence of `undef`,
-`%expr` is either `-1` or `1`.  But if `%a` is `undef`, then `%expr`
-is `undef` as well (and thus can be `0`).  The key problem here is
-that `a >s b ? a : b` does not actually compute `smax(a,b)` in the
-presence of `undef` (in that, it doesn't always result in a value that
-is `>= a`).
+smax(%a + 1, %a) - smin(%a + 1, %a)`, with `smax` implemented using
+`select` and `icmp`.  Is `%expr` always non-zero?  In the absence of
+`undef`, `%expr` is either `-1` or `1` (so it is tempting to say
+yes). However, if `%a` is `undef`, then `%expr` is `undef` as well
+(and thus allowed to be `0`).
