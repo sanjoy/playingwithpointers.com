@@ -119,7 +119,7 @@ to `func_b`.  `uncommon_trap` is a special function that
 unconditionally invokes the deoptimization continuation, and has no
 other side effects.
 
-Since `continuation A` does nothing other thank invoke the
+Since `continuation A` does nothing other than invoke the
 continuation `vms_b` (via the call to `uncommon_trap`), we have
 `continuation A` $$\equiv$$ `vms_b`.  However, *within* `continuation
 A`, we know that `continuation A` $$\equiv$$ `vms_a`.  Therefore we
@@ -135,10 +135,9 @@ to `vms_b`.  Can you see why replacing `vms_a` with `vms_b` at
 
 # conclusion
 
-In concluding, I think delimited continuations form an elegant
-semantic model for describing VM states.  In the future I plan to
-spend some time trying to come up with optimizations and
-simplifications that can be done on VM states as first class objects
-based on this interpretation.
+I think delimited continuations form an elegant semantic model for
+describing VM states.  In the future I plan to spend some time trying
+to come up with optimizations and simplifications that can be done on
+VM states as first class objects based on this interpretation.
 
 [^graal]: Duboscq, Gilles, Thomas Würthinger, and Hanspeter Mössenböck. "Speculation without regret: reducing deoptimization meta-data in the Graal compiler." Proceedings of the 2014 International Conference on Principles and Practices of Programming on the Java platform: Virtual machines, Languages, and Tools. ACM, 2014.
