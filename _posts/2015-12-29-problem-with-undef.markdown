@@ -14,10 +14,9 @@ values like `xor i32 %a, %a` need not always evaluate to `0` when
 consistency lets LLVM get away without allocating registers to
 remember a specific "version" of `undef`.
 
-Another way to look at this is that `undef` isn't a really SSA
-*value*, and uses of an `undef` value are also its "defs".  This leads
-to some interesting restrictions on data flow analysis via control
-flow.
+Another way to look at this is that `undef` isn't a normal SSA value,
+and *uses* of an `undef` value are also its *defs*.  This leads to
+some interesting restrictions on data flow analysis via control flow.
 
 For instance, consider this:
 
@@ -99,7 +98,8 @@ flow graph cannot be used to derive facts about SSA values.  If the
 value we're interested in happens to be `undef`, then it can "pretend"
 to satisfy the predicate the control dependence is on while
 "pretending" to *not* satisfy the predicate on later control dependent
-uses of the same value.
+uses of the same value.  In cases like the above, presence of `undef`
+in LLVM IR actually *inhibits* optimization.
 
 This problem isn't unique to branches -- many kinds of correlated
 value or predicate analysis are problematic.  Consider `%expr =
