@@ -16,7 +16,9 @@ remember a specific "version" of `undef`.
 
 Another way to look at this is that `undef` isn't a normal SSA value,
 and *uses* of an `undef` value are also its *defs*.  This leads to
-some interesting restrictions on data flow analysis via control flow.
+some interesting restrictions on data flow analysis via control flow,
+and, in some cases, accounting for `undef` inhibits optimization
+instead of enabling it.
 
 For instance, consider this:
 
