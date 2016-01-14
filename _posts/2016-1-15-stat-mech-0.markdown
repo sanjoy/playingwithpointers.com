@@ -2,7 +2,7 @@
 layout: post
 title:  "notes: statistical mechanics part 0"
 permalink: theoretical-minimum-stat-mech-0.html
-keywords: "physics, math"
+keywords: "physics, math, thermodynamics, statistical mechanics, theoretical minimum"
 ---
 
 I've been going through a really great set of video lectures from
