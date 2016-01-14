@@ -20,16 +20,16 @@ course, lectures one through four.
 
 We start with a system with $$N$$ possible energy states, $$E_i$$
 (with $$i$$ ranging from $$1$$ to $$N$$) [^continuous].  These energy
-states have been obtained via the specific physics of system we're
-studying, and are fixed as far as we're concerned.  The system is in
-energy state $$E_i$$ with probability $$P_i$$ and thus $$P_i$$ forms a
-probability distribution with $$\sum_1^N P_i = 1$$ and $$P_i >= 0$$.
-The entropy of such a system is defined to be $$S = - \sum_1^N P_{i}
-\; log P_{i}$$, and is a measure of how "wide" the probability
-distribution is.  $$S$$ is a function of both the system and how much
-the observer knows about it (I don't yet understand the full
-repercussions of this). The average energy is of the system is, by
-definition, $$E = \sum_1^N P_{i} \; E_{i}$$.
+states (i.e. their values) have been obtained via the specific physics
+of system we're studying, and are fixed as far as we're concerned.
+The system is in energy state $$E_i$$ with probability $$P_i$$ and
+thus $$P_i$$ forms a probability distribution with $$\sum_1^N P_i =
+1$$ and $$P_i >= 0$$.  The entropy of such a system is defined to be
+$$S = - \sum_1^N P_{i} \; log P_{i}$$, and is a measure of how "wide"
+the probability distribution is.  $$S$$ is a function of both the
+system and how much the observer knows about it (I don't yet
+understand the full repercussions of this). The average energy is of
+the system is, by definition, $$E = \sum_1^N P_{i} \; E_{i}$$.
 
 [^continuous]: Prof. Susskind does not call this out very explicitly,
     but he moves between discrete and continuous probabilities as
@@ -84,17 +84,17 @@ $$1$$ to $$k$$).  The probability of a given sub-system being in a
 state with energy $$E_i$$ is therefore $$\frac{n_i}{N} = P_i$$ and the
 total entropy of the system is $$S = -N \sum_1^k P_i \; log P_i$$
 (entropy is additive).  We'd like to compute the probability
-distribution that gives the system the maximum entropy[^entropy].  The
+distribution that maximizes the entropy of the system[^entropy].  The
 "independent variables" being maximized over are $$n_i$$ or $$P_i$$ --
 so in other words, the question being asked is "for what values of
 $$\{P_1, P_2, \ldots, P_k\}$$ (or, identically, $$\{n_1, n_2, \ldots,
-n_k\}$$) will the entropy be the highest?".  We also have some
+n_k\}$$) will the entropy be the greatest?".  We also have some
 additional constraints -- the total energy in the system is a finite
 value $$E_{total}$$, and so we have $$\sum_1^k n_i \; E_i =
 E_{total}$$, or alternatively, $$\sum_1^k P_i \; E_i = E$$ where $$E$$
-is the average energy (per sub-system), and $$\sum_1^k P_i = 1$$.
-This (now) purely mathematical optimization problem can be solved
-using [the method of Lagrange
+is the average energy (per sub-system); and $$\sum_1^k P_i = 1$$, by
+definition of a probability distributions.  This purely mathematical
+optimization problem can be solved using [the method of Lagrange
 multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).  As
 per the method of Lagrange multipliers we set $$\nabla(-\sum_1^k P_i
 \; log P_i + \alpha (\sum_1^k P_i - 1) + \frac{1}{\beta}(\sum_1^k P_i
