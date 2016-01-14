@@ -5,17 +5,16 @@ permalink: theoretical-minimum-stat-mech-0.html
 keywords: "physics, math"
 ---
 
-I've been going through a set of video lectures from Stanford called
-[the theoretical minimum](http://theoreticalminimum.com/courses), and
-I figured writing down some study notes will help me better retain
-what I'm learning, and once I'm writing these down, why not make them
-public.
+I've been going through a really great set of video lectures from
+Stanford: [The Theoretical
+Minimum](http://theoreticalminimum.com/courses), and I figured writing
+down some study notes will help me better retain what I'm learning
+(and since I'm writing these down, there is no reason to not make them
+public).
 
 This post covers the material in the [Statistical
 Mechanics](http://theoreticalminimum.com/courses/statistical-mechanics/2013/spring)
-course lectures one through four -- I strongly doubt these notes are
-*generally* useful, but it may be helpful for people following that
-specific lecture series.
+course, lectures one through four.
 
 # basics
 
