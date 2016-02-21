@@ -25,7 +25,7 @@ For instance, consider this:
     declare i1 @predicate()
     declare void @use(i32)
     
-    define void @f(i32 %d) {
+    define void @f(i32 %d, i32 %n) {
      entry:
       %division_unsafe = icmp eq i32 %d, 0
       br i1 %division_unsafe, label %leave, label %loop.ph
@@ -45,7 +45,7 @@ For instance, consider this:
       br label %be
     
      be:
-      %be.cond = icmp ult i32 %iv, %d
+      %be.cond = icmp ult i32 %iv, %n
       br i1 %be.cond, label %loop, label %leave
     
      leave:
@@ -60,7 +60,7 @@ transformed program
     declare i1 @predicate()
     declare void @use(i32)
     
-    define void @f(i32 %d) {
+    define void @f(i32 %d, i32 %n) {
      entry:
       %division_unsafe = icmp eq i32 %d, 0
       br i1 %division_unsafe, label %leave, label %loop.ph
@@ -80,7 +80,7 @@ transformed program
       br label %be
     
      be:
-      %be.cond = icmp ult i32 %iv, %d
+      %be.cond = icmp ult i32 %iv, %n
       br i1 %be.cond, label %loop, label %leave
     
      leave:
