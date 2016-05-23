@@ -28,4 +28,4 @@ around in <span class="contact">#klug-devel</span>).
 [linkedin]: <http://in.linkedin.com/in/sanjoydas>
 [twitter]: <http://twitter.com/SCombinator>
 [github]: <http://github.com/sanjoy>
-[resume]: <https://github.com/sanjoy/resume/blob/master/Resume-SanjoyDas.pdf?raw=true>
+[resume]: <http://playingwithpointers.com/Resume-SanjoyDas.rst>
