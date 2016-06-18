@@ -6,9 +6,10 @@ keywords: "deoptimization, speculative optimization, continuation"
 ---
 
 *This post assumes knowledge of some basic vocabulary related to
-deoptimization.  The footnotes have some pointers [^deoptintro]
-[^deoptv8] [^deoptjvm] on getting started.*
+deoptimization.  The footnotes have some pointers [^urs_craig_david]
+[^deoptintro] [^deoptv8] [^deoptjvm] on getting started.*
 
+[^urs_craig_david]: Hölzle, Urs, Craig Chambers, and David Ungar. "Debugging optimized code with dynamic deoptimization." ACM Sigplan Notices. Vol. 27. No. 7. ACM, 1992.
 [^deoptintro]: "Deoptimization terminology" <http://www.philipreames.com/Blog/2015/05/20/deoptimization-terminology/>
 [^deoptv8]: "Deoptimize me not, v8" <https://blog.indutny.com/a.deoptimize-me-not>
 [^deoptjvm]: "The Java HotSpot Performance Engine Architecture: Dynamic Deoptimization" <http://www.oracle.com/technetwork/java/whitepaper-135217.html#dynamic>
