@@ -6,17 +6,7 @@ title:  "Resume: Sanjoy Das"
 
 # Sanjoy Das
 
-| **Contact** 	| sanjoy@\`reverse(sretniophtiwgniyalp)\`.com, +1 (408) 816 9041|
-| **Website** 	| <http://playingwithpointers.com>             		|
-| **Github**  	| <https://github.com/sanjoy/>                 		|
-
-# Summary
-
-The main focus of my professional history has been compilers & virtual
-machines; and, in general, I love to tackle problems that require
-creativity and mathematical precision.  In past lives, I've enjoyed
-dabbling with functional programming, type and proof theory (I have
-basic familiarity with Haskell and Agda).
+&#115;&#097;&#110;&#106;&#111;&#121;&#064;&#112;&#108;&#097;&#121;&#105;&#110;&#103;&#119;&#105;&#116;&#104;&#112;&#111;&#105;&#110;&#116;&#101;&#114;&#115;&#046;&#099;&#111;&#109;; <https://linkedin.com/in/sanjoydas>; Sunnyvale, CA.
 
 # Work History
 
@@ -25,21 +15,22 @@ basic familiarity with Haskell and Agda).
 I've been heavily involved[^commits] with the LLVM community, mostly
 focusing on improving the mid-level optimizer.  I'm currently the code
 owner for the Scalar Evolution and Induction Variable Simplification
-passes.
+passes.  I regularly review code and participate in design
+discussions.
 
 [^commits]: LLVM commit history: <https://github.com/llvm-mirror/llvm/commits/master?author=sanjoy>
 
 **Software Engineer, Azul Systems, Sep 2013 - Present**
 
-I am a software engineer at Azul Systems where I am a key contributor
-to a JIT compiler for Java based on LLVM.  Over the course of the
-project we have made significant changes to LLVM to better support
-managed languages.  Amongst other things, we've added support for
-precise compacting garbage collection, deoptimization, and have
-improved LLVM's mid-level optimizer to better optimize Java. Most of
-our work has been upstreamed to LLVM, and we have presented
-talks summarizing our progress in the 2014[^talk2014] and
-2015[^talk2015] US LLVM Developer Meetings.
+At Azul Systems I am a key contributor to a JIT compiler for Java
+based on LLVM.  Over the course of the project we have made
+significant changes to LLVM to better support managed languages.
+Amongst other things, we've added support for precise compacting
+garbage collection, deoptimization, and have improved LLVM's mid-level
+optimizer to better optimize Java. Most of our work has been
+upstreamed to LLVM, and we have presented talks summarizing our
+progress in the 2014[^talk2014] and 2015[^talk2015] US LLVM Developer
+Meetings.
 
 [^talk2014]: <http://llvm.org/devmtg/2014-10/#talk4>
 
@@ -55,8 +46,14 @@ the end of the internship I had this feature implemented and checked
 in under an off by default flag[^v8work] (which was enabled by default
 sometime in mid 2013).
 
-[^v8work]: v8/bleeding_edge@r12148 <https://github.com/v8/v8/commit/693c7643d2a502199c8b66741504815f364cd112>
+[^v8work]: v8/bleeding_edge@r12148 <https://git.io/vr5vU>
 
+
+# Skills
+
+The main focus of my professional history has been compilers and
+virtual machines.  In general, I look forward to tackling hard
+technical challenges that require creativity and precision.
 
 # Education
 
