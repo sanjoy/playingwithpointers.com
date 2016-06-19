@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "reference counting: harder than it sounds"
+title:  "Reference Counting: Harder than it Sounds"
 permalink: refcounting-harder-than-it-sounds.html
 keywords: "reference counting, gc, garbage collection, language runtimes, shared_ptr"
 ---
@@ -13,7 +13,7 @@ be atomic operations") come to mind.  So far the contents of this post
 (which are **not** novel) have lived in one-off tweets and emails, but
 I think it is time to write them down in an organized way.
 
-# problem 0: stores to the heap need to be XCHGes
+# Problem 0: Stores to the Heap need to be XCHGes
 
 (Edit: I initially had a few mistakes here -- I'd claimed that the
 stores need to be CAS'es when an XCHG would be sufficient.  The order
@@ -40,7 +40,7 @@ which has a fairly high overhead, especially since the programmer did
 not ask for an atomic operation, and the extra synchronization is
 purely "dead" overhead.
 
-## solutions I'm aware of
+## Solutions I'm aware of
 
 "An on-the-fly reference counting garbage collector for Java."[^1]
 enumerates a solution that involves synchronizing the collector and
@@ -49,7 +49,7 @@ solution like is feasible in a JVM, but would be difficult to
 implement for an uncooperative environment, e.g. for a thread-safe
 version of `std::shared_ptr<T>`.
 
-# problem 1: racing increments and decrements
+# Problem 1: Racing Increments and Decrements
 
 Consider two threads racing to update a slot in the heap:
 
@@ -77,7 +77,7 @@ the initial value of `object->field` is `1` (i.e. the initial value of
     Thread_B: delete old_val;
     Thread_A: val->refcount++; // == CRASH!
 
-## solutions I'm aware of
+## Solutions I'm aware of
 
 There are three solutions to this that I'm aware of:
 
@@ -98,7 +98,7 @@ These should not be fundamentally difficult to implement in an
 uncooperative environment (e.g. for a thread-safe
 `std::shared_ptr<T>`), but they're still very tricky to get right.
 
-## a subtlety with hazard pointers
+## A Subtlety with Hazard Pointers
 
 I think there is an issue with using hazard pointers for reference
 counting -- a "node" in our "data structure" (the heap) can go from
@@ -132,7 +132,7 @@ increment refcounts of objects with a zero refcount?  That would mean
 the increment operation needs to be something like an `xadd` instead
 of an `add`.
 
-# other solutions
+# Other Solutions
 
 I'm interested in hearing about other solutions to these problems.  If
 you're aware of any, please comment here, drop me an email, or

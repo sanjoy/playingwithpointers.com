@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "solving linear range checks"
+title:  "Solving Linear Range Checks"
 permalink: solving-linear-range-checks.html
 keywords: "java, range checks, program optimization, compilers"
 ---
 
-# context
+# Context
 
 Some "managed" programming languages do automatic, compulsory range
 checks on array accesses, and invoke some kind of error condition if
@@ -42,7 +42,7 @@ the first loop provably requires no range checks.  If `n` is always
 `length(array)` or smaller, the second loop does not run at all, and
 we've eliminated 100% of all range checks.
 
-# the problem
+# The Problem
 
 To be able to split iteration spaces as shown above, we would like to
 derive the set of values of `i` for which expressions like
@@ -61,7 +61,7 @@ to think in.
 This post does not constitute a proof, but I think it can be extended
 to be one with some effort.
 
-## notation
+## Notation
 
 We operate on $$N$$ bit machine integers, which really are elements of
 the set $$\{0, 1\}^{N} = T$$. $$(k)^{N}$$ is an element of $$T$$ (and
@@ -103,7 +103,7 @@ The next two are functions from $$T \times T$$ to $$T$$
 $$\oplus$$ and $$\otimes$$ "just work" on integers represented as twos
 complement which is *brilliant* but out of scope for this post.
 
-## the problem
+## The Problem
 
 With the above notation, `array[a + b * i]` does not fail its bounds
 check if
@@ -122,7 +122,7 @@ may not be a contiguous set -- e.g. if $$(N, a, b, l)$$ is $$(8, 0,
 13, 10)$$, the solution set for $$i$$ is $$\{-118, -98, -59, -39, 0,
 20, 40, 59, 79, 99\}$$
 
-## solutions
+## Solutions
 
 Given that $$l \succeq (0)^{N} $$, we can write $$(1)$$ as
 
@@ -179,7 +179,7 @@ for $$(2)$$ and hence $$(1)$$ as follows:
    $$t$$ is a solution to $$(3)$$ then so is $$r$$.  Since
    $$\Delta^{-1}(r)$$ is defined, it is a solution to $$(2)$$.
 
-## ranges
+## Ranges
 
 So far we've solved $$(2)$$ in terms of individual values.  In some
 cases this set of values can be "easily" split into a union of ranges.
@@ -199,7 +199,7 @@ Being able to split the solution set into ranges is important because
 that is what allows us to break up a loop's iteration space cheaply
 (i.e. with almost zero additional overhead).
 
-# conclusion
+# Conclusion
 
 I will end with some random notes:
 

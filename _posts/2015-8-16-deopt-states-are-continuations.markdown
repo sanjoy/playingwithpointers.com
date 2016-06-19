@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "deoptimization states are delimited continuations"
+title:  "Deoptimization States are Delimited Continuations"
 permalink: deopt-states-are-delim-continuations.html
 keywords: "deoptimization, speculative optimization, continuation"
 ---
@@ -78,7 +78,7 @@ The final IR then has to look like:
       h();  # vm_state = compose(vm_state_b, vm_state_a)
     }
 
-# structure
+# Structure
 
 Modeling VM states as arbitrary continuations is fairly loose; stating
 that a potentially deoptimizing call can return either to the normal
@@ -134,7 +134,7 @@ Note that we haven't proved that `vms_a` is unconditionally equivalent
 to `vms_b`.  Can you see why replacing `vms_a` with `vms_b` at
 `func_a` will be incorrect?
 
-# conclusion
+# Conclusion
 
 I think delimited continuations form an elegant semantic model for
 describing VM states.  In the future I plan to spend some time trying

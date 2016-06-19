@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "hazard pointers are a CRDT"
+title:  "Hazard Pointers are a CRDT"
 permalink: hazard-pointers-are-a-crdt.html
 keywords: "hazard pointers, crdt"
 ---
@@ -14,7 +14,7 @@ take this with a grain of salt.
 [^shapiro]: "Strong Eventual Consistency and Conflict-free Replicated
     Data Types" <https://www.youtube.com/watch?v=ebWVLVhiaiY>
 
-# what are CRDTs?
+# What are CRDTs?
 
 My current understanding of a CRDT is rather naive; but from what I've
 grasped so far, a CRDT is essentially a "normal" data structure
@@ -33,7 +33,7 @@ gone through any of them so far.
 On a personal level I like the fact that the role of a semilattice in
 a CRDT is very similar to its role in optimizing compilers.
 
-# the problem
+# The Problem
 
 The problem we have to solve is this (explained using an example of a
 binary tree, but applies to any data structure): say a thread running
@@ -51,7 +51,7 @@ stalled in the midst of traversing the tree, for instance.
     and figuring out how and when to free memory is certainly not the
     only challenge in implementing one.
 
-# what are hazard pointers?
+# What are Hazard Pointers?
 
 "Hazard pointers" is a pattern that can be used to teach certain lock
 free data structures to safely recycle memory (think `malloc` and
@@ -62,7 +62,7 @@ paper "Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects"
 
 [^hzrdptrs]: Michael, Maged M. "Hazard pointers: Safe memory reclamation for lock-free objects." Parallel and Distributed Systems, IEEE Transactions on 15.6 (2004): 491-504.
 
-## how they solve the problem
+## How they Solve the Problem
 
 Continuing our example of a `deleteValue` operation on a lock-free
 binary tree, once the node `n` has been unlinked from the binary tree,
@@ -79,7 +79,7 @@ example, the thread running `deleteValue` knows that `n` can be safely
 set.  If it is present in another thread's hazardous pointer set, it
 waits till that is no longer true.
 
-# squinting hazard pointers into CRDTs
+# Squinting Hazard Pointers into CRDTs
 
 In a message-passing context, hazard pointers can be seen as threads
 "agreeing" that they are "okay" with the deletion of some node.  This
@@ -117,16 +117,16 @@ t_{deleter}\right)$$ to its version of $$M$$ and broadcasts the same.
 It is okay to delete $$p$$ as soon as its version of $$M[p]$$ contains
 every thread.
 
-# conclusions
+# Conclusions
 
-## practical aspects
+## Practical Aspects
 
 I will not even pretend that this has practical uses.  Even if this
 could be implemented, I'd expect this to be orders of magnitude slower
 than a good implementation of hazard pointers.  I have not tried to
 generalize this to threads startup and destruction.
 
-## the object graph approach
+## The Object Graph Approach
 
 Another possible approach and why it does not work: use graphs to
 abstractly describe the state of the heap, and use a CRDT to represent

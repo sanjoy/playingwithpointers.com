@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "semantics as transform invariants"
+title:  "Semantics as Transform Invariants"
 permalink: semantics-as-transform-invariants.html
 keywords: "semantics, program optimization, C, C++, undefined behavior"
 ---
@@ -20,7 +20,7 @@ sort of thing is the dreaded "undefined behavior" in C and C++[^hist].
     independent of specific machine details.  But enabling compiler
     optimizations is currently a major use of undefined behavior.
 
-# semantics and transforms
+# Semantics and Transforms
 
 I propose another way to think about semantics in the presence of an
 optimizer -- explicitly model a set of program transformations within
@@ -72,7 +72,7 @@ well defined only if they do not change observable behavior on the
 application of an axiomatically legal transform.  There is a spectrum
 of possibilities here.
 
-# but ...
+# But ...
 
 It may feel uncomfortable to tie the set of legal transforms this
 directly to the language specification, and give off the impression
@@ -103,7 +103,7 @@ since if it were an axiom we could replace `true` with `(icmp slt a
 *have to happen*, and `(icmp slt a (add nsw a 1))` could also evaluate
 to `false` if `a` was `INT_SMAX`.
 
-# summary
+# Summary
 
 Apart from proving the legality of transforms by showing that they
 preserve semantics, I propose defining some bits of *semantics* as

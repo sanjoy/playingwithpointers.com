@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "a proof bug"
+title:  "A Proof Bug"
 permalink: subtle-proof-bug.html
 keywords: "proof, bug, turing machine"
 ---
 
 Can you spot why the following proof sketch is incorrect?
 
-# provability is undecidable in peano arithmetic
+# Provability is Undecidable in Peano Arithmetic
 
 Since Peano arithmetic has a finite set of axioms, it is possible to
 write a Turing machine that will enumerate all possible proofs in
@@ -18,7 +18,7 @@ provable, we can use the same procedure to decide if $$TM$$ halts;
 meaning solving provability implies solving the halting problem.
 Hence there can be no procedure deciding provability for Peano.
 
-# the bug
+# The Bug
 
 The above proof misstates the halting problem -- the halting problem
 doesn't say halting is not decidable for arbitrary Turing machines,

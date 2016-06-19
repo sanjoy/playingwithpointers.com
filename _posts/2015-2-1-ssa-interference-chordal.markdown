@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "interference graphs for SSA are chordal"
+title:  "Interference Graphs for SSA are Chordal"
 permalink: ssa-interference-chordal.html
 keywords: "SSA, interference graphs, register allocation, optimal, proof, gavril, chordal graphs"
 ---
 
-# background & context
+# Background & Context
 
 I ran into a very interesting idea a couple of weeks back: if you're
 working with pure SSA (phi nodes and all) then you get to do optimal
@@ -31,9 +31,9 @@ and one such way is presented here.
 [^chordal]: <https://en.wikipedia.org/wiki/Chordal_graph>
 [^chordalfrench]: I don't read French, but it is possible that Bouchez, Florent, et al. "Register allocation and spill complexity under SSA." (2005) contains the same proof.
 
-# proof
+# Proof
 
-## what are chordal graphs?
+## What are Chordal Graphs?
 
 A graph is chordal if every cycle of length > 3 has a chord.  Any
 (induced) subgraph of a chordal graph is again a chordal graph: if the
@@ -44,7 +44,7 @@ orderable graphs can be colored in polynomial time.
 
 [^ordereable]: <https://en.wikipedia.org/wiki/Perfectly_orderable_graph>
 
-## the intersection graph of connected subgraphs of a tree
+## The Intersection Graph of Connected Subgraphs of a Tree
 
 In "The intersection graphs of subtrees in trees are exactly the
 chordal graphs" Gavril[^subtreeproof] completely characterizes chordal
@@ -120,7 +120,7 @@ p3$$.  Hence in the shortest possible $$n_0 \leftrightarrow n_1
 \leftrightarrow n_2 \leftrightarrow n_3 \leftrightarrow n_0$$ there
 can be no such repetition; and such a shortest path is a cycle.
 
-## dominator trees and chordal graphs
+## Dominator Trees and Chordal Graphs
 
 Consider the dominator tree graph[^domtree] of the SSA program being
 register allocated (with the tree denoting the usual "use dominates
@@ -167,14 +167,14 @@ at def.  (2) tells us that this subset is really a connected subtree
 instruction contained in the def's live range belongs to the def's
 live range.
 
-# conclusion
+# Conclusion
 
 There is an existing compiler IR that uses chordality of SSA's
 interference graphs to do optimal register allocation: libFirm
 <http://pp.ipd.kit.edu/firm/>.  I'd like to spend some time looking
 at that next.
 
-# bibliography<a name="bib"></a>
+# Bibliography<a name="bib"></a>
 
  * Brisk, Philip, et al. "Optimal register sharing for high-level synthesis of SSA form programs." Computer-Aided Design of Integrated Circuits and Systems, IEEE Transactions on 25.5 (2006): 772-779.
 

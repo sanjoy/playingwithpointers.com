@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "a problem with LLVM's undef"
+title:  "A Problem with LLVM's Undef"
 permalink: problem-with-undef.html
 keywords: "LLVM, compilers, semantics"
 ---

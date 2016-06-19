@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "cantor's diagonal argument in agda"
+title:  "Cantor's Diagonal Argument in Agda"
 permalink: agda-cantor.html
 keywords: "cantor, agda, math, proof, dependent types"
 ---

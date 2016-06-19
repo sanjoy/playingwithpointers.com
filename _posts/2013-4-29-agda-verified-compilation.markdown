@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "certified compilation in agda"
+title:  "Certified Compilation in Agda"
 permalink: agda-verified-compilation.html
 keywords: "verified programming, agda, verified compilation, proof, dependent types"
 ---
