@@ -22,7 +22,7 @@ In "safe" languages like Java, it is the virtual machine's job to
 ensure that illegal operations (like dereferencing bad memory or
 unsound type coercions) does not lead to the program into arbitrarily
 bad states.  This is typically enforced by adding runtime checks to
-certain operations to check for violations.  Field access elicit a
+certain operations to check for violations.  Field accesses elicit a
 null check, array loads and stores have a range check (and in some
 cases a type check), type casts check the cast is well-formed etc.
 For this post we'll focus on range checks only, but the general idea

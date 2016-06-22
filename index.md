@@ -3,7 +3,7 @@ layout: default
 title: about playing with pointers
 ---
 
-# About this Website
+# About This Website
 
 I'm Sanjoy, and this is my presence on the Internet.  This website
 contains my [blog][blog] and some basic information about myself.
