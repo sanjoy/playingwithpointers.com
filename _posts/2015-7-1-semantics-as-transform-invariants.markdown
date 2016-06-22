@@ -3,6 +3,7 @@ layout: post
 title:  "Semantics as Transform Invariants"
 permalink: semantics-as-transform-invariants.html
 keywords: "semantics, program optimization, C, C++, undefined behavior"
+needsMathJAX : True
 ---
 
 Program optimization (via optimizing compilers) is usually framed as a

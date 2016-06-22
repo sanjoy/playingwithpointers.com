@@ -3,6 +3,7 @@ layout: post
 title:  "Peeking into the Java Memory Model"
 permalink: peeking-into-jmm.html
 keywords: "java memory model, java, proof, jvm, memory model, multi threaded"
+needsMathJAX : True
 ---
 
 This is brief brain-dump of my understanding of the JMM. Content-wise
