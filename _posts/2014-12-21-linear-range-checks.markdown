@@ -3,6 +3,7 @@ layout: post
 title:  "Solving Linear Range Checks"
 permalink: solving-linear-range-checks.html
 keywords: "java, range checks, program optimization, compilers"
+needsMathJAX: True
 ---
 
 # Context

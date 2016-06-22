@@ -3,6 +3,7 @@ layout: post
 title:  "Interference Graphs for SSA are Chordal"
 permalink: ssa-interference-chordal.html
 keywords: "SSA, interference graphs, register allocation, optimal, proof, gavril, chordal graphs"
+needsMathJAX: True
 ---
 
 # Background & Context

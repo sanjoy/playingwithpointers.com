@@ -3,6 +3,7 @@ layout: post
 title:  "A Lattice for Speculative Data Flow Analysis"
 permalink: speculative-dfa.html
 keywords: "speculative optimization, compilers, managed languages"
+needsMathJAX: True
 ---
 
 This post assumes that the reader understands the SSA style of

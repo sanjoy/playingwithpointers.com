@@ -3,6 +3,7 @@ layout: post
 title:  "Hazard Pointers are a CRDT"
 permalink: hazard-pointers-are-a-crdt.html
 keywords: "hazard pointers, crdt"
+needsMathJAX: True
 ---
 
 I recently watched an excellent video by Marc Shapiro on conflict-free

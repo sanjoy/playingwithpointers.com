@@ -2,6 +2,7 @@
 <html>
   {% include head.html %}
   <body>
+    {% if page.needsMathJAX %}
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       jax: ["input/TeX","output/HTML-CSS"],
@@ -10,6 +11,7 @@
     });
   </script>
   <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  {% endif %}
 
     {% include header.html %}
 
