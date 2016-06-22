@@ -135,11 +135,11 @@ void _foo(int[] arr) {
 }
 {% endhighlight %}
 
-Deoptimization [^urs] [^prevpost] discards the current runtime frame,
-and resumes execution in the interpreter from a "safe" state.  In the
-lowering shown above, if `arr.length` is `2` then we won't actually
-throw an exception from compiled code, but will re-start execution in
-the interpreter from `loc_2`, which will then immediately throw an
+Deoptimization[^urs] discards the current runtime frame, and resumes
+execution in the interpreter from a "safe" state.  In the lowering
+shown above, if `arr.length` is `2` then we won't actually throw an
+exception from compiled code, but will re-start execution in the
+interpreter from `loc_2`, which will then immediately throw an
 exception.  `<values_2>`, attached to the call instruction as an
 ["operand bundle"](http://llvm.org/docs/LangRef.html#operand-bundles)
 contains all of the information required to construct the interpreter
@@ -147,7 +147,6 @@ frame(s) to restart execution from `loc_2`, as a sequence of SSA
 values.
 
 [^urs]: Hölzle, Urs, Craig Chambers, and David Ungar. “Debugging optimized code with dynamic deoptimization.” ACM Sigplan Notices. Vol. 27. No. 7. ACM, 1992.
-[^prevpost]: <http://www.playingwithpointers.com/deopt-states-are-delim-continuations.html>
 
 The "failure paths" are now not explicit exception throws, but bails
 to the interpreter; and we *can* optimize the above code to:
@@ -201,8 +200,9 @@ void bar(int[] arr, int i) {
 }
 {% endhighlight %}
 
-and the math works out[^wideningmath], then we can lower and optimize
-this to:
+and the [math works
+out](https://github.com/llvm-mirror/llvm/blob/master/lib/Transforms/Scalar/GuardWidening.cpp#L612),
+then we can lower and optimize this to:
 
 {% highlight java %}
 void _bar(int[] arr, int i) {
@@ -217,8 +217,6 @@ void _bar(int[] arr, int i) {
   arr[i + 3] = 40;
 }
 {% endhighlight %}
-
-[^wideningmath]: [lib/Transforms/Scalar/GuardWidening.cpp#L612](https://github.com/llvm-mirror/llvm/blob/master/lib/Transforms/Scalar/GuardWidening.cpp#L612)
 
 The term "widening" here denotes that we're widening the previous
 check to "fail more often", on a "broader" range of values.
