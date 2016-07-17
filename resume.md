@@ -12,11 +12,11 @@ title:  "Resume: Sanjoy Das"
 
 **Contributor, LLVM, Oct 2014 - Present**
 
-I've been heavily involved[^commits] with the LLVM community, mostly
-focusing on improving the mid-level optimizer.  I'm currently the code
-owner for the Scalar Evolution and Induction Variable Simplification
-passes.  I regularly review code and participate in design
-discussions.
+I'm heavily involved[^commits] with the LLVM community, mostly
+focusing on improving the mid-level optimizer and support for managed
+languages.  I'm currently the code owner for the Scalar Evolution and
+Induction Variable Simplification passes.  I regularly review code and
+participate in design discussions.
 
 [^commits]: LLVM commit history: <https://github.com/llvm-mirror/llvm/commits/master?author=sanjoy>
 
