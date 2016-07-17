@@ -418,6 +418,7 @@ void _foo(int[] arr) {
 
 and finally lowered to:
 
+<a name="final-example"></a>
 {% highlight java %}
 void foo(int[] arr) {
   if (!(3 u< arr.length)) deoptimize();
