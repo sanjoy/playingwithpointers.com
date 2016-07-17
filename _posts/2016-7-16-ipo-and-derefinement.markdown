@@ -218,9 +218,9 @@ int F::g(std::atomic_int& ptr) {
   return ptr.load(std::memory_order_relaxed);
 }
 
-void external_caller_0(F &f, int* value) {
+void external_caller_0(F &f, int* value, std::atomic_int& v) {
   *value = 10;
-  f.f();
+  f.f(v);
   *value = 20;
 }
 {% endhighlight %}
@@ -229,8 +229,8 @@ void external_caller_0(F &f, int* value) {
 // y.cpp
 #include "x.hpp"
 
-void external_caller_1(F &f) {
-  f.f();
+void external_caller_1(F &f, std::atomic_int& v) {
+  f.f(v);
 }
 {% endhighlight %}
 
