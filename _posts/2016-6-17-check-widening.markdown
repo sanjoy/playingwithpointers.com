@@ -450,3 +450,8 @@ to
    etc.).
 
  - Yell at me when things fall over. :)
+
+<br><br><br>
+Discussion on Hacker News:
+<https://news.ycombinator.com/item?id=12108674> (but I'd prefer if the
+more substantive comments are made here and not on Hacker News).
