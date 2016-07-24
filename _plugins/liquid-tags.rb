@@ -8,3 +8,15 @@ module ExtractSynopsis
 end
 
 Liquid::Template.register_filter(ExtractSynopsis)
+
+class HNLink < Liquid::Tag
+  def initialize(tag_name, link, tokens)
+    @link = link
+    super
+  end
+
+  def render(context)
+    "Discussion on Hacker News: <#{@link}>. However, I'd prefer if the more substantive comments (e.g. pointing out fundamental mistakes or an interesting future direction) are made here and not on Hacker News."  end
+end
+
+Liquid::Template.register_tag('hnlink', HNLink)

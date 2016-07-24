@@ -453,8 +453,4 @@ to
 
 <br/><br/><br/>
 
-Discussion on Hacker News:
-<https://news.ycombinator.com/item?id=12108674>. However, I'd prefer
-if the more substantive comments (e.g. pointing out fundamental
-mistakes or an interesting future direction) are made here and not on
-Hacker News.
+{% hnlink https://news.ycombinator.com/item?id=12108674 %}
