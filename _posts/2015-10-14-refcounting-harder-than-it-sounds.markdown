@@ -77,6 +77,17 @@ the initial value of `object->field` is `1` (i.e. the initial value of
     Thread_B: delete old_val;
     Thread_A: val->refcount++; // == CRASH!
 
+In (other) words `Thread_B` just decremented the reference count of an
+object `O` because it overwrote a slot in the heap that reached
+it. The reference count becomes zero after decrementing, so it knows
+that _now_ there are no slots in the heap that point to `O` (and the
+slot it overwrote was the *only* slot that contained a pointer to
+`O`).  But it still needs to know that there isn't a `Thread_A` that
+fetched `O` out of the heap before `Thread_B` overwrote the slot, and
+got stalled before it could increment the reference count.  When
+`Thread_A` *started* `O` was reachable normally and had a reference
+count of `1`; but that is not relevant here.
+
 ## Solutions I'm aware of
 
 There are three solutions to this that I'm aware of:
