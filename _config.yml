@@ -17,3 +17,6 @@ exclude: [ deploy.sh ]
 
 sass:
   style: compressed
+
+gems:
+  - octopress-minify-html
