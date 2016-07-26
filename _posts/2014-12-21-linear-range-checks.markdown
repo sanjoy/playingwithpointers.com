@@ -69,14 +69,15 @@ the set $$\{0, 1\}^{N} = T$$. $$(k)^{N}$$ is an element of $$T$$ (and
 hence an $$N$$-tuple) all of whose elements are $$k$$.
 
 $$\Delta$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Delta(t)$$
-is $$t$$ interpreted as an integer in base 2. $$\Delta$$ is injective,
-but not surjective.  $$\Delta^{-1}$$ is defined on all integers less
-than $$2^{N}$$ and greater than $$-1$$.
+is $$t$$ interpreted as an integer in base 2. $$\Delta$$ is injective
+(one-to-one), but not surjective (onto).  $$\Delta^{-1}$$ is defined
+on all integers less than $$2^{N}$$ and greater than $$-1$$.
 
 $$\Gamma$$ is a mapping from $$T$$ to $$\mathbb{Z}$$.  $$\Gamma(t)$$
 is $$t$$ interpreted as an integer in 2's complement. $$\Gamma$$ is
-injective, but not surjective.  $$\Gamma^{-1}$$ is defined on all
-integers less than $$2^{N-1}$$ and greater than $$-1-2^{N-1}$$.
+injective (one-to-one), but not surjective (onto).  $$\Gamma^{-1}$$ is
+defined on all integers less than $$2^{N-1}$$ and greater than
+$$-1-2^{N-1}$$.
 
 The following are relations between $$T$$ and $$T$$ (i.e. a subset of
 $$T \times T$$)
@@ -152,7 +153,7 @@ equations:
 $$k \times 2^{N} \leq A + (B \times I) < k \times 2^{N} + L, \; k \in
 \mathbb{Z} \qquad ... \; (5)$$
 
-Since we are now in $$\mathbb{Z}$$land, we solve $$(5)$$ using
+Since we are now in $$\mathbb{Z}$$-land, we solve $$(5)$$ using
 standard arithmetic:
 
 If $$B > 0$$ then
@@ -172,10 +173,10 @@ $$I$$ as $$\bigcup_{k = 0}^{k = B - 1} f(k)$$.
 Given a set of solutions for $$I$$, $$S$$, we map them to solutions
 for $$(2)$$ and hence $$(1)$$ as follows:
 
- * if $$t \in S$$ and $$0 \leq t < 2^{N}$$ then $$\Delta^{-1}(t)$$ is
+ * If $$t \in S$$ and $$0 \leq t < 2^{N}$$ then $$\Delta^{-1}(t)$$ is
    a solution for $$(2)$$
 
- * if $$t \in S$$ and $$t < 0$$ or $$t \geq 2^{N}$$ then write $$t$$
+ * If $$t \in S$$ and $$t < 0$$ or $$t \geq 2^{N}$$ then write $$t$$
    as $$q \times 2^{N} + r$$ where $$0 \leq r < 2^{N}$$.  Note that if
    $$t$$ is a solution to $$(3)$$ then so is $$r$$.  Since
    $$\Delta^{-1}(r)$$ is defined, it is a solution to $$(2)$$.
@@ -204,12 +205,12 @@ that is what allows us to break up a loop's iteration space cheaply
 
 I will end with some random notes:
 
- * it is probably possible to extend this approach to work with
+ * It is probably possible to extend this approach to work with
    non-linear functions like `array[a + b * i + c * i * i]`.  But I
    doubt that's anything more than solely interesting on a theoretical
    level.
 
- * it will be nice to try to formalize some of this in Coq or Agda.  I
+ * It will be nice to try to formalize some of this in Coq or Agda.  I
    don't think I currently have the chops to do that, though.
 
  * I have not really come across or tried to derive an algebra of
