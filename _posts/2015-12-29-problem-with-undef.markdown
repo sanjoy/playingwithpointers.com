@@ -104,7 +104,7 @@ uses of the same value.  In cases like the above, presence of `undef`
 in LLVM IR actually *inhibits* optimization.
 
 This problem isn't unique to branches -- many kinds of correlated
-value or predicate analysis are problematic.  Consider `%expr =
+value or predicate analyses are problematic.  Consider `%expr =
 smax(%a + 1, %a) - smin(%a + 1, %a)`, with `smax` implemented using
 `select` and `icmp`.  Is `%expr` always non-zero?  In the absence of
 `undef`, `%expr` is either `-1` or `1` (so it is tempting to say
