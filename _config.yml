@@ -18,5 +18,6 @@ exclude: [ deploy.sh, serve.sh ]
 sass:
   style: compressed
 
-gems:
-  - octopress-minify-html
+# octopress-minify-html does not work with mathjax
+# gems:
+#  - octopress-minify-html
