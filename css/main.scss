@@ -6,7 +6,7 @@
 
 
 // Our variables
-$base-font-family: Computer Modern Serif, Arial, sans-serif;
+$base-font-family: Georgia, Arial, sans-serif;
 $base-font-size:   18px;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 2.0;
@@ -14,9 +14,13 @@ $code-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
+$text-color:       #444;
 $background-color: #ffffff;
 $brand-color:      #2a7ae2;
+$h1-color:         #001F5C;
+$h2-color:         #2E3D00;
+$strong-color:     #444;
+$code-border-color: #2E03EE;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);

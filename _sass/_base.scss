@@ -84,11 +84,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    color: #001F5C;
+    color: $h1-color;
 }
 
 h2 {
-    color: #2E3D00;
+    color: $h2-color;
+}
+
+strong {
+    color: $strong-color;
 }
 
 /**
@@ -134,12 +138,7 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-}
-
-pre {
-    background-color: #eef;
-    border-radius: 3px;
-    border: 1px solid $grey-color-light;
+    color: $text-color;
 }
 
 code {
@@ -147,18 +146,20 @@ code {
 }
 
 pre {
+    border-radius: 3px;
+    border: 1px solid $grey-color-light;
+
     padding: 8px 12px;
-    overflow-x: scroll;
+    overflow-x: auto;
     line-height: $code-line-height;
 
+    border-left: 2px solid $code-border-color;
     > code {
         border: 0;
         padding-right: 0;
         padding-left: 0;
     }
 }
-
-
 
 /**
  * Wrapper
