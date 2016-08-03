@@ -18,7 +18,7 @@ generated `.class` files using some bytecode level tool, that tool
 needs to understand and respect the JMM if it wants to make semantic
 preserving transformations.
 
-[^trace]: an execution trace is a tuple consisting of sets and
+[^trace]: An execution trace is a tuple consisting of sets and
     relations on those sets.  See section 17.4.6 in the "Java Language
     Specification" for a precise definition.
 
@@ -37,11 +37,11 @@ I've assumed passing familiarity with the Java Memory Model, but I've
 also tried to give references to the actual memory model specification
 wherever appropriate.
 
-[^cookbook]: see the "The JSR-133 Cookbook for Compiler Writers" by Doug Lea et. al. <http://gee.cs.oswego.edu/dl/jmm/cookbook.html>
+[^cookbook]: See the [The JSR-133 Cookbook for Compiler Writers](http://gee.cs.oswego.edu/dl/jmm/cookbook.html) by Doug Lea et. al.
 
 [^jvmls]: See "The Java Language Specification"
 
-[^nomem]: unfortunately, unlike Java the programming language, Java
+[^nomem]: Unfortunately, unlike Java the programming language, Java
     bytecodes don't have a defined memory model.  In practice this
     isn't a problem since the bytecodes closely follow constructs
     present in the Java programming language, and hence have a default
@@ -100,7 +100,7 @@ snippet and the post-transform Java snippet behave in incompatible
 ways is enough to make the transform unsafe to do locally, without
 global analysis.
 
-[^tractable]: in general it isn't even _possible_ to make global
+[^tractable]: In general it isn't even _possible_ to make global
     statements about a program that stay correct throughout the
     program lifetime because Java bytecodes are allowed to load
     arbitrary Java classes at run-time.  So even if some forms of such
@@ -149,7 +149,7 @@ actions performed by each of the individual threads (including
 non-volatile reads and writes).  Given that, we can show that `regV ==
 1` implies `regNV == 5`.
 
-[^seqcst]: interestingly, this isn't an axiom (even though we state as
+[^seqcst]: Interestingly, this isn't an axiom (even though we state as
     such).  Any Java runtime providing _happens before consistency_
     and _well-ordered executions_ automatically provides the "if
     correctly synchronized then sequentially consistent" invariant.
@@ -193,7 +193,7 @@ We now need a set of _committing actions_ (17.4.8[^jvmls]) culminating
 in the execution $$E$$.  Fortunately this is simpler than it sounds,
 let:
 
-[^1]: this notation is just a fancy way of saying `tuple.volatileF =
+[^1]: This notation is just a fancy way of saying `tuple.volatileF =
     1` is before `int regV = tuple.volatileF` in $$so$$ and I don't
     care about the remaining part of the relation.  Also, there is
     something worth noting here -- volatile reads and writes have a
@@ -228,7 +228,7 @@ writes in the execution they're introduced in ($$E_i$$) that are
 different from what they see in the final execution but we won't need
 to exploit that allowance here[^seepopl].
 
-[^seepopl]: for an example that actually uses that clause, see section
+[^seepopl]: For an example that actually uses that clause, see section
     6 in ["The Java Memory Model", POPL
     '05](http://rsim.cs.illinois.edu/Pubs/popl05.pdf "PDF")
 
@@ -307,7 +307,7 @@ exploited "as-if" sequentially consistency semantics will not directly
 work.  However, _happens-before consistency_ is enough to give us what
 we need.
 
-[^2]: if you pick a sequentially consistent execution where `int regV
+[^2]: If you pick a sequentially consistent execution where `int regV
     = tuple.volatileF` is before `tuple.volatileF = 1` in the
     _synchronization order_, then the pair of conflicting access
     (17.4.5[^jvmls]) `tuple.nonVolatileF = 5` and `int regNV =
@@ -321,8 +321,8 @@ r.v$$ and $$hb(W(r), w)$$ and $$hb(w, r)$$."
 
 In plain English, this says the following two things:
 
- 1. a read cannot see a write that it happened before
- 2. a write overrides other writes to the same memory location that
+ 1. A read cannot see a write that it happened before
+ 2. A write overrides other writes to the same memory location that
     happened before it (in terms of the _happens before_ relation) --
     a read cannot observe a write that happened before a write that
     happened before it (i.e. is two or more steps away on the _happens
@@ -341,7 +341,7 @@ have `int regNV = tuple.nonVolatileF` as $$r$$, the initial write of
 `0` to `tuple.nonVolatileF` as $$W(r)$$ and `tuple.nonVolatileF = 5`
 as $$w$$.  By 17.4.5[^jvmls], $$r$$ cannot observe $$W(r)$$.
 
-[^defvalue]: also mentioned earlier, "(17.4.4[^jvmls]) The write of
+[^defvalue]: Also mentioned earlier, "(17.4.4[^jvmls]) The write of
      the default value (zero, false, or null) to each variable
      synchronizes-with the first action in every thread."
 
