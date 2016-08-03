@@ -57,3 +57,50 @@ $on-laptop:        800px;
         "syntax-highlighting"
 ;
 
+
+// Twitter sharing buttons.
+
+.resp-sharing-button {
+  display: inline-block;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  transition: background-color 25ms ease-out, border-color 25ms ease-out, opacity 250ms ease-out;
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+  font-family: Georgia;
+}
+
+.resp-sharing-button__link {
+  text-decoration: none;
+  color: #FFF;
+
+  &:visited {
+      color: #FFF;
+  }
+
+  &:hover {
+      text-decoration: none;
+      color: #FFF;
+  }
+}
+
+.resp-sharing-button--twitter {
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.resp-sharing-button--twitter:hover {
+  background-color: #358cce;
+  border-color: #358cce;
+}
+
+.resp-sharing-button--email {
+  background-color: #444444;
+  border-color: #444444;
+}
+
+.resp-sharing-button--email:hover {
+  background-color: #222222;
+  border-color: #222222;
+}
