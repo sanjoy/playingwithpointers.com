@@ -150,8 +150,6 @@ you're aware of any, please comment here, drop me an email, or
 [tweet](https://twitter.com/SCombinator) at me -- I'll update this
 section with appropriate credits.
 
-<br/><br/><br/>
-
 {% hnlink https://news.ycombinator.com/item?id=12152230 %}
 
 [^1]: Levanoni, Yossi, and Erez Petrank. "An on-the-fly reference counting garbage collector for Java." ACM SIGPLAN Notices 36.11 (2001): 367-380.

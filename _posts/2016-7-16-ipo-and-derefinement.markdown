@@ -327,6 +327,4 @@ optimizations.
 
 [^examples]: Please let me know if there are counterexamples to this.
 
-<br/><br/><br/>
-
 {% hnlink https://news.ycombinator.com/item?id=12110690 %}

@@ -451,6 +451,4 @@ to
 
  - Yell at me when things fall over. :)
 
-<br/><br/><br/>
-
 {% hnlink https://news.ycombinator.com/item?id=12108674 %}

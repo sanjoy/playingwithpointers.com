@@ -16,7 +16,7 @@ class HNLink < Liquid::Tag
   end
 
   def render(context)
-    "Discussion on Hacker News: <#{@link}>. However, I'd prefer if the more substantive comments (e.g. pointing out fundamental mistakes or an interesting future direction) are made here and not on Hacker News."  end
+    "<br/><br/><br/>Discussion on Hacker News: <#{@link}>. However, I'd prefer if the more substantive comments (e.g. pointing out fundamental mistakes or an interesting future direction) are made here and not on Hacker News."  end
 end
 
 Liquid::Template.register_tag('hnlink', HNLink)
