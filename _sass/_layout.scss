@@ -15,6 +15,10 @@
     margin-bottom: 0;
     color: $text-color;
     float: left;
+
+    .self-link {
+        color: $brand-color;
+    }
 }
 
 .site-nav {
@@ -26,7 +30,7 @@
     }
 
     .page-link {
-        color: $text-color;
+        color: $brand-color;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
