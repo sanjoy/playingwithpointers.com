@@ -3,6 +3,7 @@ layout: post
 title:  "Check Widening in LLVM"
 permalink: check-widening-in-llvm.html
 keywords: "exceptions, java, llvm"
+hnlink: https://news.ycombinator.com/item?id=12108674
 ---
 
 *This post describes infrastructure that has gone in to LLVM piecemeal
@@ -450,5 +451,3 @@ to
    etc.).
 
  - Yell at me when things fall over. :)
-
-{% hnlink https://news.ycombinator.com/item?id=12108674 %}

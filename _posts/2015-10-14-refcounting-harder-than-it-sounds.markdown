@@ -3,6 +3,7 @@ layout: post
 title:  "Reference Counting: Harder than it Sounds"
 permalink: refcounting-harder-than-it-sounds.html
 keywords: "reference counting, gc, garbage collection, language runtimes, shared_ptr"
+hnlink: https://news.ycombinator.com/item?id=12152230
 ---
 
 Naive reference counting is "easy" to implement on a system that does
@@ -149,8 +150,6 @@ I'm interested in hearing about other solutions to these problems.  If
 you're aware of any, please comment here, drop me an email, or
 [tweet](https://twitter.com/SCombinator) at me -- I'll update this
 section with appropriate credits.
-
-{% hnlink https://news.ycombinator.com/item?id=12152230 %}
 
 [^1]: Levanoni, Yossi, and Erez Petrank. "An on-the-fly reference counting garbage collector for Java." ACM SIGPLAN Notices 36.11 (2001): 367-380.
 

@@ -21,6 +21,14 @@ Share on Twitter
   Share via E-Mail
 </a></div>
 
+{% if page.hnlink %}
+
+<div class="resp-sharing-button resp-sharing-button--hn"><a class="resp-sharing-button__link" href="{{ page.hnlink }}" target="_blank" aria-label="Discussion on HN">
+  Discussion on HN
+</a></div>
+
+{% endif %}
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   var disqus_shortname = 'playingwithpointers';

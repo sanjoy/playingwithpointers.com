@@ -3,6 +3,7 @@ layout: post
 title:  "Inter-Procedural Optimization and Derefinement"
 permalink: ipo-and-derefinement.html
 keywords: "compilers, LLVM, IPO, COMDAT, vague linkage"
+hnlink: https://news.ycombinator.com/item?id=12110690
 ---
 
 *This is a summary of an issue that was semi-recently fixed in
@@ -326,5 +327,3 @@ whose inverses are correct optimizations cannot be refining
 optimizations.
 
 [^examples]: Please let me know if there are counterexamples to this.
-
-{% hnlink https://news.ycombinator.com/item?id=12110690 %}

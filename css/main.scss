@@ -58,7 +58,7 @@ $on-laptop:        800px;
 ;
 
 
-// Twitter sharing buttons.
+// Sharing buttons.
 
 .resp-sharing-button {
   display: inline-block;
@@ -103,4 +103,14 @@ $on-laptop:        800px;
 .resp-sharing-button--email:hover {
   background-color: #222222;
   border-color: #222222;
+}
+
+.resp-sharing-button--hn {
+  background-color: #ff6600;
+  border-color: #ff6600;
+}
+
+.resp-sharing-button--hn:hover {
+  background-color: #ee5500;
+  border-color: #ee5500;
 }
