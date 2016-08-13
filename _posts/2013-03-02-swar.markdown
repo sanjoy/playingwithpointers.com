@@ -36,7 +36,7 @@ int swar_expanded(uint32_t i) {
 
 
 (For the rest of this post, β(n) is the number of ones in the binary
-representation of n (so `swar(n)` calculates β(n) for a 32 bit `nq);
+representation of n (so `swar(n)` calculates β(n) for a 32 bit `n`);
 and ⟨ a b c ... ⟩ denotes the binary number that has a as its more
 significant bit, b as its second most significant bit and so on.)
 
