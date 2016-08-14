@@ -3,6 +3,7 @@ layout: post
 title:  "A Proof Bug"
 permalink: subtle-proof-bug.html
 keywords: "proof, bug, turing machine"
+needsMathJAX: True
 ---
 
 Can you spot why the following proof sketch is incorrect?
