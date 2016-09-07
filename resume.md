@@ -12,6 +12,23 @@ title:  "Resume: Sanjoy Das"
 
 # Work History
 
+**Software Engineer, Azul Systems, Sep 2013 - Present**
+
+At Azul Systems I am part of an exceptional team of engineers building
+a high performance LLVM-based JIT compiler for Java.  Over the course
+of the project we have made significant changes to LLVM to better
+support managed languages -- at a high level, we've added support for
+precise compacting garbage collection, deoptimization, and have
+improved LLVM's mid-level optimizer to better optimize Java. Most of
+our work has been upstreamed to LLVM, and we have presented talks
+summarizing our progress in the 2014[^talk2014] and 2015[^talk2015]
+LLVM Developer Meetings.
+
+[^talk2014]: <http://llvm.org/devmtg/2014-10/#talk4>
+
+[^talk2015]: <http://llvm.org/devmtg/2015-10/#talk14>
+
+
 **Contributor, LLVM, Oct 2014 - Present**
 
 I'm heavily involved[^commits] with the LLVM community, mostly
@@ -21,23 +38,6 @@ Induction Variable Simplification passes.  I regularly review code and
 participate in design discussions.
 
 [^commits]: LLVM commit history: <https://github.com/llvm-mirror/llvm/commits/master?author=sanjoy>
-
-**Software Engineer, Azul Systems, Sep 2013 - Present**
-
-At Azul Systems I am a key contributor to a JIT compiler for Java
-based on LLVM.  Over the course of the project we have made
-significant changes to LLVM to better support managed languages.
-Amongst other things, we've added support for precise compacting
-garbage collection, deoptimization, and have improved LLVM's mid-level
-optimizer to better optimize Java. Most of our work has been
-upstreamed to LLVM, and we have presented talks summarizing our
-progress in the 2014[^talk2014] and 2015[^talk2015] US LLVM Developer
-Meetings.
-
-[^talk2014]: <http://llvm.org/devmtg/2014-10/#talk4>
-
-[^talk2015]: <http://llvm.org/devmtg/2015-10/#talk14>
-
 
 **Software Engineering Intern, Google, May 2012 - July 2012**
 
@@ -55,13 +55,13 @@ sometime in mid 2013).
 
 The main focus of my professional history has been compilers and
 virtual machines.  In general, I look forward to tackling hard
-technical challenges that require creativity and precision.
+technical challenges that demand creativity and precision.
 
 # Education
 
 **2008-2013**
 
-Bachelor of Science, Master of Science; Mathematics & Computing
+Bachelor of Science, Master of Science; Mathematics & Computing;
 
 Indian Institute of Technology Kharagpur, India.
 
