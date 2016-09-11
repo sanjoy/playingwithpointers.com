@@ -14,13 +14,13 @@ title:  "Resume: Sanjoy Das"
 
 **Software Engineer, Azul Systems, Sep 2013 - Present**
 
-At Azul Systems I with with an exceptional team of engineers building
-a high performance LLVM-based JIT compiler for Java.  Over the course
-of the project we have made significant changes to LLVM to better
-support managed languages -- at a high level, we've added support for
-precise compacting garbage collection, deoptimization, and have
-improved LLVM's mid-level optimizer to better optimize Java. Most of
-our work has been upstreamed to LLVM, and we have presented talks
+At Azul Systems I work with with an exceptional team of engineers
+building a high performance LLVM-based JIT compiler for Java.  Over
+the course of the project we have made significant changes to LLVM to
+better support managed languages -- at a high level, we've added
+support for precise compacting garbage collection, deoptimization, and
+have improved LLVM's mid-level optimizer to better optimize Java. Most
+of our work has been upstreamed to LLVM, and we have presented talks
 summarizing our progress in the 2014[^talk2014] and 2015[^talk2015]
 LLVM Developer Meetings.
 
