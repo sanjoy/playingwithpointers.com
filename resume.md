@@ -14,7 +14,7 @@ title:  "Resume: Sanjoy Das"
 
 **Software Engineer, Azul Systems, Sep 2013 - Present**
 
-At Azul Systems I am part of an exceptional team of engineers building
+At Azul Systems I with with an exceptional team of engineers building
 a high performance LLVM-based JIT compiler for Java.  Over the course
 of the project we have made significant changes to LLVM to better
 support managed languages -- at a high level, we've added support for
