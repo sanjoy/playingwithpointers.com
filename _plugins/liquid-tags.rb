@@ -1,8 +1,17 @@
 module ExtractSynopsis
   def extract_synopsis(input)
     first_index = input.index('<p>')
+    if first_index == nil
+      return ''
+    end
     second_index = input.index('<p>', first_index + 1)
+    if second_index == nil
+      return ''
+    end
     third_index = input.index('</p>', second_index + 1)
+    if third_index == nil
+      return ''
+    end
     return input[first_index..(third_index + 4)]
   end
 end
