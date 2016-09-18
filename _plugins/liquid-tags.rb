@@ -16,7 +16,14 @@ module ExtractSynopsis
   end
 end
 
+module EscapeLiquidTags
+  def escape_liquid_tags(input)
+    return input.gsub('{\%', '&#123;%')
+  end
+end
+
 Liquid::Template.register_filter(ExtractSynopsis)
+Liquid::Template.register_filter(EscapeLiquidTags)
 
 class HNLink < Liquid::Tag
   def initialize(tag_name, link, tokens)
