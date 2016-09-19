@@ -32,7 +32,7 @@ As an example, consider:
 
 If we split the loop's iteration space this way:
 
-	len = length(array)
+    len = length(array)
     for (i = 0; i < min(n, len); i++)
 	  array[i] = -1;
     
