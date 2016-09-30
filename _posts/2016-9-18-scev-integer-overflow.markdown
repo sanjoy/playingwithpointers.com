@@ -46,13 +46,29 @@ source](https://github.com/llvm-mirror/llvm/blob/master/include/llvm/Analysis/Sc
 for more gory details.
 
 Out of all of the above variants of the `SCEV` data type, `SCEVAddRec`
-(an *add recurrence*) is the most important.  A `SCEVAddRec S X L`
+(an *add recurrence*) is the most important.  A `(SCEVAddRec S X L)`
 object describes an expression defined in the loop `L` that is equal
 to `S` on the zeroth iteration of the loop[^zeroidx] and is
-incremented by `X` every time a backedge in `L` is taken.  `S` needs
-to be invariant with respect to the loop `L` (by definition, it must
-dominate the loop entry), but `X` need not be[^fullstory].  In
-particular, `X` can itself be an add recurrence in the same loop.
+incremented by `X` every time a backedge in `L` is taken.  So in
+
+    L.Entry:
+      br label %L
+    
+    L:
+      %IV = phi i32 [ 7, %L.Entry ], [ %IV.Inc, %L ]
+      %IV.Inc = add i32 %IV, 2
+      br i1 <condition>, label %L, label %L.Exit
+    
+    L.Exit:
+      ...
+
+`%IV` is described by `(SCEVAddRec 7 2)` while `%IV.Inc` is described
+by `(SCEVAddRec 9 2)`.
+
+For `(SCEVAddRec S X L)` to be well formed, `S` needs to be invariant
+with respect to the loop `L` (by definition, it must dominate the loop
+entry), but `X` need not be[^fullstory].  In particular, `X` can
+itself be an add recurrence in the same loop.
 
 [^zeroidx]: I will consistently use a zero indexed trip number.
 
@@ -71,14 +87,14 @@ general) definition of an "induction variable".
     input that it does not "understand".
 
 In this post we will solely focus on *affine add recurrences*, the
-(sub)set of add recurrences `SCEVAddRec S X L` such that both `S` and
-`X` are invariant with respect to `L`.  Affine add recurrences are
+(sub)set of add recurrences `(SCEVAddRec S X L)` such that both `S`
+and `X` are invariant with respect to `L`.  Affine add recurrences are
 (unsurprisingly) the most common kind of add recurrences seen in real
 programs (though I will admit this first part is somewhat anecdotal),
 and also the subset of add recurrences that ScalarEvolution is best at
 manipulating.
 
-An affine add recurrence `SCEVAddRec S X L` is denoted as
+An affine add recurrence `(SCEVAddRec S X L)` is denoted as
 `{S,+,X}<L>`.  This notation needs a small tweak to generalize to
 non-affine add recurrences, but we won't talk about that in this post.
 For the rest of this post, "add recurrence" really means "affine add
@@ -137,10 +153,16 @@ of the operation generating its backedge value.
 Consider an add recurrence `{S,+,X}<L>`.  Concretely, it is equivalent
 to the SSA value `%AddRec` in:
 
+    L.Entry:
+      br label %L
+    
     L:
-      %AddRec = phi i32 [ %S, %loop.entry ], [ %AddRec.Inc, %loop ]
+      %AddRec = phi i32 [ %S, %L.Entry ], [ %AddRec.Inc, %L ]
       %AddRec.Inc = add i32 %AddRec, %X
-      br i1 <condition>, label %loop, label %loopexit
+      br i1 <condition>, label %L, label %L.Exit
+    
+    L.exit:
+      ...
 
 Here “`{S,+,X}<L>` is `<nsw>`" implies that _if_ the backedge is
 taken when `%AddRec` is `K` (say), _then_ adding `%X` to `K` does not
@@ -165,10 +187,16 @@ count of `1` are `<nsw>` and `<nuw>`.
 
 Re-examining the IR we looked at earlier
 
+    L.Entry:
+      br label %L
+    
     L:
-      %AddRec = phi i32 [ %S, %loop.entry ], [ %AddRec.Inc, %loop ]
+      %AddRec = phi i32 [ %S, %L.Entry ], [ %AddRec.Inc, %L ]
       %AddRec.Inc = add i32 %AddRec, %X
-      br i1 <condition>, label %loop, label %loopexit
+      br i1 <condition>, label %L, label %L.Exit
+    
+    L.Exit:
+      ...
 
 we need to note that the SCEV expression for `%AddRec.Inc` is also a
 first class add recurrence in its own right: `{S+X,+,X}<L>`.  It has
@@ -180,11 +208,11 @@ general *different* from the `<nsw>` and `<nuw>` behavior of
 For instance, in
 
     L:
-      %AddRec = phi i32 [ INT_SMAX, %loop.entry ], [ %AddRec.Inc, %loop ]
-      %loop.ctrl = phi i1 [ true, %loop.entry ], [ false, %L ]
+      %AddRec = phi i32 [ INT_SMAX, %L.Entry ], [ %AddRec.Inc, %L ]
+      %loop.ctrl = phi i1 [ true, %L.Entry ], [ false, %L ]
       %AddRec.Inc = add i32 %AddRec, 1
       ;; Backedge is taken exactly once
-      br i1 %loop.ctrl, label %loop, label %loopexit
+      br i1 %loop.ctrl, label %L, label %L.Exit
 
 going by the rules we've seen so far, the add recurrence corresponding
 to `%AddRec`, `{INT_SMAX,+,1}<L>`, cannot be marked `<nsw>`, but the
@@ -192,11 +220,11 @@ one corresponding to `%AddRec.Inc`, `{INT_SMIN,+,1}<L>`, can be.  The
 converse is true for
 
     L:
-      %AddRec = phi i32 [ INT_SMAX - 1, %loop.entry ], [ %AddRec.Inc, %loop ]
-      %loop.ctrl = phi i1 [ true, %loop.entry ], [ false, %L ]
+      %AddRec = phi i32 [ INT_SMAX - 1, %L.Entry ], [ %AddRec.Inc, %L ]
+      %loop.ctrl = phi i1 [ true, %L.Entry ], [ false, %L ]
       %AddRec.Inc = add i32 %AddRec, 1
       ;; Backedge is taken exactly once
-      br i1 %loop.ctrl, label %loop, label %loopexit
+      br i1 %loop.ctrl, label %L, label %L.Exit
 
 where the the add recurrence corresponding to `%AddRec.Inc`,
 `{INT_SMAX,+,1}<L>`, cannot be marked `<nsw>`, but the one
