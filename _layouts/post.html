@@ -13,19 +13,24 @@ layout: default
 
 <br/><br/><br/>
 
-  <div class="resp-sharing-button resp-sharing-button--twitter"><a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text={{ page.title | cgi_escape }}&amp;url={{ site.url }}{{ page.url }}" target="_blank" aria-label="Share on Twitter">
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?text={{ page.title | cgi_escape }}&amp;url={{ site.url }}{{ page.url }}" target="_blank" aria-label="Share on Twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter">
 Share on Twitter
-  </a></div>
+  </div>
+</a>
 
-<div class="resp-sharing-button resp-sharing-button--email"><a class="resp-sharing-button__link" href="mailto:?subject={{ page.title | cgi_escape }}&amp;body={{ site.url }}{{ page.url }}" target="_blank" aria-label="Share via E-Mail">
-  Share via E-Mail
-</a></div>
+<a class="resp-sharing-button__link" href="mailto:?subject={{ page.title | cgi_escape }}&amp;body={{ site.url }}{{ page.url }}" target="_blank" aria-label="Share via E-Mail">
+  <div class="resp-sharing-button resp-sharing-button--email">
+Share via E-Mail
+  </div>
+</a>
 
 {% if page.hnlink %}
-
-<div class="resp-sharing-button resp-sharing-button--hn"><a class="resp-sharing-button__link" href="{{ page.hnlink }}" target="_blank" aria-label="Discussion on HN">
-  Discussion on HN
-</a></div>
+<a class="resp-sharing-button__link" href="{{ page.hnlink }}" target="_blank" aria-label="Discussion on HN">
+  <div class="resp-sharing-button resp-sharing-button--hn">
+    Discussion on HN
+  </div>
+</a>
 
 {% endif %}
 
