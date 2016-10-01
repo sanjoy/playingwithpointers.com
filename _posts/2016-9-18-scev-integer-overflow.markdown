@@ -185,7 +185,7 @@ count of `1` are `<nsw>` and `<nuw>`.
 
 ## Overflow in post-increment add recurrences
 
-Re-examining the IR we looked at earlier
+Given (this is a copy of the IR we looked at earlier):
 
     L.Entry:
       br label %L
@@ -198,9 +198,9 @@ Re-examining the IR we looked at earlier
     L.Exit:
       ...
 
-we need to note that the SCEV expression for `%AddRec.Inc` is also a
-first class add recurrence in its own right: `{S+X,+,X}<L>`.  It has
-its own behavior regarding `<nsw>` and `<nuw>` which follow from the
+note that the SCEV expression for `%AddRec.Inc` is also a first class
+add recurrence in its own right: `{S+X,+,X}<L>`.  It has its own
+behavior regarding `<nsw>` and `<nuw>` which follow from the
 definitions stated earlier.  This behavior is related to but is in
 general *different* from the `<nsw>` and `<nuw>` behavior of
 `{S,+,X}<L>`.
