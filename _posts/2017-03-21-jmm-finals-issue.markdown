@@ -88,7 +88,7 @@ $$dr$$):
             &amp; \; mc(\texttt{R0},\texttt{R1}) &amp; \text{from previous} \\
             &amp; \; dr(\texttt{R1},\texttt{R2}) &amp; \text{by definition} \\
             &amp; \; mc(\texttt{R1},\texttt{R2}) &amp; \text{from previous} \\
-            &amp; \; dr(\texttt{R0},\texttt{R2}) &amp; \text{dr is a partial order} &amp; \qquad ... \; (2)\\
+            &amp; \; dr(\texttt{R0},\texttt{R2}) &amp; \text{dr is a partial order} &amp; \qquad ... \; (3)\\
 \end{aligned}\)
 </div>
 <div>&nbsp;</div>
