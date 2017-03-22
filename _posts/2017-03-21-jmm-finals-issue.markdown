@@ -7,13 +7,14 @@ needsMathJAX: True
 ---
 
 I believe that there is an issue with the current specification of
-final fields that breaks in one of the following ways:
+final fields in the Java Memory Model that is broken in one of the
+following ways:
 
- - Prevents some basic CSE-type compiler-optimizations
- - Forces us to make every load an acquire load
- - Complicates compiler IR by forcing it to track syntactic
+ - It prevents some basic CSE-type compiler-optimizations
+ - It requires the JVM to make every load an acquire load
+ - It complicates compiler IR by forcing it to track syntactic
    dependencies
- - Requires weakening the JMM in a backward incompatible way
+ - It requires weakening the JMM in a backward incompatible way
 
 While this isn't exactly news (I have been told that the wording
 around final fields in the JMM is known to be problematic), I could
