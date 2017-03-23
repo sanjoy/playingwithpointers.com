@@ -6,9 +6,8 @@ keywords: ""
 needsMathJAX: True
 ---
 
-I believe that there is an issue with the current specification of
-final fields in the Java Memory Model that is broken in one of the
-following ways:
+I believe the current specification of final fields in the Java Memory
+Model that is broken in one of the following ways:
 
  - It prevents some basic CSE-type compiler-optimizations
  - It requires the JVM to make every load an acquire load
