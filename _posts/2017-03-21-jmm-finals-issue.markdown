@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "An issue with Java's final fields"
+title:  "An Issue with Java's Final Fields"
 permalink: jmm-finals-issue.html
 keywords: ""
 needsMathJAX: True
