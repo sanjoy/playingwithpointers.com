@@ -12,17 +12,22 @@ title:  "Resume: Sanjoy Das"
 
 # Work History
 
-**Software Engineer, Azul Systems, Sep 2013 - Present**
+**Software Engineer, Google, May 2017 - Present**
 
-At Azul Systems I work with with an exceptional team of engineers
-building a high performance LLVM-based JIT compiler for Java.  Over
-the course of the project we have made significant changes to LLVM to
-better support managed languages -- at a high level, we've added
-support for precise compacting garbage collection, deoptimization, and
-have improved LLVM's mid-level optimizer to better optimize Java. Most
-of our work has been upstreamed to LLVM, and we have presented talks
-summarizing our progress in the 2014[^talk2014] and 2015[^talk2015]
-LLVM Developer Meetings.
+Software Engineer.
+
+**Software Engineer, Azul Systems, Sep 2013 - May 2017**
+
+At Azul Systems I worked on building Falcon[^falcon], a high
+performance LLVM-based JIT compiler for Java.  Over the course of the
+project we made significant changes to LLVM to better support managed
+languages -- at a high level, we added support for precise compacting
+garbage collection, deoptimization, and improved LLVM's mid-level
+optimizer to better optimize Java. Most of our work lives on LLVM
+upstream, and we presented talks summarizing our progress in the
+2014[^talk2014] and 2015[^talk2015] LLVM Developer Meetings.
+
+[^falcon]: <https://www.azul.com/press_release/falcon-jit-compiler/>
 
 [^talk2014]: <http://llvm.org/devmtg/2014-10/#talk4>
 
