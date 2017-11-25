@@ -10,7 +10,7 @@ These are some study notes I made for the
 excellent
 [Classical Mechanics](http://theoreticalminimum.com/courses/classical-mechanics/2011/fall) course
 from [The Theoretical Minimum](http://theoreticalminimum.com/) program.  They're
-mostly for my personal use, but I'm putting them here in case someone else find
+mostly for my personal use, but I'm putting them here in case someone else finds
 these useful.
 
 # Admissible Laws
