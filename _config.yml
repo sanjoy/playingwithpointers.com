@@ -13,7 +13,7 @@ highlighter: pygments
 markdown: kramdown
 
 # exclude the deploy script
-exclude: [ deploy.sh, serve.sh ]
+exclude: [ deploy.sh, generate-meta.sh, serve.sh, watch.sh, watchdrafts.sh ]
 
 sass:
   style: compressed
