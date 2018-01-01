@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "A Problem with LLVM's Undef"
-permalink: problem-with-undef.html
+redirect_from:
+ - /problem-with-undef.html
 keywords: "LLVM, compilers, semantics"
+date: 2015-12-29
 ---
 
 LLVM has a special value in its SSA value hierarchy called `undef`

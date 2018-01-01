@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Check Widening in LLVM"
-permalink: check-widening-in-llvm.html
+redirect_from:
+ - /check-widening-in-llvm.html
 keywords: "exceptions, java, llvm"
 hnlink: https://news.ycombinator.com/item?id=12108674
+date: 2016-6-17
 ---
 
 *This post describes infrastructure that has gone in to LLVM piecemeal

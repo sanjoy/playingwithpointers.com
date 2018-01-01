@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Integer overflow in LLVM's ScalarEvolution"
-permalink: scev-integer-overflow.html
+redirect_from:
+ - /scev-integer-overflow.html
 keywords: "LLVM, scalar evolution, SCEV"
+date: 2016-9-18
 ---
 
 *This is a short note on how integer overflow fits in with LLVM's

@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Java Optimizations and the JMM"
-permalink: optimizations-and-the-jmm.html
+redirect_from:
+ - /optimizations-and-the-jmm.html
 keywords: "optimizations, java memory model, jvm, virtual machine, proof"
 needsMathJAX: True
+date: 2014-9-7
 ---
 
 The Java Memory Model is a predicate on execution traces[^trace] of

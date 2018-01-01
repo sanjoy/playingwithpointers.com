@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Certified Compilation in Agda"
-permalink: agda-verified-compilation.html
+redirect_from:
+ - /agda-verified-compilation.html
 keywords: "verified programming, agda, verified compilation, proof, dependent types"
+date: 2013-4-29
 ---
 
 Using dependent types, it is possible to specify contracts for Agda

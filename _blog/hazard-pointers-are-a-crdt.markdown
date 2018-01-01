@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Hazard Pointers are a CRDT"
-permalink: hazard-pointers-are-a-crdt.html
+redirect_from:
+ - /hazard-pointers-are-a-crdt.html
 keywords: "hazard pointers, crdt"
 needsMathJAX: True
+date: 2015-1-4
 ---
 
 I recently watched an excellent video by Marc Shapiro on conflict-free

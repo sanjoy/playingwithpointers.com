@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Classical Mechanics Study Notes"
-permalink: the-theoretical-minimum-classical-mechanics.html
+redirect_from:
+ - /the-theoretical-minimum-classical-mechanics.html
 keywords: "physics"
 needsMathJAX: True
+date: 2017-11-24
 ---
 
 These are some study notes I made for the

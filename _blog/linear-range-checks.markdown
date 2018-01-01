@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Solving Linear Range Checks"
-permalink: solving-linear-range-checks.html
+redirect_from:
+ - /solving-linear-range-checks.html
 keywords: "java, range checks, program optimization, compilers"
 needsMathJAX: True
+date: 2014-12-21
 ---
 
 # Context

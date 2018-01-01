@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "A Proof Bug"
-permalink: subtle-proof-bug.html
+redirect_from:
+ - /subtle-proof-bug.html
 keywords: "proof, bug, turing machine"
 needsMathJAX: True
+date: 2014-8-4
 ---
 
 Can you spot why the following proof sketch is incorrect?

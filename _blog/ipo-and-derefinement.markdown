@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Inter-Procedural Optimization and Derefinement"
-permalink: ipo-and-derefinement.html
+redirect_from:
+ - /ipo-and-derefinement.html
 keywords: "compilers, LLVM, IPO, COMDAT, vague linkage"
 hnlink: https://news.ycombinator.com/item?id=12110690
+date: 2016-7-16
 ---
 
 *This is a summary of an issue that was semi-recently fixed in

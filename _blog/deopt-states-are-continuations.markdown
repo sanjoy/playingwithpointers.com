@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Deoptimization States are Delimited Continuations"
-permalink: deopt-states-are-delim-continuations.html
+redirect_from:
+ - /deopt-states-are-delim-continuations.html
 keywords: "deoptimization, speculative optimization, continuation"
 needsMathJAX: True
+date: 2015-8-16
 ---
 
 *This post assumes knowledge of some basic vocabulary related to

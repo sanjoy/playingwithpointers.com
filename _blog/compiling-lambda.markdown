@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Echoes: Compiling λ"
-permalink: compiling-lambda.html
+redirect_from:
+ - /compiling-lambda.html
 keywords: "lambda calculus, compiler, haskell, virtual machine"
+date: 2013-7-15
 ---
 
 I've been toying with the idea of writing a compiler for the untyped
@@ -99,6 +101,7 @@ will be represented as (assuming `f` is an out-of-line function with
 arity 2):
 
     +++++     +++++     +++++
+date: 2013-7-15
     | *-|---> | *-|---> | f |
     +++++     +++++     +++++
     | 0 |     | 1 |     | 2 |

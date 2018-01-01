@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "A SWAR Algorithm for Popcount"
-permalink: swar.html
+redirect_from:
+ - /swar.html
 keywords: "SWAR, bit math, C, C++, low level"
+date: 2013-03-02
 ---
 
 An interesting way to get the _popcount_, or the number of bits set in

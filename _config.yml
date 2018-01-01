@@ -18,6 +18,13 @@ exclude: [ deploy.sh, serve.sh ]
 sass:
   style: compressed
 
+collections:
+  blog:
+    output: true
+
+plugins:
+  - jekyll-redirect-from
+
 # octopress-minify-html does not work with mathjax
 # gems:
 #  - octopress-minify-html

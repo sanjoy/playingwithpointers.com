@@ -9,11 +9,12 @@ title: Blog
   </header>
 
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% assign sorted_blog = site.blog | sort: 'date' | reverse %}
+    {% for blog_post in  sorted_blog %}
       <li>
 	<div>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <span class="post-meta">{{ blog_post.date | date: "%b %-d, %Y" }}</span>
+          <a class="post-link" href="{{ blog_post.url | prepend: site.baseurl }}">{{ blog_post.title }}</a>
 	</div>
       </li>
     {% endfor %}

@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "An Issue with Java's Final Fields"
-permalink: jmm-finals-issue.html
+redirect_from:
+ - /jmm-finals-issue.html
 keywords: ""
 needsMathJAX: True
+date: 2017-03-21
 ---
 
 I believe the current specification of final fields in the Java Memory
