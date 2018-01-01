@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Classical Mechanics Study Notes"
+title:  "Classical Mechanics"
 redirect_from:
  - /the-theoretical-minimum-classical-mechanics.html
 keywords: "physics"

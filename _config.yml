@@ -21,6 +21,8 @@ sass:
 collections:
   blog:
     output: true
+  study_notes:
+    output: true
 
 plugins:
   - jekyll-redirect-from

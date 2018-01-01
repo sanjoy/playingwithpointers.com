@@ -1,0 +1,22 @@
+---
+layout: default
+title: Blog
+---
+
+<div class="home">
+  <header class="post-header">
+    <h1 class="post-title">Study Notes</h1>
+  </header>
+
+  <ul class="post-list">
+    {% assign sorted_notes = site.study_notes | sort: 'date' | reverse %}
+    {% for notes in sorted_notes %}
+      <li>
+	<div>
+          <span class="post-meta">{{ notes.date | date: "%b %-d, %Y" }}</span>
+          <a class="post-link" href="{{ notes.url | prepend: site.baseurl }}">{{ notes.title }}</a>
+	</div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
