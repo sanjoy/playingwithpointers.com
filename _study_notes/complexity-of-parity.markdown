@@ -14,7 +14,7 @@ I skipped section 2, which has some more results about the polynomial-time hiera
 
 The proof proceeds by contradiction: a polynomial sized depth $$d$$ parity circuit can be used to construct a polynomial sized depth $$d - 1$$ parity circuit, which means there can't be a "smallest" $$d$$.
 
-# Tricks I learned
+# Tricks I Learned
 
 You can prove the existence of something by demonstrating that the probability of its existence is non-zero (sounds trivial when you say it :) ).  This can be easier than, say, counting arguments, in some cases.
  
