@@ -9,7 +9,7 @@ Furst, Merrick, James B. Saxe, and Michael Sipser. "Parity, circuits, and the po
 
 # Synopsis
 
-Parity cannot be decided by a circuit that is $$O(1)$$ in depth and polynomial in size where a "circuit" is roughly defined as an alternating $$\land$$ and $$\lor$$ expression where the innermost non-literal expression is an $$\land$$.
+Parity cannot be decided by a circuit in $$AC^0$$ (see <https://en.wikipedia.org/wiki/AC0>).
 
 I skipped section 2, which has some more results about the polynomial-time hierarchy.
 
