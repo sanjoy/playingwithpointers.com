@@ -2,6 +2,7 @@
 layout: post
 title:  "Parity, Circuits, and the Polynomial-Time Hierarchy"
 needsMathJAX: True
+date: 2018-1-14
 ---
 
 Furst, Merrick, James B. Saxe, and Michael Sipser. "Parity, circuits, and the polynomial-time hierarchy." Theory of Computing Systems 17.1 (1984): 13-27.
