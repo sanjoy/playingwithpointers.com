@@ -14,4 +14,4 @@ Pseudo-random number generators of the form $$X_{t + 1} = a X_t + b \mod m$$ can
 
 # What I Learned
 
-Key insight for me was that an $$ax+b$$ PRNG is **not** as secure as its seed.  Just by knowing (or guessing!) that the PRNG is of the form $$ax+b$$, an adversary can guess the seed.
+Key insight for me was that an $$ax+b$$ PRNG is **not** as secure as its seed.  Just by knowing (or guessing!) that the PRNG is of the form $$ax+b$$, an adversary can recover the seed.
