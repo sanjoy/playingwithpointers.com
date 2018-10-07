@@ -18,6 +18,11 @@
 
     .self-link {
         color: $brand-color;
+	text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: underline;
     }
 }
 
@@ -32,11 +37,16 @@
     .page-link {
         color: $brand-color;
         line-height: $base-line-height;
+	text-decoration: none;
 
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
             margin-left: 20px;
         }
+
+	&:hover {
+            text-decoration: underline;
+	}
     }
 
     @include media-query($on-palm) {
@@ -199,6 +209,14 @@
 .post-meta-in-post {
     font-size: $small-font-size;
     color: $grey-color;
+}
+
+.post-link {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 @media (min-device-width: $on-laptop) {

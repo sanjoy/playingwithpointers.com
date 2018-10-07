@@ -99,15 +99,16 @@ strong {
  * Links
  */
 a {
-    color: $brand-color;
-    text-decoration: none;
+    color: $link-color;
+    text-decoration: underline;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: $visited-link-color;
+        text-decoration: underline;
     }
 
     &:hover {
-        color: $text-color;
+        color: $active-link-color;
         text-decoration: underline;
     }
 }
