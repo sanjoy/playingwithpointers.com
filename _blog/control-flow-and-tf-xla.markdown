@@ -169,5 +169,5 @@ Comparing liveness predicates is necessarily conservative -- the "leaves" of the
 
 For simplicity we implement the "all nodes have identical liveness" check a little differently -- we implement it as "avoid clustering nodes that have inputs with possibly mismatching liveness".  This is equivalent to "all nodes have identical liveness" because XLA clusters are connected (but not strongly connected) and XLA does not support control flow operations like `Switch` and `Merge`.
 
-[^npcomplete]:  We can translate a 3SAT problem into the question "Can node X and node Y be clustered together" where X has a predicate equivalent the 3SAT formula and Y has the trivial predicate "True".
+[^npcomplete]:  We can translate a 3SAT problem into the question "Can node X and node Y be clustered together" where X has a predicate equivalent the 3SAT formula and Y has the trivial predicate "True".  Similarly, we can create a 3SAT asserting the equivalence of two predicates.
 
