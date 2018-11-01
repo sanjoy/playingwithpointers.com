@@ -137,7 +137,7 @@ digraph {
 }
 {% endgraphviz %}
 
-In the clustered graph **both** _S_ and _T_ are dead while in the pre-clustered graph only _T_ was dead. This follows directly from the [rules above](#deadnessrules): 
+In the clustered graph (i.e. in the graph with the XLA cluster) **both** _S_ and _T_ are dead while in the pre-clustered graph only _T_ was dead. This follows directly from the [rules above](#deadnessrules): 
 
  * In the pre-transform graph all inputs to _A_, _B_ and _X_ are live, and therefore all outputs from _X_ are live.
  * In the post transform graph at least one input to _XLA Cluster_ is dead, and therefore all outputs from _XLA Cluster_ are dead.
