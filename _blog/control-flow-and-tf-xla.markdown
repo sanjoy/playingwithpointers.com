@@ -51,10 +51,12 @@ digraph {
   ordering=out;
   Condition -> Switch [label="pred"]
   X -> Switch [label="value"]
-  Switch -> "+ 1" [label="F"]
-  Switch -> "- 1" [label="T"]
-  "- 1" -> Merge
-  "+ 1" -> Merge
+  "Constant 1" -> "+"
+  "Constant 1" -> "-"
+  Switch -> "+" [label="F"]
+  Switch -> "-" [label="T"]
+  "-" -> Merge
+  "+" -> Merge
 }
 {% endgraphviz %}
 
