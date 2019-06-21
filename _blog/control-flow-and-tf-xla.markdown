@@ -165,9 +165,8 @@ Using this analysis we only cluster nodes that have identical liveness predicate
  * All dead in the pre-transform graph, in which case it is correct to kill all the outputs from the cluster.
  * All alive in the pre-transform graph, in which case it is correct to propagate a live value to all the outputs from the cluster.
 
-Comparing liveness predicates is necessarily conservative -- the "leaves" of the predicates can be symbolic (so predicates can't always be simplified to True or False) which makes comparing predicates NP-complete[^npcomplete].
+Comparing liveness predicates is necessarily conservative -- the "leaves" of the predicates can be symbolic (so predicates can't always be simplified to True or False) which makes comparing predicates coNP-complete[^conpcomplete].
 
 For simplicity we implement the "all nodes have identical liveness" check a little differently -- we implement it as "avoid clustering nodes that have inputs with possibly mismatching liveness".  This is equivalent to "all nodes have identical liveness" because XLA clusters are connected (but not strongly connected) and XLA does not support control flow operations like `Switch` and `Merge`.
 
-[^npcomplete]:  We can translate a 3SAT problem into the question "Can node X and node Y be clustered together" where X has a predicate equivalent the 3SAT formula and Y has the trivial predicate "True".  Similarly, we can create a 3SAT asserting the equivalence of two predicates.
-
+[^conpcomplete]:  We can translate TAUTOLOGY into the question "Can node X and node Y be clustered together" where X has a predicate equivalent the boolean formula and Y has the trivial predicate "True".  Similarly we can create a TAUTOLOGY formula asserting the equivalence of two predicates.
