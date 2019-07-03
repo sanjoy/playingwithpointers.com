@@ -102,7 +102,7 @@ Assign(v0, r2)
 Assign(v1, r0)
 ```
 
-We first transform this to:
+We will effectively transform this to:
 
 ```
 // Initial reads:
@@ -171,8 +171,8 @@ digraph {
     }
   }
 
-  StoreY[label="Assign(v1, 7) .. (1)"]
-  StoreX7[label="Assign(v0, 8 ).. (2)"]
+  StoreY[label="Assign(v1, 8) .. (1)"]
+  StoreX7[label="Assign(v0, 7).. (2)"]
 
   SOURCE -> Prologue[style=dashed]
   Prologue -> StoreX6[style=dashed]
