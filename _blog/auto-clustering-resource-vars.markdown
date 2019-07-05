@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Auto-Clustering Resource Variable Operations in TensorFlow/XLA"
+title:  "Resource Variable Operations in TensorFlow/XLA"
 keywords: "TensorFlow, XLA"
 needsMathJAX: False
 date: 2019-6-21
