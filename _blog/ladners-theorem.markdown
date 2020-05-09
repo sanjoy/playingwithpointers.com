@@ -51,7 +51,7 @@ If $$\mathbb{L}$$ is in _P_ then $$H(\lvert S \rvert)$$ is $$O(1)$$, since for l
 
 **(2) $$\mathbb{L}$$ is not _NP_-complete**
 
-If $$\mathbb{L}$$ is $$NP$$ complete then there is (by definition) a polynomial reduction, $$\mathbb{G}$$, from _SAT_ instances to instances of $$\mathbb{L}$$.  Let's say $$\mathbb{G}$$ runs in $$o(n^c)$$ steps where $$n$$ is the size of the _SAT_ instance being reduced.  And $$\mathbb{G}$$ maps a _SAT_ instance, $$T$$, to the string $$S + “1” * \lvert S \rvert^{H(\lvert S\rvert)}$$ where $$S$$ is also a _SAT_ instance.  We will show that there is a constant $$t_{max}$$ such that if $$\lvert T \rvert \ge t_{max}$$ then $$\lvert S \rvert \lt \lvert T \rvert$$.  This means we could build a polynomial time SAT solver that repeatedly applies $$\mathbb{G}$$ to reduce a SAT instance until it is of size $$\le t_{max}$$, after which the problem can be brute forced in constant time.  This again leads to $$P = NP$$.
+If $$\mathbb{L}$$ is $$NP$$ complete then there is (by definition) a polynomial reduction, $$\mathbb{G}$$, from _SAT_ instances to instances of $$\mathbb{L}$$.  Let's say $$\mathbb{G}$$ runs in $$O(n^c)$$ steps where $$n$$ is the size of the _SAT_ instance being reduced.  And $$\mathbb{G}$$ maps a _SAT_ instance, $$T$$, to the string $$S + “1” * \lvert S \rvert^{H(\lvert S\rvert)}$$ where $$S$$ is also a _SAT_ instance.  We will show that there is a constant $$t_{max}$$ such that if $$\lvert T \rvert \ge t_{max}$$ then $$\lvert S \rvert \lt \lvert T \rvert$$.  This means we could build a polynomial time SAT solver that repeatedly applies $$\mathbb{G}$$ to reduce a SAT instance until it is of size $$\le t_{max}$$, after which the problem can be brute forced in constant time.  This again leads to $$P = NP$$.
 
 $$\lvert T \rvert \ge t_{max}$$ $$\Rightarrow$$ $$\lvert S \rvert \lt \lvert T \rvert$$ can be shown as follows:
 
@@ -59,7 +59,7 @@ $$\mathbb{G}$$ runs in $$O(\lvert T \rvert^c)$$ so $$\exists$$ $$t_0$$ such that
 
 We can manipulate the above to get $$\lvert S \rvert^{H(\lvert S\rvert)}$$ $$\lt$$ $$\lvert S\rvert + \lvert S \rvert^{H(\lvert S\rvert)}$$ $$\le$$ $$\lvert T \rvert + k * \lvert T \rvert^c$$ $$\le$$ $$(k + 1) * \lvert T \rvert^c$$ $$\Rightarrow$$ $$\lvert S \rvert^{H(\lvert S\rvert)}$$ $$\le$$ $$(k + 1) * \lvert T \rvert^c$$.
 
-$$H$$ is not $$o(1)$$ (as shown in the "$$\mathbb{L}$$ is not in _P_" section) so $$\exists t_1$$ such that $$\lvert T \rvert \ge t_1$$ $$\Rightarrow$$ $$H(\lvert T \rvert) \gt (c + 1)$$.  Let $$t_2 = max(t_1, k + 1)$$.  Then $$\lvert T \rvert \ge t_2$$ $$\Rightarrow$$ $$(k + 1) * \lvert T \rvert^c \le \lvert T \rvert ^ {c+1} \lt \lvert T \rvert^{H(\lvert T\rvert)}$$.  This implies $$\lvert S \rvert \lt \lvert T \rvert$$ by contradiction: $$\lvert T \rvert \le \lvert S \rvert$$ and $$(k + 1) * \lvert T \rvert^c \lt \lvert T \rvert^{H(\lvert T\rvert)}$$ implies $$(k + 1) * \lvert T \rvert^c \lt \lvert S \rvert^{H(\lvert S\rvert)}$$ but we also have $$\lvert S \rvert^{H(\lvert S\rvert)} \le (k + 1) * \lvert T \rvert^c$$.
+$$H$$ is not $$O(1)$$ (as shown in the "$$\mathbb{L}$$ is not in _P_" section) so $$\exists t_1$$ such that $$\lvert T \rvert \ge t_1$$ $$\Rightarrow$$ $$H(\lvert T \rvert) \gt (c + 1)$$.  Let $$t_2 = max(t_1, k + 1)$$.  Then $$\lvert T \rvert \ge t_2$$ $$\Rightarrow$$ $$(k + 1) * \lvert T \rvert^c \le \lvert T \rvert ^ {c+1} \lt \lvert T \rvert^{H(\lvert T\rvert)}$$.  This implies $$\lvert S \rvert \lt \lvert T \rvert$$ by contradiction: $$\lvert T \rvert \le \lvert S \rvert$$ and $$(k + 1) * \lvert T \rvert^c \lt \lvert T \rvert^{H(\lvert T\rvert)}$$ implies $$(k + 1) * \lvert T \rvert^c \lt \lvert S \rvert^{H(\lvert S\rvert)}$$ but we also have $$\lvert S \rvert^{H(\lvert S\rvert)} \le (k + 1) * \lvert T \rvert^c$$.
 
 Finally, we set $$t_{max}$$ to $$max(t_0, t_2)$$ to get the result we set out to prove.
   
@@ -78,7 +78,7 @@ Concretely, $$H(x)$$ (of type $$\mathbb{N} \to \mathbb{N}$$) is computed as foll
 5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return $$i$$
 6. Return $$x$$
 
-This algorithm takes a polynomial in $$x$$ number of steps: step 3 is run $$x^2$$ times and each execution takes a polynomial function[^sim] of $$log_2(x)^{log_2(log_2(x))}$$ steps.  Furthermore, $$log_2(x)^{log_2(log_2(x))}$$ is $$o(x)$$ since for $$x \ge 70000$$ $$log_2(x)^{log_2(log_2(x))} \lt x$$.
+This algorithm takes a polynomial in $$x$$ number of steps: step 3 is run $$x^2$$ times and each execution takes a polynomial function[^sim] of $$log_2(x)^{log_2(log_2(x))}$$ steps.  Furthermore, $$log_2(x)^{log_2(log_2(x))}$$ is $$O(x)$$ since for $$x \ge 70000$$ $$log_2(x)^{log_2(log_2(x))} \lt x$$.
 
 To prove $$x \ge 70000$$ $$\Rightarrow$$ $$log_2(x)^{log_2(log_2(x))} \lt x$$, first apply $$log_2$$ twice on both expressions to get $$F(x)$$ as $$2 * log_2(log_2(log_2(x)))$$ and $$G(x)$$ as $$log_2(log_2(x))$$.  $$F(70000) \lt 4.007 \lt 4.008 \lt G(70000)$$ and $$\frac{d}{dx} F(x) - G(x)$$ is $$\frac{- ln(ln(x)) + 2 + ln(ln(2))}{x ln(2) ln(x) ln(log_2(x))}$$ which is $$\lt 0$$ for $$x \gt e^{e^{2 + ln(ln(2))}}$$ and $$e^{e^{2 + ln(ln(2))}} = 167.6.. \lt 70000$$.
 
