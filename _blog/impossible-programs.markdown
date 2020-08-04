@@ -81,9 +81,9 @@ We will be using the notation from the definition of $$NH$$ above -- $$bs$$ is t
 
 The proof is by contradiction.  Let's assume we are unable to find an $$I+1$$ sized extension of $$bs$$ in the $$i^{th}$$ invocation of the oracle.
 
-Not being able to find a extension of $$bs$$ means that $$\neg$$ $$(\exists x \in \{0,1\}^{L}$$, $$\textrm{Unbounded}(b' + x))$$ $$\equiv$$ $$\forall x \in \{0,1\}^{L}, \textrm{Bounded}(b' + x)$$.  In other words, $$P(i)$$ fails when there is no way to extend $$bs$$ (of length $$s$$) by $$x$$ (of length $$L$$) such that $$\textrm{Unbounded}(bs + x)$$.
+Not being able to find a extension of $$bs$$ means that $$\neg$$ $$(\exists x \in \{0,1\}^{L}$$, $$\textrm{Unbounded}(bs + x))$$ $$\equiv$$ $$\forall x \in \{0,1\}^{L}, \textrm{Bounded}(bs + x)$$.  In other words, $$P(i)$$ fails when there is no way to extend $$bs$$ (of length $$s$$) by $$x$$ (of length $$L$$) such that $$\textrm{Unbounded}(bs + x)$$.
 
-Expanding Bounded, we get $$\forall x \in \{0,1\}^{L}$$, $$\exists c \in \mathbb{N}$$, $$\forall B \in S(b' + x)$$, $$MI(M, B)$$ $$\lt$$ $$c$$.  Setting $$C$$ to be the maximum of all the $$2^{L}$$ $$c$$s, we get $$\exists C \in \mathbb{N}$$, $$\forall x \in \{0,1\}^{L}$$, $$\forall B \in S(b' + x)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.  This further simplifies to $$\exists C \in \mathbb{N}$$, $$\forall B \in \cup_{x \in \{0,1\}^{L}} S(b' + x)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.  But $$\cup_{x \in \{0,1\}^{L}} S(b' + x)$$ is just $$S(b')$$, so the we really have $$\exists C \in \mathbb{N}$$, $$\forall B \in S(b')$$, $$MI(M, B)$$ $$\lt$$ $$C$$.
+Expanding Bounded, we get $$\forall x \in \{0,1\}^{L}$$, $$\exists c \in \mathbb{N}$$, $$\forall B \in S(bs + x)$$, $$MI(M, B)$$ $$\lt$$ $$c$$.  Setting $$C$$ to be the maximum of all the $$2^{L}$$ $$c$$s, we get $$\exists C \in \mathbb{N}$$, $$\forall x \in \{0,1\}^{L}$$, $$\forall B \in S(bs + x)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.  This further simplifies to $$\exists C \in \mathbb{N}$$, $$\forall B \in \cup_{x \in \{0,1\}^{L}} S(bs + x)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.  But $$\cup_{x \in \{0,1\}^{L}} S(bs + x)$$ is just $$S(bs)$$, so the we really have $$\exists C \in \mathbb{N}$$, $$\forall B \in S(bs)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.
 
 But this contradicts $$P(i-1)$$, so we must be able to find an $$I$$ sized extension of $$bs$$!
 
