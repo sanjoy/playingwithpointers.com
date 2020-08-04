@@ -55,9 +55,11 @@ Given an $$M \in \mathbb{T}$$, we construct a infinite bit sequence, $$NH \in \m
 
  1. It keeps some state that persists across executions -- an $$s \in \mathbb{N}$$ (initial value: $$0$$) and a $$bs \in \{0, 1\}^s$$ (initial value: the empty bitvector).  $$bs$$ is a finite prefix of the infinite bit sequence $$NH$$ represents, and is the portion of the infinite bit sequence that it has already "committed to".
  2. If $$I \lt s$$ then it returns $$bs[I]$$ (i.e. it returns the answer that it has already committed to).
- 3. Otherwise it finds a bit vector $$b \in \{0, 1\}^{I+1}$$ that is a suffix of $$bs$$ (there are $$2^{I+1-s}$$ such $$b$$ s), such that $$\{MI(M, B) \textrm{ for } B \in S(b)\} \subseteq \mathbb{N}$$ has no upper bound.  That is, $$\forall n \in \mathbb{N}$$, $$\exists B \in S(b)$$, $$MI(M, B) \gt n$$.  This predicate will later be referred to as $$\textrm{Unbounded}(b)$$.
+ 3. Otherwise it finds a bit vector $$b \in \{0, 1\}^{I+1}$$ that is an extension of $$bs$$[^extension] (there are $$2^{I+1-s}$$ such $$b$$ s), such that $$\{MI(M, B) \textrm{ for } B \in S(b)\} \subseteq \mathbb{N}$$ has no upper bound.  That is, $$\forall n \in \mathbb{N}$$, $$\exists B \in S(b)$$, $$MI(M, B) \gt n$$.  This predicate will later be referred to as $$\textrm{Unbounded}(b)$$.
  4. It sets $$bs$$ to $$b$$ and $$s$$ to $$I+1$$.
  5. It returns $$b[I]$$.
+
+[^extension]: I.e. $$bs$$ is a prefix of $$b$$.
  
 Firstly, note that step (3) is not an algorithm, i.e. it is not obvious that it can be computed by a TM.  There may be some clever way around this (or a proof showing that there isn't), but so far I haven't found one.  So this proof only shows the existence of a bit sequence in $$\mathbb{B}$$, but does not prove that it is computable.
 
@@ -77,13 +79,13 @@ Let $$\textrm{Bounded}(x)$$ $$\equiv$$ $$\exists c \in \mathbb{N}$$, $$\forall B
 
 We will be using the notation from the definition of $$NH$$ above -- $$bs$$ is the cached prefix from the previous call, $$I$$ is the index of the bit this $$i^{th}$$ call has to produce etc.  Let $$I+1-s$$ be $$L$$.  This is the length by which we will have to extend $$bs$$ to get $$b$$.
 
-The proof is by contradiction.  Let's assume we are unable to find an $$I+1$$ sized suffix of $$bs$$ in the $$i^{th}$$ invocation of the oracle.
+The proof is by contradiction.  Let's assume we are unable to find an $$I+1$$ sized extension of $$bs$$ in the $$i^{th}$$ invocation of the oracle.
 
-Not being able to find a suffix of $$bs$$ means that $$\neg$$ $$(\exists x \in \{0,1\}^{L}$$, $$\textrm{Unbounded}(b' + x))$$ $$\equiv$$ $$\forall x \in \{0,1\}^{L}, \textrm{Bounded}(b' + x)$$.  In other words, $$P(i)$$ fails when there is no way to extend $$bs$$ (of length $$s$$) by $$x$$ (of length $$L$$) such that $$\textrm{Unbounded}(bs + x)$$.
+Not being able to find a extension of $$bs$$ means that $$\neg$$ $$(\exists x \in \{0,1\}^{L}$$, $$\textrm{Unbounded}(b' + x))$$ $$\equiv$$ $$\forall x \in \{0,1\}^{L}, \textrm{Bounded}(b' + x)$$.  In other words, $$P(i)$$ fails when there is no way to extend $$bs$$ (of length $$s$$) by $$x$$ (of length $$L$$) such that $$\textrm{Unbounded}(bs + x)$$.
 
 Expanding Bounded, we get $$\forall x \in \{0,1\}^{L}$$, $$\exists c \in \mathbb{N}$$, $$\forall B \in S(b' + x)$$, $$MI(M, B)$$ $$\lt$$ $$c$$.  Setting $$C$$ to be the maximum of all the $$2^{L}$$ $$c$$s, we get $$\exists C \in \mathbb{N}$$, $$\forall x \in \{0,1\}^{L}$$, $$\forall B \in S(b' + x)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.  This further simplifies to $$\exists C \in \mathbb{N}$$, $$\forall B \in \cup_{x \in \{0,1\}^{L}} S(b' + x)$$, $$MI(M, B)$$ $$\lt$$ $$C$$.  But $$\cup_{x \in \{0,1\}^{L}} S(b' + x)$$ is just $$S(b')$$, so the we really have $$\exists C \in \mathbb{N}$$, $$\forall B \in S(b')$$, $$MI(M, B)$$ $$\lt$$ $$C$$.
 
-But this contradicts $$P(i-1)$$, so we must be able to find an $$I$$ sized suffix of $$bs$$!
+But this contradicts $$P(i-1)$$, so we must be able to find an $$I$$ sized extension of $$bs$$!
 
 # Making it Real
 
